@@ -1,0 +1,40 @@
+EP 
+min clear:  BK 1    K 0
+full clear: BK 1    K 0
+----
+DP
+min clear:  BK 1    K 0
+full clear: BK 1    K 1
+----
+ToH
+min clear:  BK 1    K 0     OR  HOOKSHOT
+full clear: BK 1    K 1
+---------
+
+PoD
+min clear:  BK 1    K 1
+full clear: BK 1    K 4
+----
+SP
+min clear:  BK 0    K 1
+full clear: BK 1    K 1
+----
+SW
+min clear:  BK 0    K 0
+full clear: BK 1    K 0
+----
+TT
+min clear:  BK 1    K 0
+full clear: BK 1    K 1
+----
+IP
+min clear:  BK 0    K 0
+full clear: BK 1    K ?
+----
+MM
+min clear:  BK 1    K 0
+full clear: BK 1    K 0 (I think)
+----
+TR
+min clear:  BK 1
+

@@ -4,18 +4,6 @@
   import FillerBox from './boxes/FillerBox.svelte';
   import MedallionBox from './boxes/MedallionBox.svelte';
   import items from './items.js'
-  // let name = 'sword';
-	// let images = [
-  //   'images/sword0.png',  
-  //   'images/sword0.png',
-  //   'images/sword2.png',
-  //   'images/sword3.png',
-  //   'images/sword4.png'
-  // ]
-
-  // const dungeon = {name: 'PD', type: 'dungeon', rewardImages: 
-  //   ['images/dungeon1.png', 'images/dungeon2.png', 'images/dungeon3.png', 'images/dungeon4.png']
-  // }
 </script>
 
 <main class='Tracker'>
