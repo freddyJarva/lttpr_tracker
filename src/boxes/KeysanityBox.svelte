@@ -10,16 +10,21 @@
   let bigKeyImage = 'images/bigkey.png'
   let isDone = false;
   let hasBigKey = false;
+  let dungeonState;
   let keyColor;
   $: activeClass = isDone ? 'active' : 'inactive'
   $: if (keyCount < smallKeyGoMode) {
     keyColor = null
+    dungeonState = 'not clearable'
   } else if (keyCount < smallKeyMin) {
     keyColor = 'red'
+    dungeonState = 'Go Mode'
   } else if (keyCount < smallKeyMax && smallKeyMax - smallKeyMin) {
     keyColor = 'blue'
+    dungeonState = 'can full clear'
   } else {
     keyColor = 'green'
+    dungeonState = 'all keys found'
   }
 
   function toggleDone() {
@@ -55,7 +60,12 @@
       on:contextmenu|preventDefault={changeReward} 
       class='keysanity-fragment {activeClass}'>?</span>
   {/if}
-  <span class='keysanity-fragment {keyColor}' on:click|preventDefault={incrementKeys}>{keyCount}</span>
+  <span 
+    class='keysanity-fragment {keyColor}' 
+    on:click|preventDefault={incrementKeys} 
+    title={dungeonState}>
+      {keyCount}
+  </span>
   <img
     on:click={toggleBigKey}
     src={bigKeyImage} alt='Big Key' 

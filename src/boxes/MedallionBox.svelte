@@ -17,7 +17,7 @@
   
 
 <box on:click|preventDefault={toggleDone} on:contextmenu|preventDefault={changeEntryTo} class='MedallionBox'>
-  <!-- <label><span>{entryTo[activeEntryIndex]}</span></label> -->
+  <div>{#if activeEntryIndex > 0}<span>{entryTo[activeEntryIndex]}</span>{/if}</div>
   <img src={images[0]} alt={name} class="{isDone ? 'active' : 'inactive'}"/>
 </box>
 
@@ -33,7 +33,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 
-    label {
+    div {
         margin-top: 8px;
         margin-left: 2px;
         margin-bottom: -100px;
@@ -44,7 +44,7 @@
         span {
             padding-top: 2px;
             padding-left: 2px;
-            background-color: rgb(10, 10, 10);
+            background-color: hsl(40, 100%, 0%);
         }
     }
     img {
