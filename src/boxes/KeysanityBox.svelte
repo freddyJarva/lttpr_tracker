@@ -4,7 +4,7 @@
   export let smallKeyMax = 0;
   export let smallKeyMin = 0;
   export let smallKeyGoMode = 0;
-  
+
   let keyCount = 0
   let activeRewardIndex = 0;
   let bigKeyImage = 'images/bigkey.png'
@@ -56,11 +56,12 @@
       class='keysanity-fragment {activeClass}'>?</span>
   {/if}
   <span class='keysanity-fragment {keyColor}' on:click|preventDefault={incrementKeys}>{keyCount}</span>
-  <img 
-    on:click={toggleBigKey} 
+  <img
+    on:click={toggleBigKey}
     src={bigKeyImage} alt='Big Key' 
     class="keysanity-fragment big-key" 
-    class:inactive={!hasBigKey}/>
+    class:big-key-inactive={!hasBigKey}
+    />
 </div>
 
 <style type="text/scss">
@@ -105,10 +106,20 @@
         margin-top: 2px;
         height: 26px;
         width: 22px;
+        -webkit-transition: all .1s ease-out;
+        -moz-transition: all .1s ease-out;
+        -o-transition: all .1s ease-out;
+        transition: all .1s ease-out;
+      }
+
+      .big-key-inactive {
+        filter: grayscale(1);
+        opacity: .3;
       }
 
       span {
           margin: 6px;
+          margin-top: 8px;
       }
       img {
           width: 30px;
@@ -118,5 +129,6 @@
         filter: grayscale(0.4);
         opacity: 0.6;
       }
+
   }
 </style>
