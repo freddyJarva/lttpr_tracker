@@ -1,0 +1,122 @@
+<script>
+  export let name;
+  export let images = [];
+  export let smallKeyMax = 0;
+  export let smallKeyMin = 0;
+  export let smallKeyGoMode = 0;
+  
+  let keyCount = 0
+  let activeRewardIndex = 0;
+  let bigKeyImage = 'images/bigkey.png'
+  let isDone = false;
+  let hasBigKey = false;
+  let keyColor;
+  $: activeClass = isDone ? 'active' : 'inactive'
+  $: if (keyCount < smallKeyGoMode) {
+    keyColor = null
+  } else if (keyCount < smallKeyMin) {
+    keyColor = 'red'
+  } else if (keyCount < smallKeyMax && smallKeyMax - smallKeyMin) {
+    keyColor = 'blue'
+  } else {
+    keyColor = 'green'
+  }
+
+  function toggleDone() {
+    isDone = !isDone
+  }
+
+  function changeReward() {
+    activeRewardIndex = (activeRewardIndex + 1) % images.length
+  }
+
+  function incrementKeys() {
+    keyCount = (keyCount + 1) % (smallKeyMax + 1)
+  }
+
+  function toggleBigKey() {
+    hasBigKey = !hasBigKey
+  }
+
+</script>
+
+<div class='DungeonBox'>
+  <span class='keysanity-fragment {`dungeon-name-${activeClass}`}'>{name}</span>
+  {#if images[activeRewardIndex]}
+    <img 
+      on:click|preventDefault={toggleDone} 
+      on:contextmenu|preventDefault={changeReward} 
+      src={images[activeRewardIndex]} 
+      alt={name} 
+      class="keysanity-fragment {activeClass}"/>
+  {:else}
+    <span 
+      on:click|preventDefault={toggleDone} 
+      on:contextmenu|preventDefault={changeReward} 
+      class='keysanity-fragment {activeClass}'>?</span>
+  {/if}
+  <span class='keysanity-fragment {keyColor}' on:click|preventDefault={incrementKeys}>{keyCount}</span>
+  <img 
+    on:click={toggleBigKey} 
+    src={bigKeyImage} alt='Big Key' 
+    class="keysanity-fragment big-key" 
+    class:inactive={!hasBigKey}/>
+</div>
+
+<style type="text/scss">
+  $green: rgb(0, 211, 0);
+  $blue: blue;
+  $red: red;
+  $gold: gold;
+  .DungeonBox {
+      color: whitesmoke;
+      justify-self: center;
+      grid-row-end: span 1;
+      grid-column: 11 / span 4;
+      // grid-column-start: span 4;
+      width: 100%;
+      // border: green solid 1px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+
+      .green {
+        color: $green;
+      }
+
+      .blue {
+        color: $blue;
+      }
+
+      .red {
+        color: $red;
+      }
+
+      .dungeon-name-active {
+        color: $gold
+      }
+
+      .keysanity-fragment {
+        grid-row-end: span 1;
+        grid-column-start: span 1;
+        justify-self: center;
+      }
+
+      .big-key {
+        margin-top: 2px;
+        height: 26px;
+        width: 22px;
+      }
+
+      span {
+          margin: 6px;
+      }
+      img {
+          width: 30px;
+      }
+
+      .inactive {
+        filter: grayscale(0.4);
+        opacity: 0.6;
+      }
+  }
+</style>

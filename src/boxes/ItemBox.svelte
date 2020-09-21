@@ -11,8 +11,10 @@
 
 
 <!-- <img class="{type === 'item' ? 'ItemBox' : 'DoubleItemBox'} {currentIndex > 0 ? 'null' : 'inactive'}" src={images[currentIndex]} alt={name} on:click={handleClick}/> -->
-<div class="{type === 'item' ? 'ItemBox' : 'DoubleItemBox'} {currentIndex > 0 ? 'null' : 'inactive'}" alt={name} on:click={handleClick}>
-  <img src={images[currentIndex]} />
+<div 
+  class="{type === 'item' ? 'ItemBox' : 'DoubleItemBox'}" 
+  class:inactive={currentIndex === 0} alt={name} on:click={handleClick}>
+  <img src={images[currentIndex]} alt={name}/>
 </div>
 
 

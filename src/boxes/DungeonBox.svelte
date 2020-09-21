@@ -1,5 +1,4 @@
 <script>
-  let finished = false;
   export let name;
   export let images = [];
   let activeRewardIndex = 0;
@@ -17,8 +16,8 @@
 </script>
 
 <box on:click|preventDefault={toggleDone} on:contextmenu|preventDefault={changeReward} class='DungeonBox'>
-  <label>{name}</label>
-  <img src={images[activeRewardIndex]} alt={name} class="{isDone ? 'active' : 'inactive'}"/>
+  <span>{name}</span>
+  <img src={images[activeRewardIndex]} alt={name} class:inactive={!isDone}/>
 </box>
 
 <style type="text/scss">
@@ -29,7 +28,7 @@
       grid-column-start: span 2;
       width: 100%;
 
-      label {
+      span {
           margin: 3px;
       }
       img {
