@@ -58,7 +58,7 @@
     <span 
       on:click|preventDefault={toggleDone} 
       on:contextmenu|preventDefault={changeReward} 
-      class='keysanity-fragment {activeClass}'>?</span>
+      class='keysanity-fragment {activeClass} dungeon-reward'>?</span>
   {/if}
   <span 
     class='keysanity-fragment {keyColor}' 
@@ -102,6 +102,10 @@
 
       .gold {
         color: $zelda-yellow;
+      }
+
+      .dungeon-reward {
+        padding: 1px;
       }
 
       .dungeon-name-active {
