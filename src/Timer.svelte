@@ -48,6 +48,8 @@
 </div>
 
 <style type="text/scss">
+  $green: rgb(0, 211, 0);
+  
   .Timer {
     border-top: whitesmoke;
 
@@ -86,7 +88,7 @@
     }
 
     .time.finished {
-        color: gold;
+        color: $green;
     }
   }
 </style>

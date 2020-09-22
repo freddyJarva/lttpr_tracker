@@ -14,10 +14,10 @@
   let keyColor;
   $: activeClass = isDone ? 'active' : 'inactive'
   $: if (keyCount < smallKeyGoMode) {
-    keyColor = null
+    keyColor = 'red'
     dungeonState = 'not clearable'
   } else if (keyCount < smallKeyMin) {
-    keyColor = 'red'
+    keyColor = 'gold'
     dungeonState = 'Go Mode'
   } else if (keyCount < smallKeyMax && smallKeyMax - smallKeyMin) {
     keyColor = 'blue'
@@ -102,8 +102,12 @@
         color: $red;
       }
 
+      .gold {
+        color: $gold;
+      }
+
       .dungeon-name-active {
-        color: $gold
+        color: $green;
       }
 
       .keysanity-fragment {
