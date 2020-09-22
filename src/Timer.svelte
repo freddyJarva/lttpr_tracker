@@ -53,10 +53,11 @@
   .Timer {
     border-top: whitesmoke;
 
-    grid-column: 1 / span 14;
-    grid-row: span 2;
+    grid-column: 1 / span 10;
+    grid-row: 11 / span 3;
     display: grid;
-    grid-template-columns: 4fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
     border-top: 1px solid rgb(36, 36, 36);
 
     button {
@@ -80,11 +81,12 @@
     }
 
     .time {
-        font-size: 34px;
+        font-size: 38px;
         color: rgb(255, 255, 255);
         align-self: center;
-        justify-self: end;
+        justify-self: center;
         padding: 10px;
+        grid-column: span 2;
     }
 
     .time.finished {
