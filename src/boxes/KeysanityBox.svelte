@@ -75,39 +75,37 @@
 </div>
 
 <style type="text/scss">
-  $green: rgb(0, 211, 0);
-  $blue: blue;
-  $red: red;
-  $gold: gold;
+  $zelda-green: hsl(122,58,51);
+  $zelda-blue: hsl(222,63,56);
+  $zelda-red: hsl(0,100,29);
+  $zelda-yellow: hsl(44,100,45);
   .DungeonBox {
       color: whitesmoke;
       justify-self: center;
       grid-row-end: span 1;
       grid-column: 11 / span 4;
-      // grid-column-start: span 4;
       width: 100%;
-      // border: green solid 1px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
 
       .green {
-        color: $green;
+        color: $zelda-green;
       }
 
       .blue {
-        color: $blue;
+        color: $zelda-blue;
       }
 
       .red {
-        color: $red;
+        color: $zelda-red;
       }
 
       .gold {
-        color: $gold;
+        color: $zelda-yellow;
       }
 
       .dungeon-name-active {
-        color: $green;
+        color: $zelda-green;
       }
 
       .keysanity-fragment {

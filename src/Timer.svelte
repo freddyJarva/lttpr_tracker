@@ -48,7 +48,8 @@
 </div>
 
 <style type="text/scss">
-  $green: rgb(0, 211, 0);
+  $zelda-green: hsl(122,58,51);
+  $zelda-yellow: hsl(44,100,45);
   
   .Timer {
     border-top: whitesmoke;
@@ -59,7 +60,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 1fr;
     // border-top: 1px solid rgb(36, 36, 36);
-    border: goldenrod solid 3px;
+    border: $zelda-yellow solid 3px;
     border-radius: 5px;
     // border-end-end-radius: 5%;
 
@@ -67,11 +68,12 @@
         margin: 4px;
         color: whitesmoke;
         background-color: black;
-        border-color: gold;
-        border-bottom: 1px solid goldenrod;
+        border-color: $zelda-yellow;
+        border-bottom: 1px solid hsl(43, 74%, 49%);
         border-right: 1px solid goldenrod;
         font-family: 'Press Start 2P';
         font-size: 12px;
+        margin: -4px 8px 10px 10px;
     }
 
     button:focus {
@@ -93,7 +95,7 @@
     }
 
     .time.finished {
-        color: $green;
+        color: $zelda-green;
     }
   }
 </style>

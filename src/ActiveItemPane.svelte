@@ -17,14 +17,15 @@ import MedallionBox from "./boxes/MedallionBox.svelte";
   {/each}
 </div>
 
-<style>
+<style type="text/scss">
+  $zelda-green: hsl(122,58,51);
   .pane {
     grid-row: 1 / span 10;
     grid-column: 1 / span 11;
     display: grid;
     grid-template-columns: repeat(10, 34px) 10px;
     grid-template-rows: repeat(10, 34px) 10px;
-    border: green solid 3px;
+    border: $zelda-green solid 3px;
     padding-left: 10px;
     padding-top: 10px;
     margin-bottom: -20px;
