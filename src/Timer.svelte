@@ -53,12 +53,15 @@
   .Timer {
     border-top: whitesmoke;
 
-    grid-column: 1 / span 10;
-    grid-row: 11 / span 3;
+    grid-column: 1 / span 11;
+    grid-row: 12 / span 3;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 1fr;
-    border-top: 1px solid rgb(36, 36, 36);
+    // border-top: 1px solid rgb(36, 36, 36);
+    border: goldenrod solid 3px;
+    border-radius: 5px;
+    // border-end-end-radius: 5%;
 
     button {
         margin: 4px;

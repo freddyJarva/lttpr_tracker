@@ -19,15 +19,15 @@ import MedallionBox from "./boxes/MedallionBox.svelte";
 
 <style>
   .pane {
-    padding: 10px;
-    /* padding-bottom: 20px; */
-    margin-bottom: -20px;
     grid-row: 1 / span 10;
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 11;
     display: grid;
-    grid-template-columns: repeat(10, 34px);
-    grid-template-rows: repeat(10, 34px);
-    border: white solid 3px;
+    grid-template-columns: repeat(10, 34px) 10px;
+    grid-template-rows: repeat(10, 34px) 10px;
+    border: green solid 3px;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-bottom: -20px;
     border-radius: 2%;
   }
 </style>
