@@ -79,6 +79,14 @@
   $zelda-blue: hsl(222,63,56);
   $zelda-red: hsl(0,100,29);
   $zelda-yellow: hsl(44,100,45);
+  
+  @mixin transition-mixin($property: all, $time: 0.2s, $type: ease-in) {
+    -webkit-transition: $property $time $type;
+    -moz-transition: $property $time $type;
+    -o-transition: $property $time $type;
+    transition: $property $time $type;
+  }
+
   .DungeonBox {
       color: whitesmoke;
       justify-self: center;
@@ -90,18 +98,22 @@
 
       .green {
         color: $zelda-green;
+        @include transition-mixin(color);
       }
 
       .blue {
         color: $zelda-blue;
+        @include transition-mixin(color);
       }
 
       .red {
         color: $zelda-red;
+        @include transition-mixin(color);
       }
 
       .gold {
         color: $zelda-yellow;
+        @include transition-mixin(color);
       }
 
       .dungeon-reward {
@@ -122,10 +134,7 @@
         margin-top: 2px;
         height: 26px;
         width: 22px;
-        -webkit-transition: all .1s ease-out;
-        -moz-transition: all .1s ease-out;
-        -o-transition: all .1s ease-out;
-        transition: all .1s ease-out;
+        @include transition-mixin(all, .1s, ease-out)
       }
 
       .big-key-inactive {
