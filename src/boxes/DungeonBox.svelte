@@ -22,23 +22,23 @@
 
 <style type="text/scss">
   .DungeonBox {
-      color: whitesmoke;
-      justify-self: center;
-      grid-row-end: span 2;
-      grid-column-start: span 2;
-      width: 100%;
+    color: whitesmoke;
+    justify-self: center;
+    grid-row-end: span 2;
+    grid-column-start: span 2;
+    width: 100%;
 
-      span {
-          margin: 3px;
-      }
-      img {
-          width: 50%;
-          margin-left: 20px;
-      }
+    span {
+      margin: 3px;
+    }
+    img {
+      width: 50%;
+      margin-left: 20px;
+    }
 
-      .inactive {
-        filter: grayscale(0.4);
-        opacity: 0.4;
-      }
+    .inactive {
+      filter: grayscale(0.4);
+      opacity: 0.4;
+    }
   }
 </style>

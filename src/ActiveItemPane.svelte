@@ -18,7 +18,7 @@ import MedallionBox from "./boxes/MedallionBox.svelte";
 </div>
 
 <style type="text/scss">
-  $zelda-green: hsl(122,58,51);
+  @import 'src/theme.scss';
   .pane {
     grid-row: 1 / span 10;
     grid-column: 1 / span 11;

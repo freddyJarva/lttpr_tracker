@@ -47,9 +47,8 @@
   <button class='button' on:click={finish} disabled={!isRunning}>FINISH</button>
 </div>
 
-<style type="text/scss">
-  $zelda-green: hsl(122,58,51);
-  $zelda-yellow: hsl(44,100,45);
+<style lang="scss">
+  @import 'src/theme.scss';
   
   .Timer {
     border-top: whitesmoke;
@@ -59,10 +58,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 1fr;
-    // border-top: 1px solid rgb(36, 36, 36);
     border: $zelda-yellow solid 3px;
     border-radius: 5px;
-    // border-end-end-radius: 5%;
 
     button {
         margin: 4px;

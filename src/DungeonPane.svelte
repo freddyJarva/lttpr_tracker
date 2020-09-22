@@ -19,7 +19,7 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(13, 35px);
     padding-top: 10px;
-    padding-left: 10px;
+    padding-left: 16px;
     padding-right: 16px;
     margin-right: -16px;
     border-radius: 5px;

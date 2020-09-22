@@ -58,10 +58,10 @@
     <span 
       on:click|preventDefault={toggleDone} 
       on:contextmenu|preventDefault={changeReward} 
-      class='keysanity-fragment {activeClass} dungeon-reward'>?</span>
+      class='keysanity-fragment {activeClass} dungeon-reward'><strong>?</strong></span>
   {/if}
   <span 
-    class='keysanity-fragment {keyColor}' 
+    class='keysanity-fragment {keyColor} key-count' 
     on:click|preventDefault={incrementKeys} 
     title={dungeonState}>
       {keyCount}
@@ -74,18 +74,8 @@
     />
 </div>
 
-<style type="text/scss">
-  $zelda-green: hsl(122,58,51);
-  $zelda-blue: hsl(222,63,56);
-  $zelda-red: hsl(0,100,29);
-  $zelda-yellow: hsl(44,100,45);
-  
-  @mixin transition-mixin($property: all, $time: 0.2s, $type: ease-in) {
-    -webkit-transition: $property $time $type;
-    -moz-transition: $property $time $type;
-    -o-transition: $property $time $type;
-    transition: $property $time $type;
-  }
+<style lang="scss">
+  @import "src/theme.scss";
 
   .DungeonBox {
       color: whitesmoke;
@@ -95,6 +85,8 @@
       width: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      font-family: Zelda;
+      font-size: 22px;
 
       .green {
         color: $zelda-green;
@@ -117,7 +109,7 @@
       }
 
       .dungeon-reward {
-        padding: 1px;
+        margin-left: 4px;
       }
 
       .dungeon-name-active {
@@ -128,6 +120,11 @@
         grid-row-end: span 1;
         grid-column-start: span 1;
         justify-self: center;
+      }
+
+      .key-count {
+        font-size: 30px;
+        margin-top: 0px;
       }
 
       .big-key {
@@ -143,8 +140,7 @@
       }
 
       span {
-          margin: 6px;
-          margin-top: 8px;
+          margin: 4px;
       }
       img {
           width: 30px;
