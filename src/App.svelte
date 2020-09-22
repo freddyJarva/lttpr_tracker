@@ -13,7 +13,6 @@
     {#if item.type === 'item' || item.type === 'doubleItem'}
       <ItemBox {...item}/>
     {:else if item.type === 'dungeon'}
-      <!-- <DungeonBox {...item}/> -->
       <KeysanityBox {...item}/>
     {:else if item.type === 'medallion'}
       <MedallionBox {...item}/>
