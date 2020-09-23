@@ -8,7 +8,7 @@
 
   let keyCount = 0
   let activeRewardIndex = 0;
-  let bigKeyImage = 'images/bigkey.png'
+  let bigKeyImage = 'images/big-key.png'
   let isDone = false;
   let hasBigKey = false;
   let dungeonState;
@@ -129,9 +129,7 @@
       }
 
       .big-key {
-        margin-top: 2px;
-        height: 26px;
-        width: 22px;
+        width: 90%;
         @include transition-mixin(all, .1s, ease-out)
       }
 
