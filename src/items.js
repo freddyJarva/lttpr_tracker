@@ -139,7 +139,7 @@ const items = [
   {name: 'TT', type: 'dungeon', images: [null, crystal, redCrystal, pendant, greenPendant], smallKeyMax: 1, smallKeyMin: 1, smallKeyGoMode: 0, bigKey: true},
   {name: 'IP', type: 'dungeon', images: [null, crystal, redCrystal, pendant, greenPendant], smallKeyMax: 2, smallKeyMin: 0, smallKeyGoMode: 0, bigKey: true},
   {name: 'MM', type: 'dungeon', images: [null, crystal, redCrystal, pendant, greenPendant], smallKeyMax: 3, smallKeyMin: 0, smallKeyGoMode: 0, bigKey: true},
-  {name: 'TR', type: 'dungeon', images: [null, crystal, redCrystal, pendant, greenPendant], smallKeyMax: 4, smallKeyMin: 4, smallKeyGoMode: 0, bigKey: true},
+  {name: 'TR', type: 'dungeon', images: [null, crystal, redCrystal, pendant, greenPendant], smallKeyMax: 4, smallKeyMin: 4, smallKeyGoMode: 3, bigKey: true},
   {name: 'GT', type: 'dungeon', images: [aganim, aganim], smallKeyMax: 4, smallKeyMin: 4, smallKeyGoMode: 1, bigKey: true},
 ]
 
