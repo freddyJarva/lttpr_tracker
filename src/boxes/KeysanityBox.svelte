@@ -4,6 +4,7 @@
   export let smallKeyMax = 0;
   export let smallKeyMin = 0;
   export let smallKeyGoMode = 0;
+  export let bigKey = false;
 
   let keyCount = 0
   let activeRewardIndex = 0;
@@ -21,7 +22,7 @@
     dungeonState = 'Go Mode'
   } else if (keyCount < smallKeyMax && smallKeyMax - smallKeyMin) {
     keyColor = 'blue'
-    dungeonState = 'can full clear'
+    dungeonState = 'full clear w. optimal key usage and items'
   } else {
     keyColor = 'green'
     dungeonState = 'all keys found'
@@ -45,7 +46,7 @@
 
 </script>
 
-<div class='DungeonBox'>
+<div class='DungeonBox' on:contextmenu|preventDefault={changeReward}>
   <span class='keysanity-fragment {`dungeon-name-${activeClass}`}'>{name}</span>
   {#if images[activeRewardIndex]}
     <img 
@@ -57,21 +58,22 @@
   {:else}
     <span 
       on:click|preventDefault={toggleDone} 
-      on:contextmenu|preventDefault={changeReward} 
       class='keysanity-fragment {activeClass} dungeon-reward'><strong>?</strong></span>
   {/if}
   <span 
     class='keysanity-fragment {keyColor} key-count' 
-    on:click|preventDefault={incrementKeys} 
+    on:click|preventDefault={incrementKeys}
     title={dungeonState}>
       {keyCount}
   </span>
-  <img
-    on:click={toggleBigKey}
-    src={bigKeyImage} alt='Big Key' 
-    class="keysanity-fragment big-key" 
-    class:big-key-inactive={!hasBigKey}
-    />
+  {#if bigKey}
+    <img
+      on:click={toggleBigKey}
+      src={bigKeyImage} alt='Big Key' 
+      class="keysanity-fragment big-key" 
+      class:big-key-inactive={!hasBigKey}
+      />
+  {/if}
 </div>
 
 <style lang="scss">
