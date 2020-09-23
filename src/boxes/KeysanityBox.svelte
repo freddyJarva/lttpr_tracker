@@ -51,7 +51,6 @@
   {#if images[activeRewardIndex]}
     <img 
       on:click|preventDefault={toggleDone} 
-      on:contextmenu|preventDefault={changeReward} 
       src={images[activeRewardIndex]} 
       alt={name} 
       class="keysanity-fragment {activeClass}"/>
@@ -84,7 +83,7 @@
       justify-self: center;
       grid-row-end: span 1;
       grid-column: 11 / span 4;
-      width: 100%;
+      width: 110%;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       font-family: Zelda;
@@ -111,7 +110,7 @@
       }
 
       .dungeon-reward {
-        margin-left: 4px;
+        margin-left: 6px;
       }
 
       .dungeon-name-active {
