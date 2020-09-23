@@ -12,7 +12,7 @@
 
 <div
   class="{type === 'item' ? 'ItemBox' : 'DoubleItemBox'}" 
-  class:inactive={currentIndex === 0} alt={name} on:click={handleClick}>
+  class:inactive={currentIndex === 0} alt={name} on:click={handleClick} on:contextmenu|preventDefault="">
   <img src={images[currentIndex]} alt={name}/>
 </div>
 
