@@ -1,13 +1,13 @@
 <script>
-  import KeysanityBox from './boxes/KeysanityBox.svelte';
+  import KeysanityBox from "./boxes/KeysanityBox.svelte";
 
   export let items;
 </script>
 
 <div class="pane">
-  <div class="bullshit-border"></div>
+  <div class="bullshit-border" />
   {#each items as item}
-    <KeysanityBox {...item}/>
+    <KeysanityBox {...item} />
   {/each}
 </div>
 
@@ -23,7 +23,7 @@
     padding-right: 16px;
     margin-right: -16px;
     border-radius: 5px;
-    border: red solid 3px;
+    box-shadow: 0 0 0 3px red;
+    border: white solid 3px;
   }
-
 </style>
