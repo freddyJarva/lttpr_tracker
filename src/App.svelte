@@ -19,6 +19,7 @@
   <ActiveItemPane items={usableItems} />
   <DungeonPane items={dungeons} />
   <Timer />
+  <Qusb2SnesOutput />
 </main>
 
 <style type="text/scss">
