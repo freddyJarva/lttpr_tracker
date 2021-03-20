@@ -47,13 +47,17 @@ const shield2 = "images/shield2.png";
 const shield3 = "images/shield3.png";
 const uncle = "images/uncle.png";
 
+function hasFoundItem(dataAtOffset, hexMask) {
+  return (dataAtOffset & hexMask) !== 0;
+}
+
 function createBinaryItem(hexOffset, hexMask) {
   const { subscribe, set } = writable(0);
 
   return {
     subscribe,
     updateFromQUsbData: (qusbData) => {
-      set(qusbData[hexOffset] & hexMask);
+      set(hasFoundItem(qusbData[hexOffset], hexMask) ? 1 : 0);
     },
     reset: () => set(0),
   };
