@@ -114,60 +114,12 @@ function updateIfChanged(data) {
 //     setitem("boomerang", bits == 0x80 ? 1 : bits == 0x40 ? 2 : 3);
 //   }
 
-//   if (disabledbit(0x38c, 0x20)) setitem("mushroom", false);
-//   if (newbit(0x38c, 0x20)) setitem("mushroom", true);
-//   if (newbit(0x38c, 0x10)) setitem("powder", true);
-
-//   if (newbit(0x38c, 0x04)) setitem("shovel", true);
-//   if (newbit(0x38c, 0x03)) setitem("flute", true);
-
-//   if (newbit(0x342, 0x01)) setitem("hookshot", true);
-
-//   if (newbit(0x345, 0x01)) setitem("firerod", true);
-
-//   if (newbit(0x346, 0x01)) setitem("icerod", true);
-
 //   if (newbit(0x347, 0x01)) setitem("bombos", true);
 
 //   if (newbit(0x348, 0x01)) setitem("ether", true);
 
 //   if (newbit(0x349, 0x01)) setitem("quake", true);
 
-//   if (newbit(0x34a, 0x01)) setitem("lantern", true);
-
-//   if (newbit(0x34b, 0x01)) setitem("hammer", true);
-
-//   if (newbit(0x34d, 0x01)) setitem("net", true);
-
-//   if (newbit(0x34e, 0x01)) setitem("book", true);
-
-//   if (newbit(0x350, 0x01)) setitem("somaria", true);
-
-//   if (newbit(0x351, 0x01)) setitem("byrna", true);
-
-//   if (newbit(0x352, 0x01)) setitem("cape", true);
-
-//   if (newbit(0x353, 0x02)) setitem("mirror", true);
-
-//   if (newbit(0x355, 0x01)) setitem("boots", true);
-
-//   if (newbit(0x356, 0x01)) setitem("flippers", true);
-
-//   if (newbit(0x357, 0x01)) setitem("moonpearl", true);
-
-//   if (changed(0x354)) setitem("glove", data[0x354]);
-
-//   if (changed(0x359))
-//     setitem(
-//       "sword",
-//       flags["swordmode"] === "S" || data[0x359] == 0xff ? 0 : data[0x359]
-//     );
-
-//   if (changed(0x35a)) setitem("shield", data[0x35a]);
-
-//   if (changed(0x35b)) setitem("tunic", data[0x35b] + 1);
-
-//   if (changed(0x37b)) setitem("magic", data[0x37b] > 0);
 
 //   var prevbottles = -1;
 //   if (autotrackPrevData !== null)
