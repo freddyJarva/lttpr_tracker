@@ -119,6 +119,21 @@ function createBow(hexOffset) {
   };
 }
 
+function createBottles(hexOffsets) {
+  const { subscribe, set } = writable(0);
+  return {
+    subscribe,
+    updateFromQUsbData: (qusbData) => {
+      let bottleTotal = hexOffsets.reduce(
+        (tally, offset) => (tally + qusbData[offset] === 0 ? 0 : 1),
+        0
+      );
+      set(bottleTotal);
+    },
+    reset: () => set(0),
+  };
+}
+
 const items = [
   {
     name: "bow",
@@ -233,6 +248,7 @@ const items = [
     name: "bottle",
     type: "item",
     images: [bottle, bottle1, bottle2, bottle3, bottle4],
+    autotrackState: createBottles([0x35c, 0x35d, 0x35e, 0x35f]),
   },
   {
     name: "somaria",
