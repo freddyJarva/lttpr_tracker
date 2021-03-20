@@ -53,7 +53,9 @@ function createBinaryItem() {
   return {
     subscribe,
     set,
-    toggle: () => update((n) => (n == 0 ? 1 : 0)),
+    updateFromQUsbData: (item, qusbData) => {
+      set(qusbData[item.hexOffset] & item.hexMask);
+    },
     reset: () => set(0),
   };
 }
