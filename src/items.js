@@ -51,15 +51,6 @@ function hasFoundItem(dataAtOffset, hexMask) {
   return (dataAtOffset & hexMask) !== 0;
 }
 
-function maskToOrdered(dataAtOffset, hexMasks) {
-  for (let i = 0; i < hexMasks.length; i++) {
-    if ((dataAtOffset & hexMasks[i]) !== 0) {
-      return i + 1;
-    }
-  }
-  return 0;
-}
-
 function createBinaryItem(hexOffset, hexMask) {
   const { subscribe, set } = writable(0);
 
@@ -107,13 +98,18 @@ function createProgressiveItem(hexOffset) {
 function createBow(hexOffset) {
   const { subscribe, set } = writable(0);
   const bowMask = 0x80;
-  const silverMask = 0x40;
+  const silverMask = 0x20;
 
   return {
     subscribe,
     updateFromQUsbData: (qusbData) => {
       // Make this less shitty
-      set(maskToOrdered(qusbData[hexOffset], [bowMask, silverMask]));
+      console.log("bow", qusbData[hexOffset]);
+      if (hasFoundItem(qusbData[hexOffset], bowMask)) {
+        set(qusbData[hexOffset] === bowMask ? 1 : 2);
+      } else {
+        set(0);
+      }
     },
     reset: () => set(0),
   };
