@@ -1,5 +1,5 @@
 import { debug } from "svelte/internal";
-import { hammerStore } from "./items";
+import items from "./items";
 
 let autotrackHost = null;
 let autotrackSocket = null;
@@ -67,9 +67,9 @@ function isInGame(event) {
 }
 
 function updateIfChanged(data) {
-  let hammer_offset = 0x34b;
-  let hammer_mask = 0x01;
-  hammerStore.set(data[hammer_offset] & hammer_mask);
+  let autoTrackableItems = items.filter((item) =>
+    item.hasOwnProperty("autotrackState")
+  );
 }
 
 //// Code taken from dunka's tracker for reference

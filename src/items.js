@@ -95,7 +95,14 @@ const items = [
   },
 
   { name: "lantern", type: "item", images: [lantern, lantern] },
-  { name: "hammer", type: "item", images: [hammer, hammer] },
+  {
+    name: "hammer",
+    type: "item",
+    images: [hammer, hammer],
+    hexOffset: 0x34b,
+    hexMask: 0x01,
+    autotrackState: createItem(),
+  },
   { name: "flute", type: "doubleItem", images: [flute, flute] },
   { name: "shovel", type: "doubleItem", images: [shovel, shovel] },
   { name: "net", type: "item", images: [net, net] },
