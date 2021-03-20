@@ -47,7 +47,7 @@ const shield2 = "images/shield2.png";
 const shield3 = "images/shield3.png";
 const uncle = "images/uncle.png";
 
-function createItem() {
+function createBinaryItem() {
   const { subscribe, set, update } = writable(0);
 
   return {
@@ -57,12 +57,6 @@ function createItem() {
     reset: () => set(0),
   };
 }
-export const hammerStore = createItem();
-export const hammerItem = {
-  name: "hammer",
-  type: "item",
-  images: [hammer, hammer],
-};
 
 const items = [
   { name: "bow", type: "item", images: [bow, bow, silvers] },
@@ -74,7 +68,7 @@ const items = [
     images: [hookshot, hookshot],
     hexOffset: 0x342,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   { name: "bombs", type: "item", images: [bombs, bombs] },
   { name: "powder", type: "doubleItem", images: [powder, powder] },
@@ -86,7 +80,7 @@ const items = [
     images: [frod, frod],
     hexOffset: 0x345,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "irod",
@@ -94,7 +88,7 @@ const items = [
     images: [irod, irod],
     hexOffset: 0x346,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "bombos",
@@ -103,7 +97,7 @@ const items = [
     images: [bombos, bombos],
     hexOffset: 0x347,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "ether",
@@ -112,7 +106,7 @@ const items = [
     images: [ether, ether],
     hexOffset: 0x348,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "quake",
@@ -121,7 +115,7 @@ const items = [
     images: [quake, quake],
     hexOffset: 0x348,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
 
   {
@@ -130,7 +124,7 @@ const items = [
     images: [lantern, lantern],
     hexOffset: 0x349,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "hammer",
@@ -138,7 +132,7 @@ const items = [
     images: [hammer, hammer],
     hexOffset: 0x34b,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   { name: "flute", type: "doubleItem", images: [flute, flute] },
   { name: "shovel", type: "doubleItem", images: [shovel, shovel] },
@@ -148,7 +142,7 @@ const items = [
     images: [net, net],
     hexOffset: 0x34d,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "book",
@@ -156,7 +150,7 @@ const items = [
     images: [book, book],
     hexOffset: 0x34e,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
 
   {
@@ -170,7 +164,7 @@ const items = [
     images: [somaria, somaria],
     hexOffset: 0x350,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "byrna",
@@ -178,7 +172,7 @@ const items = [
     images: [byrna, byrna],
     hexOffset: 0x351,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "cape",
@@ -186,7 +180,7 @@ const items = [
     images: [cape, cape],
     hexOffset: 0x352,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "mirror",
@@ -194,7 +188,7 @@ const items = [
     images: [mirror, mirror],
     hexOffset: 0x353,
     hexMask: 0x02,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
 
   {
@@ -203,7 +197,7 @@ const items = [
     images: [boots, boots],
     hexOffset: 0x355,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "glove",
@@ -211,7 +205,7 @@ const items = [
     images: [glove1, glove1, glove2],
     hexOffset: 0x354,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "flippers",
@@ -219,7 +213,7 @@ const items = [
     images: [flippers, flippers],
     hexOffset: 0x356,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "orb",
@@ -227,7 +221,7 @@ const items = [
     images: [orb, orb],
     hexOffset: 0x357,
     hexMask: 0x01,
-    autotrackState: createItem(),
+    autotrackState: createBinaryItem(),
   },
   {
     name: "sword",
