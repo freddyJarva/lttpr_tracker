@@ -124,10 +124,10 @@ function createBottles(hexOffsets) {
   return {
     subscribe,
     updateFromQUsbData: (qusbData) => {
-      let bottleTotal = hexOffsets.reduce(
-        (tally, offset) => (tally + qusbData[offset] === 0 ? 0 : 1),
-        0
-      );
+      let bottleTotal = hexOffsets.reduce((tally, offset) => {
+        let bottleAtOffset = qusbData[offset] === 0 ? 0 : 1;
+        return tally + bottleAtOffset;
+      }, 0);
       set(bottleTotal);
     },
     reset: () => set(0),
