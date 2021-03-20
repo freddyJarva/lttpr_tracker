@@ -51,6 +51,15 @@ function hasFoundItem(dataAtOffset, hexMask) {
   return (dataAtOffset & hexMask) !== 0;
 }
 
+function maskToOrdered(dataAtOffset, hexMasks) {
+  for (let i = 0; i < hexMasks.length; i++) {
+    if ((dataAtOffset & hexMasks[i]) !== 0) {
+      return i + 1;
+    }
+  }
+  return 0;
+}
+
 function createBinaryItem(hexOffset, hexMask) {
   const { subscribe, set } = writable(0);
 
@@ -83,8 +92,40 @@ to check the state of every double item with a bitwise AND operation
 */
 const doubleItemOffset = 0x38c;
 
+function createProgressiveItem(hexOffset) {
+  const { subscribe, set } = writable(0);
+
+  return {
+    subscribe,
+    updateFromQUsbData: (qusbData) => {
+      set(qusbData[hexOffset]);
+    },
+    reset: () => set(0),
+  };
+}
+
+function createBow(hexOffset) {
+  const { subscribe, set } = writable(0);
+  const bowMask = 0x80;
+  const silverMask = 0x40;
+
+  return {
+    subscribe,
+    updateFromQUsbData: (qusbData) => {
+      // Make this less shitty
+      set(maskToOrdered(qusbData[hexOffset], [bowMask, silverMask]));
+    },
+    reset: () => set(0),
+  };
+}
+
 const items = [
-  { name: "bow", type: "item", images: [bow, bow, silvers] },
+  {
+    name: "bow",
+    type: "item",
+    images: [bow, bow, silvers],
+    autotrackState: createBow(0x38e),
+  },
   {
     name: "blue",
     type: "doubleItem",
@@ -228,7 +269,7 @@ const items = [
     name: "glove",
     type: "item",
     images: [glove1, glove1, glove2],
-    autotrackState: createBinaryItem(0x354, binaryItemMask),
+    autotrackState: createProgressiveItem(0x354),
   },
   {
     name: "flippers",
@@ -246,11 +287,13 @@ const items = [
     name: "sword",
     type: "doubleItem",
     images: [sword1, sword1, sword2, sword3, sword4],
+    autotrackState: createProgressiveItem(0x359),
   },
   {
     name: "shield",
     type: "doubleItem",
     images: [shield1, shield1, shield2, shield3],
+    autotrackState: createProgressiveItem(0x35a),
   },
 
   {
