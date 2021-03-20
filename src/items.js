@@ -48,11 +48,10 @@ const shield3 = "images/shield3.png";
 const uncle = "images/uncle.png";
 
 function createBinaryItem() {
-  const { subscribe, set, update } = writable(0);
+  const { subscribe, set } = writable(0);
 
   return {
     subscribe,
-    set,
     updateFromQUsbData: (item, qusbData) => {
       set(qusbData[item.hexOffset] & item.hexMask);
     },
