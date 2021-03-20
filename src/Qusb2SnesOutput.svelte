@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import { setsocket, autotrackStartTimer } from "./autot";
-  import ItemAuto from "./boxes/ItemAuto.svelte";
 
   let messages = [];
 
@@ -84,7 +83,6 @@
       {/each}
     {:else}{/if}
   </select>
-  <ItemAuto />
 </div>
 
 <style lang="scss">
