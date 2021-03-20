@@ -47,7 +47,7 @@ const shield2 = "images/shield2.png";
 const shield3 = "images/shield3.png";
 const uncle = "images/uncle.png";
 
-function createHammerStore() {
+function createItem() {
   const { subscribe, set, update } = writable(0);
 
   return {
@@ -57,7 +57,7 @@ function createHammerStore() {
     reset: () => set(0),
   };
 }
-export const hammerStore = createHammerStore();
+export const hammerStore = createItem();
 export const hammerItem = {
   name: "hammer",
   type: "item",
