@@ -67,9 +67,11 @@ function isInGame(event) {
 }
 
 function updateIfChanged(data) {
-  let autoTrackableItems = items.filter((item) =>
-    item.hasOwnProperty("autotrackState")
-  );
+  items
+    .filter((item) => item.hasOwnProperty("autotrackState"))
+    .forEach((item) => {
+      item.autotrackState.set(data[item.hexOffset] & item.hexMask);
+    });
 }
 
 //// Code taken from dunka's tracker for reference
