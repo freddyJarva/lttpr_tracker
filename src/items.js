@@ -65,10 +65,38 @@ function createBinaryItem(hexOffset, hexMask) {
 
 const binaryItemMask = 0x01;
 
+/* double items are all distinct items sharing the same slot, i.e.
+flute/shovel, blumerang/boomered and powder/shroom.
+They're found at the same byte, but on different bits:
+
+  0b  1 1 1 1 1 1 1 1
+      ^ ^ ^ ^ ? ^ ^ ^
+      │ │ │ │   │ └─└── flute
+      │ │ │ │   └── shovel
+      │ │ │ └── powder
+      │ │ └── shroom
+      │ └── blumerang
+      └── boomered
+
+We use the same offset but different masks,
+to check the state of every double item with a bitwise AND operation
+*/
+const doubleItemOffset = 0x38c;
+
 const items = [
   { name: "bow", type: "item", images: [bow, bow, silvers] },
-  { name: "blue", type: "doubleItem", images: [blumerang, blumerang] },
-  { name: "boomerang", type: "doubleItem", images: [boomerang, boomerang] },
+  {
+    name: "blue",
+    type: "doubleItem",
+    images: [blumerang, blumerang],
+    autotrackState: createBinaryItem(doubleItemOffset, 0x80),
+  },
+  {
+    name: "boomerang",
+    type: "doubleItem",
+    images: [boomerang, boomerang],
+    autotrackState: createBinaryItem(doubleItemOffset, 0x40),
+  },
   {
     name: "hookshot",
     type: "item",
@@ -76,8 +104,18 @@ const items = [
     autotrackState: createBinaryItem(0x342, binaryItemMask),
   },
   { name: "bombs", type: "item", images: [bombs, bombs] },
-  { name: "powder", type: "doubleItem", images: [powder, powder] },
-  { name: "shroom", type: "doubleItem", images: [shroom, shroom] },
+  {
+    name: "powder",
+    type: "doubleItem",
+    images: [powder, powder],
+    autotrackState: createBinaryItem(doubleItemOffset, 0x10),
+  },
+  {
+    name: "shroom",
+    type: "doubleItem",
+    images: [shroom, shroom],
+    autotrackState: createBinaryItem(doubleItemOffset, 0x20),
+  },
 
   {
     name: "frod",
@@ -125,8 +163,18 @@ const items = [
     images: [hammer, hammer],
     autotrackState: createBinaryItem(0x34b, binaryItemMask),
   },
-  { name: "flute", type: "doubleItem", images: [flute, flute] },
-  { name: "shovel", type: "doubleItem", images: [shovel, shovel] },
+  {
+    name: "flute",
+    type: "doubleItem",
+    images: [flute, flute],
+    autotrackState: createBinaryItem(doubleItemOffset, 0x03),
+  },
+  {
+    name: "shovel",
+    type: "doubleItem",
+    images: [shovel, shovel],
+    autotrackState: createBinaryItem(doubleItemOffset, 0x04),
+  },
   {
     name: "net",
     type: "item",
