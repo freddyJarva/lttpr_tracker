@@ -47,17 +47,19 @@ const shield2 = "images/shield2.png";
 const shield3 = "images/shield3.png";
 const uncle = "images/uncle.png";
 
-function createBinaryItem() {
+function createBinaryItem(hexOffset, hexMask) {
   const { subscribe, set } = writable(0);
 
   return {
     subscribe,
-    updateFromQUsbData: (item, qusbData) => {
-      set(qusbData[item.hexOffset] & item.hexMask);
+    updateFromQUsbData: (qusbData) => {
+      set(qusbData[hexOffset] & hexMask);
     },
     reset: () => set(0),
   };
 }
+
+const binaryItemMask = 0x01;
 
 const items = [
   { name: "bow", type: "item", images: [bow, bow, silvers] },
@@ -67,9 +69,7 @@ const items = [
     name: "hookshot",
     type: "item",
     images: [hookshot, hookshot],
-    hexOffset: 0x342,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x342, binaryItemMask),
   },
   { name: "bombs", type: "item", images: [bombs, bombs] },
   { name: "powder", type: "doubleItem", images: [powder, powder] },
@@ -79,61 +79,47 @@ const items = [
     name: "frod",
     type: "item",
     images: [frod, frod],
-    hexOffset: 0x345,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x345, binaryItemMask),
   },
   {
     name: "irod",
     type: "item",
     images: [irod, irod],
-    hexOffset: 0x346,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x346, binaryItemMask),
   },
   {
     name: "bombos",
     type: "medallion",
     entryTo: ["", "MM", "TR", "BOTH"],
     images: [bombos, bombos],
-    hexOffset: 0x347,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x347, binaryItemMask),
   },
   {
     name: "ether",
     type: "medallion",
     entryTo: ["", "MM", "TR", "BOTH"],
     images: [ether, ether],
-    hexOffset: 0x348,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x348, binaryItemMask),
   },
   {
     name: "quake",
     type: "medallion",
     entryTo: ["", "MM", "TR", "BOTH"],
     images: [quake, quake],
-    hexOffset: 0x348,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x349, binaryItemMask),
   },
 
   {
     name: "lantern",
     type: "item",
     images: [lantern, lantern],
-    hexOffset: 0x349,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x34a, binaryItemMask),
   },
   {
     name: "hammer",
     type: "item",
     images: [hammer, hammer],
-    hexOffset: 0x34b,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x34b, binaryItemMask),
   },
   { name: "flute", type: "doubleItem", images: [flute, flute] },
   { name: "shovel", type: "doubleItem", images: [shovel, shovel] },
@@ -141,17 +127,13 @@ const items = [
     name: "net",
     type: "item",
     images: [net, net],
-    hexOffset: 0x34d,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x34d, binaryItemMask),
   },
   {
     name: "book",
     type: "item",
     images: [book, book],
-    hexOffset: 0x34e,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x34e, binaryItemMask),
   },
 
   {
@@ -163,66 +145,50 @@ const items = [
     name: "somaria",
     type: "item",
     images: [somaria, somaria],
-    hexOffset: 0x350,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x350, binaryItemMask),
   },
   {
     name: "byrna",
     type: "item",
     images: [byrna, byrna],
-    hexOffset: 0x351,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x351, binaryItemMask),
   },
   {
     name: "cape",
     type: "item",
     images: [cape, cape],
-    hexOffset: 0x352,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x352, binaryItemMask),
   },
   {
     name: "mirror",
     type: "item",
     images: [mirror, mirror],
-    hexOffset: 0x353,
-    hexMask: 0x02,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x353, 0x02),
   },
 
   {
     name: "boots",
     type: "item",
     images: [boots, boots],
-    hexOffset: 0x355,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x355, binaryItemMask),
   },
   {
     name: "glove",
     type: "item",
     images: [glove1, glove1, glove2],
-    hexOffset: 0x354,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x354, binaryItemMask),
   },
   {
     name: "flippers",
     type: "item",
     images: [flippers, flippers],
-    hexOffset: 0x356,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x356, binaryItemMask),
   },
   {
     name: "orb",
     type: "item",
     images: [orb, orb],
-    hexOffset: 0x357,
-    hexMask: 0x01,
-    autotrackState: createBinaryItem(),
+    autotrackState: createBinaryItem(0x357, binaryItemMask),
   },
   {
     name: "sword",

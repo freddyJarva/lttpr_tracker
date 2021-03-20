@@ -69,7 +69,7 @@ function updateIfChanged(data) {
   items
     .filter((item) => item.hasOwnProperty("autotrackState"))
     .forEach((item) => {
-      item.autotrackState.updateFromQUsbData(item, data);
+      item.autotrackState.updateFromQUsbData(data);
     });
 }
 
