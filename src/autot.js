@@ -62,7 +62,6 @@ function isInGame(event) {
   // I'm assuming gamemode here might mean start screen, in-game etc
   // I guess the values of interest can only be accessed in certain modes. maybe??
   let gamemode = new Uint8Array(event.data)[0];
-  console.log("gamemode: ", gamemode);
   return [0x07, 0x09, 0x0b].includes(gamemode);
 }
 
