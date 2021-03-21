@@ -4,8 +4,9 @@
 </script>
 
 <div class="pane">
-  
-  <Overworld />
+  {#each maps as map}
+    <Overworld {...map} />
+  {/each}
 </div>
 
 <style type="text/scss">
