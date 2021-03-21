@@ -4,6 +4,7 @@
   import ActiveItemPane from "./ActiveItemPane.svelte";
   import DungeonPane from "./DungeonPane.svelte";
   import Qusb2SnesOutput from "./Qusb2SnesOutput.svelte";
+  import MapPane from "./MapPane.svelte";
 
   const usableItems = items.filter(
     (item) =>
@@ -20,6 +21,7 @@
   <DungeonPane items={dungeons} />
   <Timer />
   <Qusb2SnesOutput />
+  <MapPane />
 </main>
 
 <style type="text/scss">
@@ -30,7 +32,7 @@
   .Tracker {
     display: grid;
     grid-template-rows: repeat(16, 34px) $filler-cell repeat(3, 34px);
-    grid-template-columns: repeat(10, 34px) $filler-cell 16px repeat(4, 34px);
+    grid-template-columns: repeat(10, 34px) $filler-cell 16px repeat(4, 34px) $filler-cell 256px;
     padding-top: 10px;
     color: lightgrey;
     width: fit-content;
