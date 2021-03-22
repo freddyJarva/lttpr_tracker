@@ -1,62 +1,80 @@
 <script>
-  import { originalSize } from "./mapcontent";
+  import { referenceSize } from "./mapcontent";
   export let image;
   export let world;
   export let entrances;
+  export let items;
 
-  let renderedSize;
+  let iconLength = 8;
+  let containerW;
+  let containerH;
 
-  $: console.log("Rendered size: ", renderedSize);
+  $: console.log("Rendered size: ", containerW);
 
-  function positionInGrid(axisValue) {
-    let ratio = originalSize / renderedSize;
-    let position = axisValue / ratio / 4;
-    console.log("Position: ", position);
-    return Math.floor(position);
+  function calculateAxis(val, axisLength) {
+    let ratio = referenceSize / axisLength;
+    return Math.floor(val / ratio);
+  }
+
+  function position(point) {
+    return {
+      x: calculateAxis(point.x, containerW) - iconLength / 2,
+      y: calculateAxis(point.y, containerH) + iconLength / 2,
+    };
+  }
+
+  let m = { x: 0, y: 0 };
+
+  function handleMousemove(event) {
+    m.x = event.offsetX;
+    m.y = event.offsetY;
   }
 </script>
 
 <div
   class="MapBox"
   style="background-image: url({image})"
-  bind:clientWidth={renderedSize}
+  bind:clientWidth={containerW}
+  bind:clientHeight={containerH}
+  on:mousemove={handleMousemove}
 >
-  <!-- <div class="MapBox"> -->
-  {#if renderedSize !== undefined}
+  {#if containerW !== undefined}
     {#each entrances as entrance}
-      <span
-        style="grid-column-start: {positionInGrid(
-          entrance.x
-        )}; grid-row-start: {positionInGrid(
-          entrance.y
-        )}; background-image: url(icons/door-36x36.svg)"
+      <object
+        type="image/svg+xml"
+        data="icons/door-8px.svg"
+        style="left: {position(entrance).x}px;
+              top: {position(
+          entrance
+        ).y}px;"
       />
-      <!-- <span /> -->
-      <!-- <div style="background-image: url(icons/door-36x36.svg)" /> -->
+    {/each}
+    {#each items as item}
+      <object
+        type="image/svg+xml"
+        data="icons/chest-16px.svg"
+        style="left: {position(item).x}px;
+          top: {position(item)
+          .y}px;"
+      />
     {/each}
   {/if}
+  <span>X: {m.x}, Y: {m.y}</span>
 </div>
 
 <style type="text/scss">
   @import "src/theme.scss";
+
   .MapBox {
     background-size: contain;
     grid-row-end: span 1;
     grid-column-end: span 1;
 
-    display: grid;
-    grid-template-columns: repeat($map-cell-total, $map-cell-size);
-    grid-template-rows: repeat($map-cell-total, $map-cell-size);
+    position: relative;
   }
 
-  span {
-    // background: 1em 1em no-repeat;
-    background-size: cover;
-    outline: rgb(209, 7, 220) solid 1px;
-  }
-
-  .door {
-    fill: yellow;
-    opacity: 1;
+  object {
+    position: absolute;
+    width: 8px;
   }
 </style>

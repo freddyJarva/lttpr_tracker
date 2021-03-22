@@ -18,8 +18,6 @@
     grid-template-columns: 100%;
     grid-template-rows: 50% 50%;
     border: white solid 3px;
-    // padding-left: 16px;
-    // padding-top: 10px;
     margin-bottom: -20px;
     border-radius: 2%;
     box-shadow: 0 0 0 3px $zelda-blue;

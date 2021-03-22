@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="8" height="8" viewBox="0 0 8 8" version="1.1">
+    <title>
+      door-standard
+    </title>
+    <g id="door-standard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="door-mini-frame" stroke="#000000" fill="#F7B500" x="1.5" y="0.5" width="5" height="7" />
+        <circle id="door-mini-knob" stroke="#000000" fill="#D8D8D8" cx="5" cy="4" r="1" />
+    </g>
+</svg>
