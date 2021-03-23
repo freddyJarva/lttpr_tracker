@@ -5,6 +5,7 @@
   import DungeonPane from "./DungeonPane.svelte";
   import Qusb2SnesOutput from "./Qusb2SnesOutput.svelte";
   import MapPane from "./MapPane.svelte";
+  import Overworld from "./Overworld.svelte";
 
   const usableItems = items.filter(
     (item) =>

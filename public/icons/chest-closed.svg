@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>chest-closed</title>
+    <g id="items-icon-prototype" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="chest-closed">
+            <g id="chest-base">
+                <rect id="base-object" stroke="#202020" fill="#D8B028" x="0.5" y="0.5" width="15" height="15"></rect>
+                <line x1="6.5" y1="10.5" x2="9.5" y2="10.5" id="lock-highlight" stroke="#E0E0E0" stroke-linecap="square"></line>
+                <rect id="top-highlight" stroke="#E0E0E0" fill="#E0E0E0" x="1.5" y="3.5" width="13" height="2"></rect>
+            </g>
+            <line x1="7.5" y1="11.5" x2="8.5" y2="11.5" id="key-hole" stroke="#202020" stroke-linecap="square"></line>
+            <rect id="left-red" stroke="#202020" fill="#A83838" x="2.5" y="0.5" width="4" height="9"></rect>
+            <rect id="right-red" stroke="#202020" fill="#A83838" x="9.5" y="0.5" width="4" height="9"></rect>
+            <rect id="right-red-highlight" stroke="#D86868" fill="#D86868" x="3.5" y="3.5" width="2" height="1"></rect>
+            <rect id="left-red-highlight" stroke="#D86868" fill="#D86868" x="10.5" y="3.5" width="2" height="1"></rect>
+            <polyline id="chest-lid" stroke="#202020" points="1 11.5 5.5 11.5 5.5 13.5 10.5 13.5 10.5 11.5 15 11.5"></polyline>
+        </g>
+    </g>
+</svg>
