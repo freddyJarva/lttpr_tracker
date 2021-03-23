@@ -1,5 +1,11 @@
 <script>
-  import { referenceSize } from "./mapcontent";
+  import "leaflet/dist/leaflet.css";
+  import L from "leaflet";
+
+  let map;
+  let img;
+  let layers = {};
+
   export let image;
   export let world;
   export let entrances;
@@ -29,9 +35,53 @@
     m.x = event.offsetX;
     m.y = event.offsetY;
   }
+
+  function createMap(container) {
+    let m = L.map(container, {
+      crs: L.CRS.Simple,
+      center: [2048, 2048],
+      zoom: 4,
+      maxBounds: [
+        [0, 0],
+        [4096, 4096],
+      ],
+    });
+    // img = L.imageOverlay(image, bounds).addTo(m);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      crs: L.CRS.EPSG4326,
+    }).addTo(m);
+    return m;
+  }
+
+  function mapAction(container) {
+    map = createMap(container);
+    return {
+      destroy: () => {
+        map.remove();
+      },
+    };
+  }
+
+  function resizeMap() {
+    if (map) {
+      map.invalidateSize();
+    }
+  }
 </script>
 
-<div
+<svelte:head>
+  <!-- In the REPL you need to do this. In a normal Svelte app, use a CSS Rollup plugin and import it from the leaflet package. -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""
+  />
+</svelte:head>
+
+<svelte:window on:resize={resizeMap} />
+
+<!-- <div
   class="MapBox"
   style="background-image: url({image})"
   bind:clientWidth={containerW}
@@ -52,15 +102,16 @@
     {#each items as item}
       <object
         type="image/svg+xml"
-        data="icons/chest-16px.svg"
+        data="icons/chest-closed.svg"
         style="left: {position(item).x}px;
-          top: {position(item)
-          .y}px;"
+          top: {position(item).y}px;"
       />
     {/each}
   {/if}
   <span>X: {m.x}, Y: {m.y}</span>
-</div>
+</div> -->
+
+<div style="height:256px;width:100%" use:mapAction />
 
 <style type="text/scss">
   @import "src/theme.scss";
