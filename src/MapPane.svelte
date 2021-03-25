@@ -1,12 +1,25 @@
 <script>
-  import Overworld from "./Overworld.svelte";
-  import maps from "./mapcontent";
+  import Leaflet from "./Leaflet.svelte";
+  import mapContent from "./mapcontent";
+
+  let loaded = false;
+
+  let m = { x: 0, y: 0 };
+
+  function handleMousemove(event) {
+    m.x = event.offsetX;
+    m.y = event.offsetY;
+  }
 </script>
 
-<div class="pane">
-  {#each maps as map}
-    <Overworld {...map} />
-  {/each}
+<svelte:window on:load={() => (loaded = true)} />
+
+<div class="pane" on:mousemove={handleMousemove}>
+  {#if loaded || document.readyState === "complete"}
+    <Leaflet {...mapContent} />
+  {/if}
+
+  <span>X: {m.x}, Y: {m.y}</span>
 </div>
 
 <style type="text/scss">
@@ -16,10 +29,14 @@
     grid-column: 18;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 100%;
     border: white solid 3px;
     margin-bottom: -20px;
     border-radius: 2%;
     box-shadow: 0 0 0 3px $zelda-blue;
+  }
+
+  span {
+    margin-top: 10px;
   }
 </style>

@@ -1,37 +1,24 @@
-const overworldLight = "images/overworld-light.png";
-const overworldDark = "images/overworld-dark.png";
+const overworldDarkLight = "images/overworld-dark-light.png";
 
-// Used as reference when translating points to resized maps
-export const originalSize = 2048;
-export const referenceSize = 250;
+export const mapUnit = 16;
+export const imageHeight = 4096;
 
-const maps = [
-  {
-    world: "light",
-    image: overworldLight,
-    entrances: [
-      {
-        name: "link's house",
-        id: "house-link",
-        x: 134,
-        y: 170,
-      },
-    ],
-    items: [
-      {
-        name: "race game reward",
-        id: "item-racegame",
-        x: 12,
-        y: 170,
-      },
-    ]
-  },
-  {
-    world: "dark",
-    image: overworldDark,
-    entrances: [],
-    items: [],
-  },
-];
+const mapContent = {
+  image: overworldDarkLight,
+  markers: [
+    {
+      name: "link's house",
+      id: "house-link",
+      type: "entrance",
+      xy: [2240, 2816],
+    },
+    {
+      name: "race game reward",
+      id: "item-racegame",
+      type: "item",
+      xy: [128, 2880],
+    },
+  ],
+};
 
-export default maps;
+export default mapContent;
