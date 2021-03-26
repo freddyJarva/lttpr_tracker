@@ -1,10 +1,10 @@
 <script lang="typescript">
   import { createEventDispatcher, setContext } from "svelte";
   import * as L from "leaflet";
-  import { imageHeight, mapUnit } from "./mapcontent";
+  import { defaultIcon, doorIcon, imageHeight, mapUnit } from "./mapcontent";
 
-  export let image;
-  export let markers;
+  export let image: string;
+  export let markers: any[];
   export let height = "100%";
   export let width = "100%";
 
@@ -54,7 +54,9 @@
       let latLng = toLatLng(marker.xy);
       console.log(latLng);
       let positionedMarker = L.latLng(latLng[0], latLng[1]);
-      L.marker(positionedMarker).addTo(map);
+      L.marker(positionedMarker, {
+        icon: marker.type === "entrance" ? doorIcon : defaultIcon,
+      }).addTo(map);
     });
 
     return {
