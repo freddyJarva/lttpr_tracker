@@ -3,7 +3,7 @@ import * as L from "leaflet";
 const overworldDarkLight = "images/overworld-dark-light.png";
 
 export const doorIcon = L.icon({
-  iconUrl: "icons/map-marker-door.svg",
+  iconUrl: "icons/map-marker-door-red.svg",
   shadowUrl: "icons/map-marker-shadow.svg",
 
   iconSize: [30, 50], // size of the icon
