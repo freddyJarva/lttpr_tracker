@@ -56,7 +56,9 @@
       let positionedMarker = L.latLng(latLng[0], latLng[1]);
       L.marker(positionedMarker, {
         icon: marker.type === "entrance" ? doorIcon : defaultIcon,
-      }).addTo(map);
+      })
+        .addTo(map)
+        .bindTooltip(marker.name);
     });
 
     return {
