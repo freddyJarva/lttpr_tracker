@@ -2,6 +2,18 @@ import * as L from "leaflet";
 
 const overworldDarkLight = "images/overworld-dark-light.png";
 
+interface MarkerData {
+  name: string;
+  id: string;
+  type: string;
+  xy: Array<number>;
+}
+
+interface MapContent {
+  image: string,
+  markers: Array<MarkerData>,
+}
+
 export const doorIcon = L.icon({
   iconUrl: "icons/map-marker-door-green.svg",
   shadowUrl: "icons/map-marker-shadow.svg",
@@ -21,7 +33,7 @@ export const mapUnit = 16;
 export const imageHeight = 4096;
 
 // Spots where unique items can be found
-const itemMarkers = [
+const itemMarkers: Array<MarkerData> = [
   {
     name: "Kakariko Bottle Merchant",
     id: "item-kak-merchant",
@@ -51,7 +63,7 @@ const itemMarkers = [
 // Bushes, rocks that drop bombs, rupees etc.
 // const itemDropMarkers;
 
-const otherMarkers = [
+const otherMarkers: Array<MarkerData> = [
   {
     name: "Kakariko Bird Statue",
     id: "undefined-kak-birdstate",
@@ -60,7 +72,7 @@ const otherMarkers = [
   },
 ];
 
-const mapContent = {
+const mapContent: MapContent = {
   image: overworldDarkLight,
   markers: [
     {
