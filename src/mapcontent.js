@@ -16,6 +16,7 @@ export const doorIcon = L.icon({
 
 export const defaultIcon = new L.Icon.Default();
 
+// constants used for translating pixel values to map coordinates
 export const mapUnit = 16;
 export const imageHeight = 4096;
 
@@ -79,7 +80,7 @@ const mapContent = {
       name: "Lumberjack Cave",
       id: "entrance-lumberjack-cave",
       type: "entrance",
-      xy: [1360, 128],
+      xy: [1360, 144],
     },
     {
       name: "Lumberjack's house",
