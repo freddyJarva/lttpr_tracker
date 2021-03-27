@@ -128,14 +128,5 @@
       color: grey;
       border-color: grey;
     }
-
-    li {
-      font-size: 12px;
-      color: rgb(255, 255, 255);
-      align-self: center;
-      justify-self: center;
-      padding: 10px;
-      grid-column: span 2;
-    }
   }
 </style>
