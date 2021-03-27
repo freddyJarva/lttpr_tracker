@@ -81,7 +81,7 @@
           {device}
         </option>
       {/each}
-    {:else}{/if}
+    {/if}
   </select>
 </div>
 
