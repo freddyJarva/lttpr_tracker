@@ -1,10 +1,18 @@
 <script lang="typescript">
   import { createEventDispatcher, setContext } from "svelte";
   import * as L from "leaflet";
-  import { defaultIcon, doorIcon, imageHeight, mapUnit } from "./mapcontent";
+  import {
+    defaultIcon,
+    doorIcon,
+    iconFor,
+    imageHeight,
+    mapUnit,
+  } from "./mapcontent";
+  import type { MarkerData } from "./mapcontent";
+  import "leaflet/dist/leaflet.css";
 
   export let image: string;
-  export let markers: any[];
+  export let markers: Array<MarkerData>;
   export let height = "100%";
   export let width = "100%";
 
@@ -28,7 +36,6 @@
   function toLatLng(xy: Array<number>) {
     let maxLat = imageHeight / mapUnit;
     const latLng = [maxLat - xy[1] / mapUnit, xy[0] / mapUnit];
-    console.log(latLng);
     return latLng;
   }
 
@@ -52,13 +59,15 @@
     // Add markers to the map
     markers.forEach((marker) => {
       let latLng = toLatLng(marker.xy);
-      console.log(latLng);
       let positionedMarker = L.latLng(latLng[0], latLng[1]);
-      L.marker(positionedMarker, {
-        icon: marker.type === "entrance" ? doorIcon : defaultIcon,
+      let leafletMarker = L.marker(positionedMarker, {
+        icon: iconFor(marker),
       })
         .addTo(map)
         .bindTooltip(marker.name);
+      if (marker.popup !== undefined) {
+        leafletMarker.bindPopup(marker.popup);
+      }
     });
 
     return {
@@ -77,13 +86,6 @@
     <slot {map} />
   {/if}
 </div>
-
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-  crossorigin=""
-/>
 
 <style type="text/scss">
   :global(.leaflet-control-container) {

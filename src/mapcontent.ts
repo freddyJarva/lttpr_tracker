@@ -2,16 +2,46 @@ import * as L from "leaflet";
 
 const overworldDarkLight = "images/overworld-dark-light.png";
 
-interface MarkerData {
+export interface MarkerData {
   name: string;
   id: string;
   type: string;
   xy: Array<number>;
+  popup?: any;
 }
 
 interface MapContent {
-  image: string,
-  markers: Array<MarkerData>,
+  image: string;
+  markers: Array<MarkerData>;
+}
+
+const mapIcons = {
+  entrance: L.icon({
+    iconUrl: "icons/map-marker-door-green.svg",
+    shadowUrl: "icons/map-marker-shadow.svg",
+
+    iconSize: [20, 30], // size of the icon
+    shadowSize: [20, 30], // size of the shadow
+    iconAnchor: [10, 30], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -32], // point from which the popup should open relative to the iconAnchor
+    tooltipAnchor: [12, -20],
+    shadowAnchor: [1, 22], // the same for the shadow
+  }),
+  glitch: L.icon({
+    iconUrl: "icons/map-marker-glitch-improved.svg",
+
+    iconSize: [40, 30],
+    iconAnchor: [20, 30],
+    popupAnchor: [0, -32],
+    tooltipAnchor: [14, -15],
+  }),
+  default: new L.Icon.Default(),
+};
+
+export function iconFor(marker: MarkerData): L.Icon {
+  return mapIcons[marker.type] === undefined
+    ? mapIcons.default
+    : mapIcons[marker.type];
 }
 
 export const doorIcon = L.icon({
@@ -69,6 +99,59 @@ const otherMarkers: Array<MarkerData> = [
     id: "undefined-kak-birdstate",
     type: "undefined",
     xy: [520, 1952],
+  },
+];
+
+function popupVideoHtml(
+  src: string,
+  playbackSlice: Array<number> | null = null
+) {
+  let startEnd =
+    playbackSlice !== null
+      ? `?start=${playbackSlice[0]}&end=${playbackSlice[1]}`
+      : "";
+  return `<iframe width="320" height="180"\
+  src="${src}${startEnd}">\
+  </iframe>`;
+}
+
+const glitchMarkers: Array<MarkerData> = [
+  {
+    name: "Desert Ledge O.B.",
+    id: "glitch-desert-ledge-ob",
+    type: "glitch",
+    xy: [96, 2992],
+    popup: popupVideoHtml("https://www.youtube.com/embed/mku2i_Vq3Do"),
+  },
+  {
+    name: "Spectacle Rock O.B.",
+    id: "glitch-spectacle-rock-ob",
+    type: "glitch",
+    xy: [2120, 297],
+    popup: popupVideoHtml("https://www.youtube.com/embed/mf5mvuJaQaY", [
+      1189,
+      1196,
+    ]),
+  },
+  {
+    name: "Race Game O.B.",
+    id: "glitch-race-game-ob",
+    type: "glitch",
+    xy: [96, 2504],
+    popup: popupVideoHtml("https://www.youtube.com/embed/mf5mvuJaQaY", [
+      1296,
+      1316,
+    ]),
+  },
+  {
+    name: "Checkerboard Cave O.B.",
+    id: "glitch-checkerboard-cave-ob",
+    type: "glitch",
+    xy: [520, 3168],
+    popup: popupVideoHtml("https://www.youtube.com/embed/mf5mvuJaQaY", [
+      1317,
+      1327,
+    ]),
   },
 ];
 
@@ -923,5 +1006,7 @@ const mapContent: MapContent = {
     },
   ],
 };
+
+mapContent.markers.push(...glitchMarkers);
 
 export default mapContent;
