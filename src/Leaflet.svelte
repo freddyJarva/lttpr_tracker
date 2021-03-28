@@ -50,19 +50,7 @@
       [halfSize, halfSize * 2],
     ]).addTo(map);
 
-    // Add markers to the map
-    markers.forEach((marker) => {
-      let latLng = toLatLng(marker.xy);
-      let positionedMarker = L.latLng(latLng[0], latLng[1]);
-      let leafletMarker = L.marker(positionedMarker, {
-        icon: iconFor(marker),
-      })
-        .addTo(map)
-        .bindTooltip(marker.name);
-      if (marker.popup !== undefined) {
-        leafletMarker.bindPopup(marker.popup);
-      }
-    });
+    addMarkers(map);
 
     return {
       destroy() {
@@ -70,6 +58,37 @@
         map = undefined;
       },
     };
+  }
+
+  function addMarkers(map) {
+    let entrances = markers
+      .filter((marker) => marker.type === "entrance")
+      .map((marker) => {
+        let latLng = toLatLng(marker.xy);
+        let positionedMarker = L.latLng(latLng[0], latLng[1]);
+        let leafletMarker = L.marker(positionedMarker, {
+          icon: iconFor(marker),
+        })
+          .addTo(map)
+          .bindTooltip(marker.name);
+        if (marker.popup !== undefined) {
+          leafletMarker.bindPopup(marker.popup);
+        }
+      });
+    let glitches = markers
+      .filter((marker) => marker.type === "glitch")
+      .map((marker) => {
+        let latLng = toLatLng(marker.xy);
+        let positionedMarker = L.latLng(latLng[0], latLng[1]);
+        let leafletMarker = L.marker(positionedMarker, {
+          icon: iconFor(marker),
+        })
+          .addTo(map)
+          .bindTooltip(marker.name);
+        if (marker.popup !== undefined) {
+          leafletMarker.bindPopup(marker.popup);
+        }
+      });
   }
 
   $: map?.fitBounds(bounds);
