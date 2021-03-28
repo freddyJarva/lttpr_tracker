@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="42px" viewBox="0 0 44 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.000000 0 0 0 0 0.000000 0 0 0 0 0.000000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="glitch-icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="map-icon-50x80-rotate-copy" transform="translate(-11.000000, -7.000000)">
+            <g id="Group" transform="translate(11.000000, 9.000000)">
+                <polygon id="yellow" stroke="#FED000" fill="#FED000" points="5.5 35 4 37.5 37 37.5 35.5 34.5 37 34.5 36 33 37.5 33 33 24.5 31.5 24 23 6.5 18.5 14.5 15.5 14.5 11 24 13.5 24 7.5 35"></polygon>
+                <g filter="url(#filter-1)" id="glitch-outline">
+                    <g>
+                        <polygon id="Path" fill="#1BE61C" points="36.5833333 33 41.8333333 33 43.5 34.5 37.5 34.5 36 33"></polygon>
+                        <polygon id="Path-Copy" fill="#1BE61C" points="26.5833333 23 31.8333333 23 33 24 27.1666667 24 26 23"></polygon>
+                        <polygon id="Path-3" stroke="#1BE61C" fill="#1BE61C" points="33.5 24.5 37.5 32.5 39.5 32.5 35.5 24.5"></polygon>
+                        <polygon id="Path-4" stroke="#1BE61C" fill="#1BE61C" points="28 17.5 30.5 22.5 32.5 22.5 30 17.5"></polygon>
+                        <polygon id="Path-5" stroke="#1BE61C" fill="#1BE61C" points="25.5 14.5 26.5 16.5 28.5 16.5 27.5 14.5"></polygon>
+                        <polygon id="Path" fill="#1BE61C" transform="translate(9.250000, 33.750000) scale(-1, 1) translate(-9.250000, -33.750000) " points="6.08333333 33 11.3333333 33 13 34.5 7 34.5 5.5 33"></polygon>
+                        <polygon id="Path-Copy" fill="#1BE61C" transform="translate(8.000000, 23.500000) scale(-1, 1) translate(-8.000000, -23.500000) " points="5.58333333 23 10.8333333 23 12 24 5.5 24 4 23"></polygon>
+                        <polygon id="Path-3" stroke="#1BE61C" fill="#1BE61C" transform="translate(9.500000, 28.500000) scale(-1, 1) translate(-9.500000, -28.500000) " points="6.5 24.5 10.5 32.5 12.5 32.5 8.5 24.5"></polygon>
+                        <polygon id="Path-4" stroke="#1BE61C" fill="#1BE61C" transform="translate(11.750000, 20.000000) scale(-1, 1) translate(-11.750000, -20.000000) " points="9.5 17.5 12 22.5 14 22.5 11.5 17.5"></polygon>
+                        <polygon id="Path-5" stroke="#1BE61C" fill="#1BE61C" transform="translate(13.000000, 15.500000) scale(-1, 1) translate(-13.000000, -15.500000) " points="11.5 14.5 12.5 16.5 14.5 16.5 13.5 14.5"></polygon>
+                        <polygon id="Path-6" stroke="#1BE61C" fill="#1BE61C" points="27.5 13.5 30 13.5 23 0 16 13.5 18.5 13.5 23 4.5"></polygon>
+                        <polygon id="Path-2" fill="#1BE61C" points="3 34.5 0 40 41 40 38 34.5 35.5 34.5 37 37.5 4 37.5 5.5 34.5"></polygon>
+                    </g>
+                </g>
+                <g id="exclamation" transform="translate(18.500000, 14.000000)" fill="#000000">
+                    <circle id="Oval" cx="3.5" cy="18" r="3"></circle>
+                    <polygon id="Path-9" points="0.5 9 0.5 3 4.5 3 4.5 9"></polygon>
+                    <polygon id="Path-8" stroke="#000000" points="0.125 10 0 9.5 3.875 9.5 4 10"></polygon>
+                    <polygon id="Path-7" stroke="#000000" points="2 14 2 11 5 11 5 14"></polygon>
+                    <polygon id="Path-10" points="0.5 3 0.5 0 4.5 0 4.5 3"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
