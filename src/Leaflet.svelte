@@ -50,7 +50,8 @@
       [halfSize, halfSize * 2],
     ]).addTo(map);
 
-    addMarkers(map);
+    let markerLayers = createMarkerGroups(map);
+    L.control.layers(null, markerLayers).addTo(map);
 
     return {
       destroy() {
@@ -60,7 +61,7 @@
     };
   }
 
-  function addMarkers(map) {
+  function createMarkerGroups() {
     let entrances = markers
       .filter((marker) => marker.type === "entrance")
       .map((marker) => {
@@ -68,12 +69,11 @@
         let positionedMarker = L.latLng(latLng[0], latLng[1]);
         let leafletMarker = L.marker(positionedMarker, {
           icon: iconFor(marker),
-        })
-          .addTo(map)
-          .bindTooltip(marker.name);
+        }).bindTooltip(marker.name);
         if (marker.popup !== undefined) {
           leafletMarker.bindPopup(marker.popup);
         }
+        return leafletMarker;
       });
     let glitches = markers
       .filter((marker) => marker.type === "glitch")
@@ -82,13 +82,16 @@
         let positionedMarker = L.latLng(latLng[0], latLng[1]);
         let leafletMarker = L.marker(positionedMarker, {
           icon: iconFor(marker),
-        })
-          .addTo(map)
-          .bindTooltip(marker.name);
+        }).bindTooltip(marker.name);
         if (marker.popup !== undefined) {
           leafletMarker.bindPopup(marker.popup);
         }
+        return leafletMarker;
       });
+    return {
+      Glitches: L.layerGroup(glitches),
+      Entrances: L.layerGroup(entrances),
+    };
   }
 
   $: map?.fitBounds(bounds);
