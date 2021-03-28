@@ -1,13 +1,7 @@
 <script lang="typescript">
   import { createEventDispatcher, setContext } from "svelte";
   import * as L from "leaflet";
-  import {
-    defaultIcon,
-    doorIcon,
-    iconFor,
-    imageHeight,
-    mapUnit,
-  } from "./mapcontent";
+  import { iconFor, imageHeight, mapUnit } from "./mapcontent";
   import type { MarkerData } from "./mapcontent";
   import "leaflet/dist/leaflet.css";
 
