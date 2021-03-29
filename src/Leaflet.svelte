@@ -66,35 +66,39 @@
   function createMarkerGroups() {
     let entrances = markers
       .filter((marker) => marker.type === "entrance")
-      .map((marker) => {
-        let latLng = toLatLng(marker.xy);
-        let positionedMarker = L.latLng(latLng[0], latLng[1]);
-        let leafletMarker = L.marker(positionedMarker, {
-          icon: iconFor(marker),
-        }).bindTooltip(marker.name);
-        if (marker.popup !== undefined) {
-          leafletMarker.bindPopup(marker.popup);
-        }
-        leafletMarker.on("mousedown", onEntranceClick);
-        return leafletMarker;
-      });
+      .map((m) =>
+        createLeafletMarker(m, [
+          { eventType: "mousedown", fn: onEntranceClick },
+        ])
+      );
     let glitches = markers
       .filter((marker) => marker.type === "glitch")
-      .map((marker) => {
-        let latLng = toLatLng(marker.xy);
-        let positionedMarker = L.latLng(latLng[0], latLng[1]);
-        let leafletMarker = L.marker(positionedMarker, {
-          icon: iconFor(marker),
-        }).bindTooltip(marker.name);
-        if (marker.popup !== undefined) {
-          leafletMarker.bindPopup(marker.popup);
-        }
-        return leafletMarker;
-      });
+      .map((marker) => createLeafletMarker(marker));
     return {
       Glitches: L.layerGroup(glitches),
       Entrances: L.layerGroup(entrances),
     };
+  }
+
+  function createLeafletMarker(
+    marker: MarkerData,
+    eventHandlers: Array<{
+      eventType: string;
+      fn: L.LeafletEventHandlerFn;
+    }> = []
+  ) {
+    let latLng = toLatLng(marker.xy);
+    let positionedMarker = L.latLng(latLng[0], latLng[1]);
+    let leafletMarker = L.marker(positionedMarker, {
+      icon: iconFor(marker),
+    }).bindTooltip(marker.name);
+    if (marker.popup !== undefined) {
+      leafletMarker.bindPopup(marker.popup);
+    }
+    eventHandlers.forEach((e) => {
+      leafletMarker.on(e.eventType, e.fn);
+    });
+    return leafletMarker;
   }
 
   function onEntranceClick(e: L.LeafletMouseEvent) {
