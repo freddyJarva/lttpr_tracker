@@ -10,30 +10,16 @@
   export let height = "100%";
   export let width = "100%";
 
-  let dragStart: L.LatLng = null;
-
   let bounds = L.latLngBounds([0, 0], [256, 512]);
-
-  let mapProp: L.Map | undefined = undefined;
-  export { mapProp as map };
-
-  export const invalidateSize = () => map?.invalidateSize();
-
-  const dispatch = createEventDispatcher();
-
   let map: L.Map | undefined;
-  $: mapProp = map;
-
+  export const invalidateSize = () => map?.invalidateSize();
+  const dispatch = createEventDispatcher();
   export const getMap = () => map;
   setContext("layerGroup", getMap);
   setContext("layer", getMap);
   setContext("map", getMap);
 
-  function toLatLng(xy: Array<number>) {
-    let maxLat = imageHeight / mapUnit;
-    const latLng = [maxLat - xy[1] / mapUnit, xy[0] / mapUnit];
-    return latLng;
-  }
+  let dragStart: L.LatLng = null;
 
   function createLeaflet(node: HTMLElement) {
     map = L.map(node, { crs: L.CRS.Simple, minZoom: 0 })
@@ -111,6 +97,12 @@
       lineBetween(dragStart, e.latlng).addTo(map);
       dragStart = null;
     }
+  }
+
+  function toLatLng(xy: Array<number>) {
+    let maxLat = imageHeight / mapUnit;
+    const latLng = [maxLat - xy[1] / mapUnit, xy[0] / mapUnit];
+    return latLng;
   }
 
   function lineBetween(m1: L.Marker | L.LatLng, m2: L.Marker | L.LatLng) {
