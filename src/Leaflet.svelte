@@ -10,6 +10,8 @@
   export let height = "100%";
   export let width = "100%";
 
+  let dragStart: L.LatLng = null;
+
   let bounds = L.latLngBounds([0, 0], [256, 512]);
 
   let mapProp: L.Map | undefined = undefined;
@@ -50,7 +52,7 @@
       [halfSize, halfSize * 2],
     ]).addTo(map);
 
-    let markerLayers = createMarkerGroups(map);
+    let markerLayers = createMarkerGroups();
     L.control.layers(null, markerLayers).addTo(map);
 
     return {
@@ -73,6 +75,7 @@
         if (marker.popup !== undefined) {
           leafletMarker.bindPopup(marker.popup);
         }
+        leafletMarker.on("mousedown", onEntranceClick);
         return leafletMarker;
       });
     let glitches = markers
@@ -92,6 +95,24 @@
       Glitches: L.layerGroup(glitches),
       Entrances: L.layerGroup(entrances),
     };
+  }
+
+  function onEntranceClick(e: L.LeafletMouseEvent) {
+    console.log("Event type:", e.type);
+    console.log("Event start", e);
+    console.log(this.options.name);
+    if (dragStart === null) {
+      dragStart = e.latlng;
+    } else {
+      lineBetween(dragStart, e.latlng).addTo(map);
+      dragStart = null;
+    }
+  }
+
+  function lineBetween(m1: L.Marker | L.LatLng, m2: L.Marker | L.LatLng) {
+    let point1 = m1 instanceof L.Marker ? m1.getLatLng() : m1;
+    let point2 = m2 instanceof L.Marker ? m2.getLatLng() : m2;
+    return L.polyline([point1, point2]);
   }
 
   $: map?.fitBounds(bounds);
