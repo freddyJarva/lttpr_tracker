@@ -55,6 +55,7 @@
       .map((m) =>
         createLeafletMarker(m, [
           { eventType: "mousedown", fn: onEntranceClick },
+          { eventType: "contextmenu", fn: onContextMenu },
         ])
       );
     let glitches = markers
@@ -98,6 +99,8 @@
       dragStart = null;
     }
   }
+
+  function onContextMenu(e: L.LeafletMouseEvent) {}
 
   function toLatLng(xy: Array<number>) {
     let maxLat = imageHeight / mapUnit;
