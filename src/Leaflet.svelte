@@ -86,6 +86,7 @@
       .map((m) =>
         createLeafletMarker(m, [
           { eventType: "mousedown", fn: onEntranceClick },
+          { eventType: "contextmenu", fn: onContextMenu },
         ])
       );
     let glitches = markers
@@ -133,14 +134,19 @@
   }
 
   function onEntranceClick(e: L.LeafletMouseEvent) {
-    console.log("onEntranceClick");
-    if (dragStart === null) {
-      dragStart = e.latlng;
-    } else if (dragStart == e.latlng) {
-      toggleMarker(e);
-      dragStart = null;
+    // 0 = Left Mouse
+    if (e.originalEvent.button === 0) {
+      console.log("onEntranceClick");
+      if (dragStart === null) {
+        dragStart = e.latlng;
+      } else if (dragStart == e.latlng) {
+        toggleMarker(e);
+        dragStart = null;
+      } else {
+        lineBetween(dragStart, e.latlng).addTo(map);
+        dragStart = null;
+      }
     } else {
-      lineBetween(dragStart, e.latlng).addTo(map);
       dragStart = null;
     }
   }
