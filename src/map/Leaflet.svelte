@@ -2,7 +2,7 @@
   import { createEventDispatcher, setContext } from "svelte";
   import * as L from "leaflet";
   import { iconFor, imageHeight, mapUnit } from "./mapcontent";
-  import type { MarkerData } from "./mapcontent";
+  import type { MarkerData, InteractiveMarker } from "./mapcontent";
   import "leaflet/dist/leaflet.css";
 
   export let image: string;
@@ -18,11 +18,6 @@
   setContext("layerGroup", getMap);
   setContext("layer", getMap);
   setContext("map", getMap);
-  interface InteractiveMarker {
-    data: MarkerData;
-    node: L.Marker;
-    isActive: boolean;
-  }
 
   let controlLayer = L.control.layers(null, null);
   let layerGroups: {
@@ -161,7 +156,9 @@
       layerGroups.inactive.removeLayer(clickedMarker.node);
       layerGroups.entrance.addLayer(clickedMarker.node);
       clickedMarker.isActive = true;
+      // clickedMarker.node.setIcon(mar);
     }
+    clickedMarker.node.setIcon(iconFor(clickedMarker));
   }
 
   function onContextMenu(e: L.LeafletMouseEvent) {}

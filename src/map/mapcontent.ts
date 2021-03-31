@@ -10,6 +10,12 @@ export interface MarkerData {
   popup?: any;
 }
 
+export interface InteractiveMarker {
+  data: MarkerData;
+  node: L.Marker;
+  isActive: boolean;
+}
+
 interface MapContent {
   image: string;
   markers: Array<MarkerData>;
@@ -36,9 +42,33 @@ const mapIcons = {
     tooltipAnchor: [14, -15],
   }),
   default: new L.Icon.Default(),
+  inactive: L.icon({
+    iconUrl: "icons/map-marker-door-red.svg",
+    shadowUrl: "icons/map-marker-shadow.svg",
+
+    iconSize: [20, 30], // size of the icon
+    shadowSize: [20, 30], // size of the shadow
+    iconAnchor: [10, 30], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -32], // point from which the popup should open relative to the iconAnchor
+    tooltipAnchor: [12, -20],
+    shadowAnchor: [1, 22], // the same for the shadow
+  }),
 };
 
-export function iconFor(marker: MarkerData): L.Icon {
+function isInteractiveMarker(
+  marker: InteractiveMarker | MarkerData
+): marker is InteractiveMarker {
+  return (marker as InteractiveMarker).isActive !== undefined;
+}
+
+export function iconFor(marker: InteractiveMarker | MarkerData): L.Icon {
+  if (isInteractiveMarker(marker)) {
+    if (!marker.isActive) {
+      return mapIcons.inactive;
+    } else {
+      marker = marker.data;
+    }
+  }
   return mapIcons[marker.type] === undefined
     ? mapIcons.default
     : mapIcons[marker.type];

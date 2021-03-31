@@ -4,7 +4,7 @@
   import ActiveItemPane from "./ActiveItemPane.svelte";
   import DungeonPane from "./DungeonPane.svelte";
   import Qusb2SnesOutput from "./Qusb2SnesOutput.svelte";
-  import MapPane from "./MapPane.svelte";
+  import MapPane from "./map/MapPane.svelte";
 
   const usableItems = items.filter(
     (item) =>
