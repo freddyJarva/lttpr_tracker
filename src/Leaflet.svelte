@@ -24,8 +24,18 @@
     isActive: boolean;
   }
 
+  let controlLayer = L.control.layers(null, null);
+  let layerGroups: {
+    entrance: L.LayerGroup;
+    glitch: L.LayerGroup;
+    inactive: L.LayerGroup;
+  };
   let coordinateToMarkers: Map<string, InteractiveMarker> = new Map();
-  let markerGroups;
+  let markerGroups: {
+    entrance: Array<InteractiveMarker>;
+    glitch: Array<InteractiveMarker>;
+    inactive: Array<InteractiveMarker>;
+  };
 
   let dragStart: L.LatLng = null;
 
@@ -47,8 +57,21 @@
     ]).addTo(map);
 
     markerGroups = createMarkerGroups();
-    L.control.layers(null, markerGroups).addTo(map);
 
+    // Layer groups
+    layerGroups = {
+      entrance: L.layerGroup(markerGroups.entrance.map((m) => m.node)),
+      glitch: L.layerGroup(markerGroups.glitch.map((m) => m.node)),
+
+      inactive: L.layerGroup(markerGroups.inactive.map((m) => m.node)),
+    };
+
+    Object.entries(layerGroups).forEach((entry) => {
+      const [key, value] = entry;
+      controlLayer.addOverlay(value, key);
+    });
+
+    controlLayer.addTo(map);
     return {
       destroy() {
         map!.remove();
@@ -69,9 +92,9 @@
       .filter((marker) => marker.type === "glitch")
       .map((marker) => createLeafletMarker(marker));
     return {
-      glitch: L.layerGroup(glitches),
-      entrance: L.layerGroup(entrances),
-      inactive: L.layerGroup(),
+      glitch: glitches,
+      entrance: entrances,
+      inactive: [],
     };
   }
 
@@ -94,14 +117,15 @@
     eventHandlers.forEach((e) => {
       leafletMarker.on(e.eventType, e.fn);
     });
-    console.log(latLngToKey(leafletMarker.getLatLng()));
-    coordinateToMarkers.set(latLng.toString(), {
+    const interactiveMarker = {
       data: marker,
       node: leafletMarker,
       isActive: true,
-    });
+    };
 
-    return leafletMarker;
+    coordinateToMarkers.set(latLng.toString(), interactiveMarker);
+
+    return interactiveMarker;
   }
 
   function latLngToKey(latLng: L.LatLng) {
@@ -109,11 +133,12 @@
   }
 
   function onEntranceClick(e: L.LeafletMouseEvent) {
-    console.log(this.options.name);
+    console.log("onEntranceClick");
     if (dragStart === null) {
       dragStart = e.latlng;
     } else if (dragStart == e.latlng) {
       toggleMarker(e);
+      dragStart = null;
     } else {
       lineBetween(dragStart, e.latlng).addTo(map);
       dragStart = null;
@@ -122,7 +147,15 @@
 
   function toggleMarker(e: L.LeafletMouseEvent) {
     let clickedMarker = coordinateToMarkers.get(latLngToKey(e.latlng));
-    clickedMarker.node.removeFrom(map);
+    if (clickedMarker.isActive) {
+      layerGroups.entrance.removeLayer(clickedMarker.node);
+      layerGroups.inactive.addLayer(clickedMarker.node);
+      clickedMarker.isActive = false;
+    } else {
+      layerGroups.inactive.removeLayer(clickedMarker.node);
+      layerGroups.entrance.addLayer(clickedMarker.node);
+      clickedMarker.isActive = true;
+    }
   }
 
   function onContextMenu(e: L.LeafletMouseEvent) {}
