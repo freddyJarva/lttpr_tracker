@@ -71,6 +71,7 @@
     return {
       glitch: L.layerGroup(glitches),
       entrance: L.layerGroup(entrances),
+      inactive: L.layerGroup(),
     };
   }
 
@@ -112,12 +113,16 @@
     if (dragStart === null) {
       dragStart = e.latlng;
     } else if (dragStart == e.latlng) {
-      let clickedMarker = coordinateToMarkers.get(latLngToKey(e.latlng));
-      clickedMarker.node.removeFrom(map);
+      toggleMarker(e);
     } else {
       lineBetween(dragStart, e.latlng).addTo(map);
       dragStart = null;
     }
+  }
+
+  function toggleMarker(e: L.LeafletMouseEvent) {
+    let clickedMarker = coordinateToMarkers.get(latLngToKey(e.latlng));
+    clickedMarker.node.removeFrom(map);
   }
 
   function onContextMenu(e: L.LeafletMouseEvent) {}
