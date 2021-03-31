@@ -18,6 +18,12 @@
   setContext("layerGroup", getMap);
   setContext("layer", getMap);
   setContext("map", getMap);
+  interface InteractiveMarker {
+    data: MarkerData;
+    node: L.Marker;
+    isActive: boolean;
+  }
+  let coordinateToMarkers: Map<string, InteractiveMarker> = new Map();
 
   let dragStart: L.LatLng = null;
 
@@ -55,7 +61,6 @@
       .map((m) =>
         createLeafletMarker(m, [
           { eventType: "mousedown", fn: onEntranceClick },
-          { eventType: "contextmenu", fn: onContextMenu },
         ])
       );
     let glitches = markers
@@ -67,6 +72,7 @@
     };
   }
 
+  // Define every marker on the map and add to map for coordinate based lookups
   function createLeafletMarker(
     marker: MarkerData,
     eventHandlers: Array<{
@@ -85,15 +91,27 @@
     eventHandlers.forEach((e) => {
       leafletMarker.on(e.eventType, e.fn);
     });
+    console.log(latLngToKey(leafletMarker.getLatLng()));
+    coordinateToMarkers.set(latLng.toString(), {
+      data: marker,
+      node: leafletMarker,
+      isActive: true,
+    });
+
     return leafletMarker;
   }
 
+  function latLngToKey(latLng: L.LatLng) {
+    return `${latLng.lat},${latLng.lng}`;
+  }
+
   function onEntranceClick(e: L.LeafletMouseEvent) {
-    console.log("Event type:", e.type);
-    console.log("Event start", e);
     console.log(this.options.name);
     if (dragStart === null) {
       dragStart = e.latlng;
+    } else if (dragStart == e.latlng) {
+      let clickedMarker = coordinateToMarkers.get(latLngToKey(e.latlng));
+      clickedMarker.node.removeFrom(map);
     } else {
       lineBetween(dragStart, e.latlng).addTo(map);
       dragStart = null;
