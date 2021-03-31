@@ -23,7 +23,9 @@
     node: L.Marker;
     isActive: boolean;
   }
+
   let coordinateToMarkers: Map<string, InteractiveMarker> = new Map();
+  let markerGroups;
 
   let dragStart: L.LatLng = null;
 
@@ -44,8 +46,8 @@
       [halfSize, halfSize * 2],
     ]).addTo(map);
 
-    let markerLayers = createMarkerGroups();
-    L.control.layers(null, markerLayers).addTo(map);
+    markerGroups = createMarkerGroups();
+    L.control.layers(null, markerGroups).addTo(map);
 
     return {
       destroy() {
@@ -67,8 +69,8 @@
       .filter((marker) => marker.type === "glitch")
       .map((marker) => createLeafletMarker(marker));
     return {
-      Glitches: L.layerGroup(glitches),
-      Entrances: L.layerGroup(entrances),
+      glitch: L.layerGroup(glitches),
+      entrance: L.layerGroup(entrances),
     };
   }
 
