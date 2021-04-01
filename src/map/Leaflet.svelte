@@ -4,6 +4,9 @@
   import { iconFor, imageHeight, mapUnit } from "./mapcontent";
   import type { MarkerData, InteractiveMarker } from "./mapcontent";
   import "leaflet/dist/leaflet.css";
+  import EntranceMarkerPopup from "./EntranceMarkerPopup.svelte";
+  import { isLeafletPoint } from "./leafletutil";
+  import type { LatLngPoint } from "./leafletutil";
 
   export let image: string;
   export let markers: Array<MarkerData>;
@@ -32,12 +35,13 @@
     inactive: Array<InteractiveMarker>;
   };
 
-  let dragStart: L.LatLng = null;
+  let dragStart: InteractiveMarker = null;
 
   function createLeaflet(node: HTMLElement) {
     map = L.map(node, { crs: L.CRS.Simple, minZoom: 0 })
       .fitBounds(bounds)
-      .on("zoom", (e) => dispatch("zoom", e));
+      .on("zoom", (e) => dispatch("zoom", e))
+      .on("contextmenu", () => {});
     setTimeout(() => {
       if (map) {
         map.invalidateSize();
@@ -106,10 +110,7 @@
     let positionedMarker = L.latLng(latLng[0], latLng[1]);
     let leafletMarker = L.marker(positionedMarker, {
       icon: iconFor(marker),
-    }).bindTooltip(marker.name);
-    if (marker.popup !== undefined) {
-      leafletMarker.bindPopup(marker.popup);
-    }
+    });
     eventHandlers.forEach((e) => {
       leafletMarker.on(e.eventType, e.fn);
     });
@@ -118,6 +119,21 @@
       node: leafletMarker,
       isActive: true,
     };
+
+    interactiveMarker.node.bindTooltip(marker.name);
+    if (marker.popup !== undefined) {
+      interactiveMarker.node.bindPopup(marker.popup);
+    } else if (marker.type === "entrance") {
+      bindPopup(interactiveMarker, (m: any) => {
+        let c = new EntranceMarkerPopup({
+          target: m,
+        });
+        c.$on("connect", () => {
+          dragStart = interactiveMarker;
+          console.log(dragStart);
+        });
+      });
+    }
 
     coordinateToMarkers.set(latLng.toString(), interactiveMarker);
 
@@ -129,25 +145,29 @@
   }
 
   function onEntranceClick(e: L.LeafletMouseEvent) {
-    // 0 = Left Mouse
+    console.log("onEntranceclick:", e);
     if (e.originalEvent.button === 0) {
-      console.log("onEntranceClick");
-      if (dragStart === null) {
-        dragStart = e.latlng;
-      } else if (dragStart == e.latlng) {
-        toggleMarker(e);
-        dragStart = null;
-      } else {
-        lineBetween(dragStart, e.latlng).addTo(map);
-        dragStart = null;
+      // 0 = Left Mouse
+      if (dragStart !== null && dragStart.node.getLatLng() !== e.latlng) {
+        lineBetween(dragStart.node.getLatLng(), e.latlng).addTo(map);
       }
-    } else {
-      dragStart = null;
+    } else if (e.originalEvent.button === 2) {
+      // Right mouse
+      toggleMarker(e);
     }
+    resetActionState();
   }
 
-  function toggleMarker(e: L.LeafletMouseEvent) {
-    let clickedMarker = coordinateToMarkers.get(latLngToKey(e.latlng));
+  function resetActionState() {
+    dragStart = null;
+  }
+
+  function toggleMarker(clickedMarker: InteractiveMarker | LatLngPoint) {
+    if (isLeafletPoint(clickedMarker)) {
+      clickedMarker = coordinateToMarkers.get(
+        latLngToKey(clickedMarker.latlng)
+      );
+    }
     if (clickedMarker.isActive) {
       layerGroups.entrance.removeLayer(clickedMarker.node);
       layerGroups.inactive.addLayer(clickedMarker.node);
@@ -173,6 +193,26 @@
     let point1 = m1 instanceof L.Marker ? m1.getLatLng() : m1;
     let point2 = m2 instanceof L.Marker ? m2.getLatLng() : m2;
     return L.polyline([point1, point2]);
+  }
+
+  function bindPopup(marker: InteractiveMarker, createFn) {
+    let popupComponent: any;
+    marker.node.bindPopup(() => {
+      let container = L.DomUtil.create("div");
+      popupComponent = createFn(container);
+      return container;
+    });
+
+    marker.node.on("popupclose", () => {
+      if (popupComponent) {
+        let old = popupComponent;
+        popupComponent = null;
+        // Wait to destroy until after the fadeout completes.
+        setTimeout(() => {
+          old.$destroy();
+        }, 500);
+      }
+    });
   }
 
   $: map?.fitBounds(bounds);
