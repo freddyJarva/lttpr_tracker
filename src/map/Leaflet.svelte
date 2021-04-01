@@ -7,6 +7,7 @@
   import EntranceMarkerPopup from "./EntranceMarkerPopup.svelte";
   import { isLeafletPoint } from "./leafletutil";
   import type { LatLngPoint } from "./leafletutil";
+  import { writable } from "svelte/store";
 
   export let image: string;
   export let markers: Array<MarkerData>;
@@ -114,10 +115,11 @@
     eventHandlers.forEach((e) => {
       leafletMarker.on(e.eventType, e.fn);
     });
-    const interactiveMarker = {
+    const interactiveMarker: InteractiveMarker = {
       data: marker,
       node: leafletMarker,
       isActive: true,
+      notes: writable(""),
     };
 
     interactiveMarker.node.bindTooltip(marker.name);
@@ -127,10 +129,16 @@
       bindPopup(interactiveMarker, (m: any) => {
         let c = new EntranceMarkerPopup({
           target: m,
+          props: {
+            notes: interactiveMarker.notes,
+          },
         });
         c.$on("connect", () => {
           dragStart = interactiveMarker;
           console.log(dragStart);
+        });
+        c.$on("close", () => {
+          interactiveMarker.node.closePopup();
         });
       });
     }
