@@ -55,7 +55,7 @@ const mapIcons = {
   }),
 };
 
-function isInteractiveMarker(
+export function isInteractiveMarker(
   marker: InteractiveMarker | MarkerData
 ): marker is InteractiveMarker {
   return (marker as InteractiveMarker).isActive !== undefined;
