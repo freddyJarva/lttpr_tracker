@@ -1,4 +1,5 @@
 import * as L from "leaflet";
+import type { Writable } from "svelte/store";
 
 const overworldDarkLight = "images/overworld-dark-light.png";
 
@@ -14,6 +15,7 @@ export interface InteractiveMarker {
   data: MarkerData;
   node: L.Marker;
   isActive: boolean;
+  notes?: Writable<string>;
 }
 
 interface MapContent {
