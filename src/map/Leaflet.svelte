@@ -157,7 +157,12 @@
     if (e.originalEvent.button === 0) {
       // 0 = Left Mouse
       if (dragStart !== null && dragStart.node.getLatLng() !== e.latlng) {
-        lineBetween(dragStart.node.getLatLng(), e.latlng).addTo(map);
+        let line = lineBetween(dragStart.node.getLatLng(), e.latlng);
+        line
+          .on("click", (e) => {
+            line.remove();
+          })
+          .addTo(map);
       }
     } else if (e.originalEvent.button === 2) {
       // Right mouse
@@ -184,7 +189,6 @@
       layerGroups.inactive.removeLayer(clickedMarker.node);
       layerGroups.entrance.addLayer(clickedMarker.node);
       clickedMarker.isActive = true;
-      // clickedMarker.node.setIcon(mar);
     }
     clickedMarker.node.setIcon(iconFor(clickedMarker));
   }
@@ -200,7 +204,11 @@
   function lineBetween(m1: L.Marker | L.LatLng, m2: L.Marker | L.LatLng) {
     let point1 = m1 instanceof L.Marker ? m1.getLatLng() : m1;
     let point2 = m2 instanceof L.Marker ? m2.getLatLng() : m2;
-    return L.polyline([point1, point2]);
+    return L.polyline([point1, point2], {
+      color: "#E4E",
+      opacity: 0.8,
+      weight: 6,
+    });
   }
 
   function bindPopup(marker: InteractiveMarker, createFn) {
