@@ -1,7 +1,7 @@
 import L from "leaflet";
 import { InteractiveMarker, isInteractiveMarker, MarkerData } from "./markers";
 
-export const mapIcons = {
+const mapIcons = {
   entrance: L.icon({
     iconUrl: "icons/map-marker-door-green.svg",
     shadowUrl: "icons/map-marker-shadow.svg",
