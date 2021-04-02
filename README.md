@@ -1,5 +1,8 @@
 # Link to the Past Randomizer Tracker
 
+![image](https://user-images.githubusercontent.com/17058021/113461715-f9275900-941d-11eb-9901-0beabc3bb94b.png)
+
+
 ## Using the tracker
 
 Grab the latest release from [here](https://github.com/freddyJarva/lttpr_tracker/releases). The simplest way is to download the zip file, extract it somewhere on your computer, and open `index.html`.
