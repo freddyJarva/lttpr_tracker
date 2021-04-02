@@ -1,25 +1,10 @@
-import type * as L from "leaflet";
-import { mapIcons } from "./icons";
-import { InteractiveMarker, isInteractiveMarker, MarkerData } from "./markers";
+import type { MarkerData } from "./markers";
 
 const overworldDarkLight = "images/overworld-dark-light.png";
 
 interface MapContent {
   image: string;
   markers: Array<MarkerData>;
-}
-
-export function iconFor(marker: InteractiveMarker | MarkerData): L.Icon {
-  if (isInteractiveMarker(marker)) {
-    if (!marker.isActive) {
-      return mapIcons.inactive;
-    } else {
-      marker = marker.data;
-    }
-  }
-  return mapIcons[marker.type] === undefined
-    ? mapIcons.default
-    : mapIcons[marker.type];
 }
 
 // constants used for translating pixel values to map coordinates

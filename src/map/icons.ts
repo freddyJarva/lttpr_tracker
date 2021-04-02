@@ -1,4 +1,5 @@
 import L from "leaflet";
+import { InteractiveMarker, isInteractiveMarker, MarkerData } from "./markers";
 
 export const mapIcons = {
   entrance: L.icon({
@@ -33,3 +34,16 @@ export const mapIcons = {
     shadowAnchor: [1, 22], // the same for the shadow
   }),
 };
+
+export function iconFor(marker: InteractiveMarker | MarkerData): L.Icon {
+  if (isInteractiveMarker(marker)) {
+    if (!marker.isActive) {
+      return mapIcons.inactive;
+    } else {
+      marker = marker.data;
+    }
+  }
+  return mapIcons[marker.type] === undefined
+    ? mapIcons.default
+    : mapIcons[marker.type];
+}
