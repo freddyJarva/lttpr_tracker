@@ -12,3 +12,18 @@ body {
   background-color: black;
   cursor: default;
 }
+
+/* color: #e6a800 !important; */
+/* background: #333 !important; */
+
+.leaflet-container {
+  background: black !important;
+}
+
+.leaflet-control-layers {
+  border: 1px solid #e6a800 !important;
+  background: black !important;
+  font-family: "Press Start 2P" !important;
+  font-size: 12px !important;
+  color: whitesmoke !important;
+}
