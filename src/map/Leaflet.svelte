@@ -10,6 +10,7 @@
   import type { LatLngPoint } from "./leafletutil";
   import { writable } from "svelte/store";
   import { iconFor } from "./icons";
+  import type { IconData } from "./icons";
 
   export let image: string;
   export let markers: Array<MarkerData>;
@@ -141,6 +142,10 @@
         });
         c.$on("close", () => {
           interactiveMarker.node.closePopup();
+        });
+        c.$on("seticon", (iconEvent) => {
+          console.log(iconEvent);
+          interactiveMarker.node.setIcon(L.icon(iconEvent.detail));
         });
       });
     }
