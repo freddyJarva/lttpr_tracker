@@ -2,7 +2,8 @@
   import { createEventDispatcher, setContext } from "svelte";
   import * as L from "leaflet";
   import { iconFor, imageHeight, mapUnit } from "./mapcontent";
-  import type { MarkerData, InteractiveMarker } from "./mapcontent";
+  import type { InteractiveMarker, MarkerData } from "./markers";
+
   import "leaflet/dist/leaflet.css";
   import EntranceMarkerPopup from "./EntranceMarkerPopup.svelte";
   import { isLeafletPoint } from "./leafletutil";

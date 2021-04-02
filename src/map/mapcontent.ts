@@ -1,33 +1,12 @@
-import * as L from "leaflet";
-import type { Writable } from "svelte/store";
+import type * as L from "leaflet";
 import { mapIcons } from "./icons";
+import { InteractiveMarker, isInteractiveMarker, MarkerData } from "./markers";
 
 const overworldDarkLight = "images/overworld-dark-light.png";
-
-export interface MarkerData {
-  name: string;
-  id: string;
-  type: string;
-  xy: Array<number>;
-  popup?: any;
-}
-
-export interface InteractiveMarker {
-  data: MarkerData;
-  node: L.Marker;
-  isActive: boolean;
-  notes?: Writable<string>;
-}
 
 interface MapContent {
   image: string;
   markers: Array<MarkerData>;
-}
-
-export function isInteractiveMarker(
-  marker: InteractiveMarker | MarkerData
-): marker is InteractiveMarker {
-  return (marker as InteractiveMarker).isActive !== undefined;
 }
 
 export function iconFor(marker: InteractiveMarker | MarkerData): L.Icon {
