@@ -1,7 +1,7 @@
 <script lang="typescript">
   import { createEventDispatcher, setContext } from "svelte";
   import * as L from "leaflet";
-  import { iconFor, imageHeight, mapUnit } from "./mapcontent";
+  import { imageHeight, mapUnit } from "./mapcontent";
   import type { InteractiveMarker, MarkerData } from "./markers";
 
   import "leaflet/dist/leaflet.css";
@@ -9,6 +9,7 @@
   import { isLeafletPoint } from "./leafletutil";
   import type { LatLngPoint } from "./leafletutil";
   import { writable } from "svelte/store";
+  import { iconFor } from "./icons";
 
   export let image: string;
   export let markers: Array<MarkerData>;
