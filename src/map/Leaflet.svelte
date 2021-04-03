@@ -10,7 +10,6 @@
   import type { LatLngPoint } from "./leafletutil";
   import { writable } from "svelte/store";
   import { iconFor } from "./icons";
-  import type { IconData } from "./icons";
 
   export let image: string;
   export let markers: Array<MarkerData>;
@@ -138,6 +137,7 @@
         });
         c.$on("connect", () => {
           dragStart = interactiveMarker;
+          interactiveMarker.node.closePopup();
           console.log(dragStart);
         });
         c.$on("close", () => {
@@ -170,6 +170,11 @@
             line.remove();
           })
           .addTo(map);
+
+        // Super ugly way to make sure popup doesn't open when clicking on endpoint for the line
+        setTimeout(() => {
+          coordinateToMarkers.get(latLngToKey(e.latlng)).node.closePopup();
+        }, 100);
       }
     } else if (e.originalEvent.button === 2) {
       // Right mouse
