@@ -41,16 +41,11 @@ export interface IconData extends L.IconOptions {
 
 export const iconDataList: Array<IconData> = [
   {
-    iconUrl: "icons/map-marker-door-green.svg",
-    shadowUrl: "icons/map-marker-shadow.svg",
-
-    iconSize: [20, 30],
-    shadowSize: [20, 30],
-    iconAnchor: [10, 30],
-    popupAnchor: [0, -32],
-    tooltipAnchor: [12, -20],
-    shadowAnchor: [1, 22],
-    name: "default",
+    iconUrl: "images/npc/zelda.png",
+    iconSize: [20, 25],
+    iconAnchor: [10, 25],
+    popupAnchor: [0, -25],
+    tooltipAnchor: [16, -16],
   },
   {
     iconUrl: "images/boss/armos.png",
@@ -218,6 +213,20 @@ export const iconDataList: Array<IconData> = [
     iconAnchor: [6, 16],
     popupAnchor: [0, -16],
     tooltipAnchor: [14, -10],
+  },
+
+  // other
+  {
+    iconUrl: "icons/map-marker-door-green.svg",
+    shadowUrl: "icons/map-marker-shadow.svg",
+
+    iconSize: [20, 30],
+    shadowSize: [20, 30],
+    iconAnchor: [10, 30],
+    popupAnchor: [0, -32],
+    tooltipAnchor: [12, -20],
+    shadowAnchor: [1, 22],
+    name: "default",
   },
 ];
 
