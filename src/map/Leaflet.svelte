@@ -3,7 +3,11 @@
   import * as L from "leaflet";
   import { imageHeight, mapUnit } from "./mapcontent";
   import { CustomMarker } from "./markers";
-  import type { InteractiveMarker, MarkerData } from "./markers";
+  import type {
+    CustomMarkerOptions,
+    InteractiveMarker,
+    MarkerData,
+  } from "./markers";
 
   import "leaflet/dist/leaflet.css";
   import EntranceMarkerPopup from "./EntranceMarkerPopup.svelte";
@@ -32,8 +36,6 @@
     glitch: L.LayerGroup;
     inactive: L.LayerGroup;
   };
-
-  function addToLayerGroup(layer: L.Layer, groupName: string) {}
 
   let coordinateToMarkers: Map<string, InteractiveMarker> = new Map();
   let markerGroups: {
@@ -111,17 +113,22 @@
     eventHandlers: Array<{
       eventType: string;
       fn: L.LeafletEventHandlerFn;
-    }> = []
+    }> = [],
+    className?: string
   ) {
     let latLng = toLatLng(marker.xy);
     let positionedMarker = L.latLng(latLng[0], latLng[1]);
-    let leafletMarker = new CustomMarker(positionedMarker, {
+
+    // Option creation
+    let options: CustomMarkerOptions = {
       icon: iconFor(marker),
-      className: "marker-inactive",
-    });
-    // let leafletMarker = L.marker(positionedMarker, {
-    //   icon: iconFor(marker),
-    // });
+    };
+    if (className) {
+      options.className = className;
+    }
+
+    let leafletMarker = new CustomMarker(positionedMarker, options);
+
     eventHandlers.forEach((e) => {
       leafletMarker.on(e.eventType, e.fn);
     });

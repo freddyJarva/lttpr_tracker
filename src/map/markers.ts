@@ -1,8 +1,8 @@
 import L, { LatLngExpression } from "leaflet";
 import type { Writable } from "svelte/store";
 
-interface CustomMarkerOptions extends L.MarkerOptions {
-  className: string;
+export interface CustomMarkerOptions extends L.MarkerOptions {
+  className?: string;
 }
 export class CustomMarker extends L.Marker {
   options: CustomMarkerOptions;
