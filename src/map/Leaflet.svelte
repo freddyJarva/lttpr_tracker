@@ -146,6 +146,7 @@
         c.$on("seticon", (iconEvent) => {
           console.log(iconEvent);
           interactiveMarker.node.setIcon(L.icon(iconEvent.detail));
+          interactiveMarker.node.closePopup();
         });
       });
     }
