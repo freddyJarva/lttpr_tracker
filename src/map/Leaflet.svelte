@@ -1,7 +1,8 @@
 <script lang="typescript">
-  import { createEventDispatcher, setContext } from "svelte";
+  import { createEventDispatcher, setContext, tick } from "svelte";
   import * as L from "leaflet";
   import { imageHeight, mapUnit } from "./mapcontent";
+  import { CustomMarker } from "./markers";
   import type { InteractiveMarker, MarkerData } from "./markers";
 
   import "leaflet/dist/leaflet.css";
@@ -31,6 +32,9 @@
     glitch: L.LayerGroup;
     inactive: L.LayerGroup;
   };
+
+  function addToLayerGroup(layer: L.Layer, groupName: string) {}
+
   let coordinateToMarkers: Map<string, InteractiveMarker> = new Map();
   let markerGroups: {
     entrance: Array<InteractiveMarker>;
@@ -111,9 +115,13 @@
   ) {
     let latLng = toLatLng(marker.xy);
     let positionedMarker = L.latLng(latLng[0], latLng[1]);
-    let leafletMarker = L.marker(positionedMarker, {
+    let leafletMarker = new CustomMarker(positionedMarker, {
       icon: iconFor(marker),
+      className: "marker-inactive",
     });
+    // let leafletMarker = L.marker(positionedMarker, {
+    //   icon: iconFor(marker),
+    // });
     eventHandlers.forEach((e) => {
       leafletMarker.on(e.eventType, e.fn);
     });
@@ -198,12 +206,15 @@
       layerGroups.entrance.removeLayer(clickedMarker.node);
       layerGroups.inactive.addLayer(clickedMarker.node);
       clickedMarker.isActive = false;
+
+      layerGroups.inactive.addLayer(clickedMarker.node);
     } else {
       layerGroups.inactive.removeLayer(clickedMarker.node);
+
       layerGroups.entrance.addLayer(clickedMarker.node);
       clickedMarker.isActive = true;
     }
-    clickedMarker.node.setIcon(iconFor(clickedMarker));
+    // clickedMarker.node.setIcon(iconFor(clickedMarker));
   }
 
   function onContextMenu(e: L.LeafletMouseEvent) {}
