@@ -227,6 +227,13 @@ export const iconDataList: Array<IconData> = [
     popupAnchor: [0, -16], // point from which the popup should open relative to the iconAnchor
     tooltipAnchor: [12, -8],
   },
+  {
+    iconUrl: "icons/map-marker-chest.svg",
+    iconSize: [20, 20], // size of the icon
+    iconAnchor: [10, 20], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -20], // point from which the popup should open relative to the iconAnchor
+    tooltipAnchor: [12, -10],
+  },
 ];
 
 export function iconFor(marker: InteractiveMarker | MarkerData): L.Icon {
