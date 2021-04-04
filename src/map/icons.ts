@@ -19,17 +19,6 @@ const mapIcons = {
     tooltipAnchor: [14, -15],
   }),
   default: new L.Icon.Default(),
-  inactive: L.icon({
-    iconUrl: "icons/map-marker-door-red.svg",
-    shadowUrl: "icons/map-marker-shadow.svg",
-
-    iconSize: [20, 30], // size of the icon
-    shadowSize: [20, 30], // size of the shadow
-    iconAnchor: [10, 30], // point of the icon which will correspond to marker's location
-    popupAnchor: [0, -32], // point from which the popup should open relative to the iconAnchor
-    tooltipAnchor: [12, -20],
-    shadowAnchor: [1, 22], // the same for the shadow
-  }),
 };
 
 export interface IconData extends L.IconOptions {
@@ -238,11 +227,7 @@ export const iconDataList: Array<IconData> = [
 
 export function iconFor(marker: InteractiveMarker | MarkerData): L.Icon {
   if (isInteractiveMarker(marker)) {
-    if (!marker.isActive) {
-      return mapIcons.inactive;
-    } else {
-      marker = marker.data;
-    }
+    marker = marker.data;
   }
   return mapIcons[marker.type] === undefined
     ? mapIcons.default
