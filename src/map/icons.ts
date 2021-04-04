@@ -1,4 +1,4 @@
-import L, { Icon } from "leaflet";
+import L from "leaflet";
 import { InteractiveMarker, isInteractiveMarker, MarkerData } from "./markers";
 
 const mapIcons = {
