@@ -215,23 +215,23 @@ export const iconDataList: Array<IconData> = [
   // other
   {
     iconUrl: "icons/map-marker-connector.svg",
-    iconSize: [24, 24], // size of the icon
-    iconAnchor: [12, 24], // point of the icon which will correspond to marker's location
-    popupAnchor: [0, -24], // point from which the popup should open relative to the iconAnchor
+    iconSize: [24, 24],
+    iconAnchor: [12, 24],
+    popupAnchor: [0, -24],
     tooltipAnchor: [12, -13],
   },
   {
     iconUrl: "icons/map-marker-no-entry.svg",
-    iconSize: [16, 16], // size of the icon
-    iconAnchor: [8, 16], // point of the icon which will correspond to marker's location
-    popupAnchor: [0, -16], // point from which the popup should open relative to the iconAnchor
+    iconSize: [16, 16],
+    iconAnchor: [8, 16],
+    popupAnchor: [0, -16],
     tooltipAnchor: [12, -8],
   },
   {
     iconUrl: "icons/map-marker-chest.svg",
-    iconSize: [20, 20], // size of the icon
-    iconAnchor: [10, 20], // point of the icon which will correspond to marker's location
-    popupAnchor: [0, -20], // point from which the popup should open relative to the iconAnchor
+    iconSize: [20, 20],
+    iconAnchor: [10, 20],
+    popupAnchor: [0, -20],
     tooltipAnchor: [12, -10],
   },
 ];
