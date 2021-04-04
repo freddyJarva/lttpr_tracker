@@ -1,6 +1,6 @@
 # Link to the Past Randomizer Tracker
 
-![image](https://user-images.githubusercontent.com/17058021/113461715-f9275900-941d-11eb-9901-0beabc3bb94b.png)
+![image](https://user-images.githubusercontent.com/17058021/113509443-e1eb8700-9555-11eb-9af2-856f96ce465b.png)
 
 
 ## Using the tracker
