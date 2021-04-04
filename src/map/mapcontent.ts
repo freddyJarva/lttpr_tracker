@@ -113,7 +113,12 @@ const mapContent: MapContent = {
       type: "entrance",
       xy: [2240, 2816],
     },
-
+    {
+      name: "Cave 45",
+      id: "entrance-mid-cave-45",
+      type: "entrance",
+      xy: [1088, 3392],
+    },
     {
       name: "Chest Game",
       id: "entrance-lw-game",
@@ -780,6 +785,12 @@ const mapContent: MapContent = {
       id: "entrance-dw-mid-bomb-shop",
       type: "entrance",
       xy: [6336, 2832],
+    },
+    {
+      name: "Dark Link Bonk Rocks",
+      id: "entrance-dw-mid-link-bonk-rocks",
+      type: "entrance",
+      xy: [6032, 2688],
     },
 
     // Dark world dam area
