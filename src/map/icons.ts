@@ -10,17 +10,6 @@ const mapIcons = {
     tooltipAnchor: [12, -13],
   }),
 
-  // entrance: L.icon({
-  //   iconUrl: "icons/map-marker-door-green.svg",
-  //   shadowUrl: "icons/map-marker-shadow.svg",
-
-  //   iconSize: [20, 30], // size of the icon
-  //   shadowSize: [20, 30], // size of the shadow
-  //   iconAnchor: [10, 30], // point of the icon which will correspond to marker's location
-  //   popupAnchor: [0, -32], // point from which the popup should open relative to the iconAnchor
-  //   tooltipAnchor: [12, -20],
-  //   shadowAnchor: [1, 22], // the same for the shadow
-  // }),
   glitch: L.icon({
     iconUrl: "icons/map-marker-glitch-improved.svg",
 
@@ -225,16 +214,18 @@ export const iconDataList: Array<IconData> = [
 
   // other
   {
-    iconUrl: "icons/map-marker-door-green.svg",
-    shadowUrl: "icons/map-marker-shadow.svg",
-
-    iconSize: [20, 30],
-    shadowSize: [20, 30],
-    iconAnchor: [10, 30],
-    popupAnchor: [0, -32],
-    tooltipAnchor: [12, -20],
-    shadowAnchor: [1, 22],
-    name: "default",
+    iconUrl: "icons/map-marker-connector.svg",
+    iconSize: [24, 24], // size of the icon
+    iconAnchor: [12, 24], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -24], // point from which the popup should open relative to the iconAnchor
+    tooltipAnchor: [12, -13],
+  },
+  {
+    iconUrl: "icons/map-marker-no-entry.svg",
+    iconSize: [16, 16], // size of the icon
+    iconAnchor: [8, 16], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -16], // point from which the popup should open relative to the iconAnchor
+    tooltipAnchor: [12, -8],
   },
 ];
 
