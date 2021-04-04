@@ -200,6 +200,13 @@ export const iconDataList: Array<IconData> = [
     popupAnchor: [0, -16],
     tooltipAnchor: [14, -10],
   },
+  {
+    iconUrl: "images/npc/mad-batter.png",
+    iconSize: [16, 16],
+    iconAnchor: [8, 16],
+    popupAnchor: [0, -16],
+    tooltipAnchor: [12, -10],
+  },
 
   // other
   {
