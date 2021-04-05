@@ -40,7 +40,7 @@ const TRINEXX = {
 };
 
 function iconData(url: string, data: any): IconData {
-  // No need to keep defining these values when default calculations work for most
+  // Sensible defaults derived from iconSize
   if (!data.iconAnchor) {
     data.iconAnchor = [Math.floor(data.iconSize[0] / 2), data.iconSize[1]];
   }
@@ -75,7 +75,7 @@ export const iconDataList: Array<IconData> = [
   iconData("icons/map-marker-trinexx-b.webp", TRINEXX),
   iconData("images/boss/aghanim.png", { iconSize: [30, 32] }),
   iconData("images/boss/ganon.png", { iconSize: [39, 27] }),
-  // NPCs
+  // Special locationa
   iconData("images/npc/sahasrahla.png", { iconSize: [16, 24] }),
   iconData("images/npc/aginah.png", { iconSize: [16, 25] }),
   iconData("images/npc/sick-kid.png", { iconSize: [24, 30] }),
@@ -87,7 +87,6 @@ export const iconDataList: Array<IconData> = [
   iconData("images/npc/priest.png", { iconSize: [18, 24] }),
   iconData("images/npc/bombshop.png", { iconSize: [14, 16] }),
   iconData("images/npc/mad-batter.png", { iconSize: [16, 16] }),
-  // Special Locations
   iconData("icons/map-marker-mimic-cave.png", { iconSize: [28, 29] }),
   iconData("icons/map-marker-dam.png", { iconSize: [16, 24] }),
   iconData("icons/map-marker-spike-cave.svg", { iconSize: [20, 20] }),
