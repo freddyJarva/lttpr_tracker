@@ -223,6 +223,13 @@ export const iconDataList: Array<IconData> = [
     popupAnchor: [0, -24],
     tooltipAnchor: [12, -12],
   },
+  {
+    iconUrl: "icons/map-marker-spike-cave.svg",
+    iconSize: [20, 20],
+    iconAnchor: [10, 20],
+    popupAnchor: [0, -20],
+    tooltipAnchor: [12, -10],
+  },
 
   // other
   {
