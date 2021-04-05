@@ -32,6 +32,20 @@ const ZELDA = {
   tooltipAnchor: [16, -16],
 };
 
+const LANMOLAS = {
+  iconSize: [28, 41],
+  iconAnchor: [10, 38],
+  popupAnchor: [0, -38],
+  tooltipAnchor: [16, -16],
+};
+
+const TRINEXX = {
+  iconSize: [32, 27],
+  iconAnchor: [16, 27],
+  popupAnchor: [0, -27],
+  tooltipAnchor: [16, -16],
+};
+
 function iconData(url: string, data: any): IconData {
   return { iconUrl: url, ...data };
 }
@@ -48,14 +62,10 @@ export const iconDataList: Array<IconData> = [
     tooltipAnchor: [16, -16],
     name: "armos",
   },
-  {
-    iconUrl: "images/boss/lanmolas.png",
-    iconSize: [28, 41],
-    iconAnchor: [14, 20],
-    popupAnchor: [0, -20],
-    tooltipAnchor: [16, -16],
-    name: "lanmolas",
-  },
+  iconData("icons/map-marker-lanmolas-m.webp", LANMOLAS),
+  iconData("icons/map-marker-lanmolas-e.webp", LANMOLAS),
+  iconData("icons/map-marker-lanmolas-w.webp", LANMOLAS),
+  iconData("icons/map-marker-lanmolas-b.webp", LANMOLAS),
   {
     iconUrl: "images/boss/moldorm.png",
     iconSize: [34, 30],
@@ -112,14 +122,10 @@ export const iconDataList: Array<IconData> = [
     tooltipAnchor: [16, -16],
     name: "vitreous",
   },
-  {
-    iconUrl: "images/boss/trinexx.png",
-    iconSize: [32, 27],
-    iconAnchor: [16, 27],
-    popupAnchor: [0, -27],
-    tooltipAnchor: [16, -16],
-    name: "trinexx",
-  },
+  iconData("icons/map-marker-trinexx-m.webp", TRINEXX),
+  iconData("icons/map-marker-trinexx-w.webp", TRINEXX),
+  iconData("icons/map-marker-trinexx-e.webp", TRINEXX),
+  iconData("icons/map-marker-trinexx-b.webp", TRINEXX),
   {
     iconUrl: "images/boss/aghanim.png",
     iconSize: [30, 32],
