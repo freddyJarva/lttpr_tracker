@@ -25,14 +25,21 @@ export interface IconData extends L.IconOptions {
   name?: string;
 }
 
+const ZELDA = {
+  iconSize: [24, 26],
+  iconAnchor: [12, 26],
+  popupAnchor: [0, -25],
+  tooltipAnchor: [16, -16],
+};
+
+function iconData(url: string, data: any): IconData {
+  return { iconUrl: url, ...data };
+}
+
 export const iconDataList: Array<IconData> = [
-  {
-    iconUrl: "images/npc/zelda.png",
-    iconSize: [20, 25],
-    iconAnchor: [10, 25],
-    popupAnchor: [0, -25],
-    tooltipAnchor: [16, -16],
-  },
+  iconData("icons/map-marker-zelda-m.webp", ZELDA),
+  iconData("icons/map-marker-zelda-w.webp", ZELDA),
+  iconData("icons/map-marker-zelda-e.webp", ZELDA),
   {
     iconUrl: "images/boss/armos.png",
     iconSize: [32, 32],
