@@ -1,6 +1,6 @@
 import type { MarkerData } from "./markers";
 
-const overworldDarkLight = "images/overworld-dark-light.png";
+const overworldDarkLight = "images/overworld-dark-light.webp";
 
 interface MapContent {
   image: string;
