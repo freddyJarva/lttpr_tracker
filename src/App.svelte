@@ -5,6 +5,7 @@
   import DungeonPane from "./DungeonPane.svelte";
   import Qusb2SnesOutput from "./Qusb2SnesOutput.svelte";
   import MapPane from "./map/MapPane.svelte";
+  import NotePane from "./notes/NotePane.svelte";
 
   const usableItems = items.filter(
     (item) =>
@@ -22,6 +23,7 @@
   <Timer />
   <Qusb2SnesOutput />
   <MapPane />
+  <NotePane />
 </main>
 
 <style type="text/scss">
