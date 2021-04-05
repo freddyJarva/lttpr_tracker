@@ -1,6 +1,8 @@
 import { writable } from "svelte/store";
 
-const ITEM_ASSET_FOLDER = "images";
+const ITEM_ASSET_FOLDER = "images/item-tracker";
+
+export const bigKeyImage = ITEM_ASSET_FOLDER + "/big-key.png";
 
 const bow = ITEM_ASSET_FOLDER + "/bow.png";
 const silvers = ITEM_ASSET_FOLDER + "/silvers.png";
