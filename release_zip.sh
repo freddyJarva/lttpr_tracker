@@ -11,5 +11,7 @@ sed -i '' 's/\/build\/bundle.js/build\/bundle.js/g' /tmp/lttpr_tracker/index.htm
 
 pushd /tmp
 zip -r lttpr_tracker.zip ./lttpr_tracker
+rm -rf /tmp/lttpr_tracker
 popd
 mv /tmp/lttpr_tracker.zip ./
+
