@@ -27,26 +27,29 @@ export interface IconData extends L.IconOptions {
 
 const ZELDA = {
   iconSize: [24, 26],
-  iconAnchor: [12, 26],
-  popupAnchor: [0, -25],
-  tooltipAnchor: [16, -16],
 };
 
 const LANMOLAS = {
   iconSize: [28, 41],
   iconAnchor: [10, 38],
   popupAnchor: [0, -38],
-  tooltipAnchor: [16, -16],
 };
 
 const TRINEXX = {
   iconSize: [32, 27],
-  iconAnchor: [16, 27],
-  popupAnchor: [0, -27],
-  tooltipAnchor: [16, -16],
 };
 
 function iconData(url: string, data: any): IconData {
+  // No need to keep defining these values when default calculations work for most
+  if (!data.iconAnchor) {
+    data.iconAnchor = [Math.floor(data.iconSize[0] / 2), data.iconSize[1]];
+  }
+  if (!data.popupAnchor) {
+    data.popupAnchor = [0, data.iconSize[1] * -1];
+  }
+  if (!data.tooltipAnchor) {
+    data.tooltipAnchor = [12, Math.floor(data.iconSize[1] / 2) * -1];
+  }
   return { iconUrl: url, ...data };
 }
 
@@ -54,218 +57,44 @@ export const iconDataList: Array<IconData> = [
   iconData("icons/map-marker-zelda-m.webp", ZELDA),
   iconData("icons/map-marker-zelda-w.webp", ZELDA),
   iconData("icons/map-marker-zelda-e.webp", ZELDA),
-  {
-    iconUrl: "images/boss/armos.png",
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-    tooltipAnchor: [16, -16],
-    name: "armos",
-  },
+  iconData("images/boss/armos.png", { iconSize: [32, 32] }),
   iconData("icons/map-marker-lanmolas-m.webp", LANMOLAS),
   iconData("icons/map-marker-lanmolas-e.webp", LANMOLAS),
   iconData("icons/map-marker-lanmolas-w.webp", LANMOLAS),
   iconData("icons/map-marker-lanmolas-b.webp", LANMOLAS),
-  {
-    iconUrl: "images/boss/moldorm.png",
-    iconSize: [34, 30],
-    iconAnchor: [16, 30],
-    popupAnchor: [0, -32],
-    tooltipAnchor: [16, -16],
-    name: "moldorm",
-  },
-  {
-    iconUrl: "images/boss/helmasaur.png",
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-    tooltipAnchor: [16, -16],
-    name: "helmasaur",
-  },
-  {
-    iconUrl: "images/boss/arrghus.png",
-    iconSize: [30, 29],
-    iconAnchor: [15, 29],
-    popupAnchor: [0, -29],
-    tooltipAnchor: [16, -16],
-    name: "arrghus",
-  },
-  {
-    iconUrl: "images/boss/mothula.png",
-    iconSize: [30, 32],
-    iconAnchor: [15, 32],
-    popupAnchor: [0, -32],
-    tooltipAnchor: [16, -16],
-    name: "mothula",
-  },
-  {
-    iconUrl: "images/boss/blind.png",
-    iconSize: [26, 19],
-    iconAnchor: [13, 19],
-    popupAnchor: [0, -19],
-    tooltipAnchor: [16, -16],
-    name: "blind",
-  },
-  {
-    iconUrl: "images/boss/kholdstare.png",
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-    tooltipAnchor: [16, -16],
-    name: "kholdstare",
-  },
-  {
-    iconUrl: "images/boss/vitreous.png",
-    iconSize: [32, 34],
-    iconAnchor: [16, 34],
-    popupAnchor: [0, -34],
-    tooltipAnchor: [16, -16],
-    name: "vitreous",
-  },
+  iconData("images/boss/moldorm.png", { iconSize: [34, 30] }),
+  iconData("images/boss/helmasaur.png", { iconSize: [32, 32] }),
+  iconData("images/boss/arrghus.png", { iconSize: [30, 29] }),
+  iconData("images/boss/mothula.png", { iconSize: [30, 32] }),
+  iconData("images/boss/blind.png", { iconSize: [26, 19] }),
+  iconData("images/boss/kholdstare.png", { iconSize: [32, 32] }),
+  iconData("images/boss/vitreous.png", { iconSize: [32, 34] }),
   iconData("icons/map-marker-trinexx-m.webp", TRINEXX),
   iconData("icons/map-marker-trinexx-w.webp", TRINEXX),
   iconData("icons/map-marker-trinexx-e.webp", TRINEXX),
   iconData("icons/map-marker-trinexx-b.webp", TRINEXX),
-  {
-    iconUrl: "images/boss/aghanim.png",
-    iconSize: [30, 32],
-    iconAnchor: [15, 32],
-    popupAnchor: [0, -32],
-    tooltipAnchor: [16, -16],
-    name: "aghanim",
-  },
-  {
-    iconUrl: "images/boss/ganon.png",
-    iconSize: [39, 27],
-    iconAnchor: [19, 27],
-    popupAnchor: [0, -27],
-    tooltipAnchor: [16, -16],
-    name: "ganon",
-  },
+  iconData("images/boss/aghanim.png", { iconSize: [30, 32] }),
+  iconData("images/boss/ganon.png", { iconSize: [39, 27] }),
   // NPCs
-  {
-    iconUrl: "images/npc/sahasrahla.png",
-    iconSize: [16, 24],
-    iconAnchor: [8, 24],
-    popupAnchor: [0, -24],
-    tooltipAnchor: [16, -16],
-  },
-  {
-    iconUrl: "images/npc/aginah.png",
-    iconSize: [16, 25],
-    iconAnchor: [8, 25],
-    popupAnchor: [0, -25],
-    tooltipAnchor: [16, -16],
-  },
-  {
-    iconUrl: "images/npc/sick-kid.png",
-    iconSize: [24, 30],
-    iconAnchor: [12, 30],
-    popupAnchor: [0, -30],
-    tooltipAnchor: [16, -16],
-  },
-  {
-    iconUrl: "images/npc/smith.png",
-    iconSize: [24, 25],
-    iconAnchor: [12, 25],
-    popupAnchor: [0, -25],
-    tooltipAnchor: [16, -16],
-  },
-  {
-    iconUrl: "images/npc/blind.png",
-    iconSize: [16, 25],
-    iconAnchor: [8, 25],
-    popupAnchor: [0, -25],
-    tooltipAnchor: [16, -16],
-  },
-  {
-    iconUrl: "images/npc/magic-shop.png",
-    iconSize: [16, 25],
-    iconAnchor: [8, 25],
-    popupAnchor: [0, -25],
-    tooltipAnchor: [16, -16],
-  },
-  {
-    iconUrl: "images/npc/lumberjack.png",
-    iconSize: [20, 28],
-    iconAnchor: [10, 28],
-    popupAnchor: [0, -28],
-    tooltipAnchor: [16, -16],
-  },
-  {
-    iconUrl: "images/npc/old-man.png",
-    iconSize: [16, 21],
-    iconAnchor: [8, 21],
-    popupAnchor: [0, -21],
-    tooltipAnchor: [16, -16],
-  },
-  {
-    iconUrl: "images/npc/priest.png",
-    iconSize: [18, 24],
-    iconAnchor: [9, 24],
-    popupAnchor: [0, -24],
-    tooltipAnchor: [16, -16],
-  },
-  {
-    iconUrl: "images/npc/bombshop.png",
-    iconSize: [14, 16],
-    iconAnchor: [6, 16],
-    popupAnchor: [0, -16],
-    tooltipAnchor: [14, -10],
-  },
-  {
-    iconUrl: "images/npc/mad-batter.png",
-    iconSize: [16, 16],
-    iconAnchor: [8, 16],
-    popupAnchor: [0, -16],
-    tooltipAnchor: [12, -10],
-  },
-
+  iconData("images/npc/sahasrahla.png", { iconSize: [16, 24] }),
+  iconData("images/npc/aginah.png", { iconSize: [16, 25] }),
+  iconData("images/npc/sick-kid.png", { iconSize: [24, 30] }),
+  iconData("images/npc/smith.png", { iconSize: [24, 25] }),
+  iconData("images/npc/blind.png", { iconSize: [16, 25] }),
+  iconData("images/npc/magic-shop.png", { iconSize: [16, 25] }),
+  iconData("images/npc/lumberjack.png", { iconSize: [20, 28] }),
+  iconData("images/npc/old-man.png", { iconSize: [16, 21] }),
+  iconData("images/npc/priest.png", { iconSize: [18, 24] }),
+  iconData("images/npc/bombshop.png", { iconSize: [14, 16] }),
+  iconData("images/npc/mad-batter.png", { iconSize: [16, 16] }),
   // Special Locations
-  {
-    iconUrl: "icons/map-marker-mimic-cave.png",
-    iconSize: [28, 29],
-    iconAnchor: [14, 29],
-    popupAnchor: [0, -29],
-    tooltipAnchor: [12, -15],
-  },
-  {
-    iconUrl: "icons/map-marker-dam.png",
-    iconSize: [16, 24],
-    iconAnchor: [8, 24],
-    popupAnchor: [0, -24],
-    tooltipAnchor: [12, -12],
-  },
-  {
-    iconUrl: "icons/map-marker-spike-cave.svg",
-    iconSize: [20, 20],
-    iconAnchor: [10, 20],
-    popupAnchor: [0, -20],
-    tooltipAnchor: [12, -10],
-  },
-
+  iconData("icons/map-marker-mimic-cave.png", { iconSize: [28, 29] }),
+  iconData("icons/map-marker-dam.png", { iconSize: [16, 24] }),
+  iconData("icons/map-marker-spike-cave.svg", { iconSize: [20, 20] }),
   // other
-  {
-    iconUrl: "icons/map-marker-connector.svg",
-    iconSize: [24, 24],
-    iconAnchor: [12, 24],
-    popupAnchor: [0, -24],
-    tooltipAnchor: [12, -13],
-  },
-  {
-    iconUrl: "icons/map-marker-no-entry.svg",
-    iconSize: [16, 16],
-    iconAnchor: [8, 16],
-    popupAnchor: [0, -16],
-    tooltipAnchor: [12, -8],
-  },
-  {
-    iconUrl: "icons/map-marker-chest.svg",
-    iconSize: [20, 20],
-    iconAnchor: [10, 20],
-    popupAnchor: [0, -20],
-    tooltipAnchor: [12, -10],
-  },
+  iconData("icons/map-marker-connector.svg", { iconSize: [24, 24] }),
+  iconData("icons/map-marker-no-entry.svg", { iconSize: [16, 16] }),
+  iconData("icons/map-marker-chest.svg", { iconSize: [20, 20] }),
 ];
 
 export function iconFor(marker: InteractiveMarker | MarkerData): L.Icon {
