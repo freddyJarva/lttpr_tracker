@@ -207,12 +207,21 @@ export const iconDataList: Array<IconData> = [
     popupAnchor: [0, -16],
     tooltipAnchor: [12, -10],
   },
+
+  // Special Locations
   {
     iconUrl: "icons/map-marker-mimic-cave.png",
     iconSize: [28, 29],
     iconAnchor: [14, 29],
     popupAnchor: [0, -29],
     tooltipAnchor: [12, -15],
+  },
+  {
+    iconUrl: "icons/map-marker-dam.png",
+    iconSize: [16, 24],
+    iconAnchor: [8, 24],
+    popupAnchor: [0, -24],
+    tooltipAnchor: [12, -12],
   },
 
   // other
