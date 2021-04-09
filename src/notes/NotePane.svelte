@@ -1,12 +1,17 @@
-<script>
+<script lang="ts">
   import NoteItem from "./NoteItem.svelte";
+  import type { MapComponentObject } from "../map/store";
 
-  let notes = [0, 1];
+  export let notes: Array<MapComponentObject>;
 </script>
 
 <div class="pane">
   {#each notes as note}
-    <NoteItem />
+    <NoteItem
+      entrance={note.entranceName}
+      text={note.noteText}
+      iconImg={note.img}
+    />
   {/each}
 </div>
 
@@ -17,8 +22,5 @@
     grid-column: 18;
     display: flex;
     flex-direction: column;
-    border: white solid 3px;
-    border-radius: 2%;
-    box-shadow: 0 0 0 3px $zelda-blue;
   }
 </style>
