@@ -104,3 +104,4 @@ export function iconFor(marker: InteractiveMarker | MarkerData): L.Icon {
     ? mapIcons.default
     : mapIcons[marker.type];
 }
+

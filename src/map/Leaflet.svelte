@@ -15,6 +15,7 @@
   import type { LatLngPoint } from "./leafletutil";
   import { writable } from "svelte/store";
   import { iconFor } from "./icons";
+  import { mapComponentObjects } from "./store";
 
   export let image: string;
   export let markers: Array<MarkerData>;
@@ -136,8 +137,15 @@
       data: marker,
       node: leafletMarker,
       isActive: true,
-      notes: writable(""),
     };
+
+    const mapComponent = {
+      entranceName: interactiveMarker.data.name,
+      noteText: writable(""),
+      img: writable(""),
+    };
+    // Object to reuse at other places, like notepane for example.
+    $mapComponentObjects = [...$mapComponentObjects, mapComponent];
 
     interactiveMarker.node.bindTooltip(marker.name);
     if (marker.popup !== undefined) {
@@ -147,7 +155,8 @@
         let c = new EntranceMarkerPopup({
           target: m,
           props: {
-            notes: interactiveMarker.notes,
+            notes: mapComponent.noteText,
+            img: mapComponent.img,
           },
         });
         c.$on("connect", () => {

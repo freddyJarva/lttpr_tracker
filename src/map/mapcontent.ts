@@ -594,8 +594,8 @@ const mapContent: MapContent = {
       xy: [3280, 544],
     },
     {
-      name: "Hookshot Fairy",
-      id: "entrance-lw-dm-hookshot-fairy-cave",
+      name: "Fairy Ascension Cave (Bottom)",
+      id: "entrance-lw-dm-fairy-ascension-cave-bottom",
       type: "entrance",
       xy: [3360, 576],
     },

@@ -4,10 +4,12 @@
   import { iconDataList } from "./icons";
   const dispatch = createEventDispatcher();
 
+  export let img: Writable<string>;
   export let notes: Writable<string>;
 
   let isChoosingIcon = false;
 
+  $: console.log(notes);
   function connect() {
     dispatch("connect");
   }
@@ -24,6 +26,7 @@
   }
 
   function setIcon(e, icon) {
+    $img = icon.iconUrl;
     dispatch("seticon", icon);
     isChoosingIcon = false;
   }
