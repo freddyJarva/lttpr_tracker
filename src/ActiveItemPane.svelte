@@ -3,8 +3,6 @@
   import MedallionBox from "./boxes/MedallionBox.svelte";
 
   export let items;
-
-  console.log(items);
 </script>
 
 <div class="pane">

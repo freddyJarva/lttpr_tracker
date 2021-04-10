@@ -3,21 +3,23 @@
   export let images = [];
   let activeRewardIndex = 0;
   let isDone = false;
-  
-  console.log(activeRewardIndex)
 
   function toggleDone() {
-    isDone = !isDone
+    isDone = !isDone;
   }
 
   function changeReward() {
-    activeRewardIndex = (activeRewardIndex + 1) % images.length
+    activeRewardIndex = (activeRewardIndex + 1) % images.length;
   }
 </script>
 
-<box on:click|preventDefault={toggleDone} on:contextmenu|preventDefault={changeReward} class='DungeonBox'>
+<box
+  on:click|preventDefault={toggleDone}
+  on:contextmenu|preventDefault={changeReward}
+  class="DungeonBox"
+>
   <span>{name}</span>
-  <img src={images[activeRewardIndex]} alt={name} class:inactive={!isDone}/>
+  <img src={images[activeRewardIndex]} alt={name} class:inactive={!isDone} />
 </box>
 
 <style type="text/scss">

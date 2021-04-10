@@ -27,7 +27,6 @@
   onMount(async () => {
     webSocket = new WebSocket(host);
     webSocket.onopen = function (event) {
-      console.log("SHIT IS HAPPENING");
       webSocket.send(
         JSON.stringify({
           Opcode: "DeviceList",
@@ -39,10 +38,8 @@
     webSocket.onmessage = function (event) {
       let results = JSON.parse(event.data);
       snes_devices = results.Results;
-      console.log(results);
 
       webSocket.onmessage = function (event) {
-        console.log("HURRAY");
         console.log(event.data);
       };
     };

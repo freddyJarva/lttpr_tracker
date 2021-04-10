@@ -15,7 +15,6 @@
       item.type === "medallion"
   );
   const dungeons = items.filter((item) => item.type === "dungeon");
-  console.log("usableItems:", usableItems);
 </script>
 
 <main class="Tracker">

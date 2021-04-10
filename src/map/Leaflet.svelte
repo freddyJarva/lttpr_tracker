@@ -167,13 +167,12 @@
         c.$on("connect", () => {
           dragStart = interactiveMarker;
           interactiveMarker.node.closePopup();
-          console.log(dragStart);
+          console.log("Start making line");
         });
         c.$on("close", () => {
           interactiveMarker.node.closePopup();
         });
         c.$on("seticon", (iconEvent) => {
-          console.log(iconEvent);
           interactiveMarker.node.setIcon(L.icon(iconEvent.detail));
           interactiveMarker.node.closePopup();
         });
@@ -190,7 +189,6 @@
   }
 
   function onEntranceClick(e: L.LeafletMouseEvent) {
-    console.log("onEntranceclick:", e);
     if (e.originalEvent.button === 0) {
       // 0 = Left Mouse
       if (dragStart !== null && dragStart.node.getLatLng() !== e.latlng) {
