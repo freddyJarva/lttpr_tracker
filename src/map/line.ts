@@ -12,7 +12,7 @@ export function createLine(point1: L.LatLng, point2: L.LatLng): L.Polyline {
   return L.polyline([point1, point2], {
     color: lineColor(),
     opacity: 0.8,
-    weight: 6,
+    weight: 4,
   });
 }
 
