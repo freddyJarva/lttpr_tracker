@@ -3,6 +3,7 @@ import type { Writable } from "svelte/store";
 
 export interface CustomMarkerOptions extends L.MarkerOptions {
   className?: string;
+  id?: string;
 }
 export class CustomMarker extends L.Marker {
   options: CustomMarkerOptions;
@@ -18,6 +19,9 @@ export class CustomMarker extends L.Marker {
 
     if (this.options.className) {
       L.DomUtil.addClass(this.getElement(), this.options.className);
+    }
+    if (this.options.id) {
+      this.getElement().id = this.options.id;
     }
     return this;
   }

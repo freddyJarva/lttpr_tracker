@@ -7,11 +7,7 @@
 
 <div class="pane">
   {#each notes as note}
-    <NoteItem
-      entrance={note.entranceName}
-      text={note.noteText}
-      iconImg={note.img}
-    />
+    <NoteItem {...note} />
   {/each}
 </div>
 
