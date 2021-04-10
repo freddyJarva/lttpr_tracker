@@ -1,5 +1,5 @@
 <script lang="typescript">
-  import { createEventDispatcher, setContext, tick } from "svelte";
+  import { createEventDispatcher, setContext } from "svelte";
   import * as L from "leaflet";
   import { imageHeight, mapUnit } from "./mapcontent";
   import { CustomMarker } from "./markers";
@@ -16,7 +16,7 @@
   import { writable } from "svelte/store";
   import { iconFor } from "./icons";
   import { mapComponentObjects } from "./store";
-  import { lineColor } from "./line";
+  import { lineBetween } from "./line";
 
   export let image: string;
   export let markers: Array<MarkerData>;
@@ -246,16 +246,6 @@
     let maxLat = imageHeight / mapUnit;
     const latLng = [maxLat - xy[1] / mapUnit, xy[0] / mapUnit];
     return latLng;
-  }
-
-  function lineBetween(m1: L.Marker | L.LatLng, m2: L.Marker | L.LatLng) {
-    let point1 = m1 instanceof L.Marker ? m1.getLatLng() : m1;
-    let point2 = m2 instanceof L.Marker ? m2.getLatLng() : m2;
-    return L.polyline([point1, point2], {
-      color: lineColor(),
-      opacity: 0.8,
-      weight: 6,
-    });
   }
 
   function bindPopup(marker: InteractiveMarker, createFn) {
