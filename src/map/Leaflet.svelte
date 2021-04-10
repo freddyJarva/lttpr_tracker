@@ -16,6 +16,7 @@
   import { writable } from "svelte/store";
   import { iconFor } from "./icons";
   import { mapComponentObjects } from "./store";
+  import { lineColor } from "./line";
 
   export let image: string;
   export let markers: Array<MarkerData>;
@@ -251,7 +252,7 @@
     let point1 = m1 instanceof L.Marker ? m1.getLatLng() : m1;
     let point2 = m2 instanceof L.Marker ? m2.getLatLng() : m2;
     return L.polyline([point1, point2], {
-      color: "#E4E",
+      color: lineColor(),
       opacity: 0.8,
       weight: 6,
     });
