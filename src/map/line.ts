@@ -1,3 +1,8 @@
+let currentColorIdx = 0;
+let colors = ["#F00", "#0F0", "#00F", "#FF0", "#F0F", "#0FF"];
+
 export function lineColor(): string {
-  return "#E4E";
+  let chosen = colors[currentColorIdx];
+  currentColorIdx = (currentColorIdx + 1) % colors.length;
+  return chosen;
 }
