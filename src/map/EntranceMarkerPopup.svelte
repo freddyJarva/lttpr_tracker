@@ -9,7 +9,6 @@
 
   let isChoosingIcon = false;
 
-  $: console.log(notes);
   function connect() {
     dispatch("connect");
   }
