@@ -123,6 +123,7 @@
     // Option creation
     let options: CustomMarkerOptions = {
       icon: iconFor(marker),
+      id: marker.id,
     };
     if (className) {
       options.className = className;
@@ -141,9 +142,11 @@
 
     const mapComponent = {
       entranceName: interactiveMarker.data.name,
-      noteText: writable(""),
+      entranceId: interactiveMarker.data.id,
+      text: writable(""),
       img: writable(""),
     };
+
     // Object to reuse at other places, like notepane for example.
     $mapComponentObjects = [...$mapComponentObjects, mapComponent];
 
@@ -155,7 +158,7 @@
         let c = new EntranceMarkerPopup({
           target: m,
           props: {
-            notes: mapComponent.noteText,
+            notes: mapComponent.text,
             img: mapComponent.img,
           },
         });

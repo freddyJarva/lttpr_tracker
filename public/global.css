@@ -71,3 +71,17 @@ button:disabled {
   color: grey;
   border-color: grey;
 }
+
+.note-hover {
+  animation: blink-animation 0.8s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+  from {
+    visibility: visible;
+    filter: brightness(250%);
+  }
+  to {
+    visibility: hidden;
+  }
+}

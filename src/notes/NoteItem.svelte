@@ -1,22 +1,27 @@
 <script lang="ts">
   import type { Writable } from "svelte/store";
 
-  export let entrance = "Unknown";
+  export let entranceName = "Unknown";
+  export let entranceId: string;
   export let text: Writable<string>;
-  export let iconImg: Writable<string>;
+  export let img: Writable<string>;
 
-  $: console.log("icon img:", $iconImg);
+  function onMouseHover() {
+    let el = document.getElementById(entranceId);
+    el.classList.add("note-hover");
+  }
 
-  $: src = $iconImg !== "" ? $iconImg : "";
-
-  // const mockImg = "icons/map-marker-zelda-m.webp";
+  function onMouseLeave() {
+    let el = document.getElementById(entranceId);
+    el.classList.remove("note-hover");
+  }
 </script>
 
-{#if $text !== "" || src !== ""}
-  <div class="card">
-    <img {src} alt={src} />
+{#if $text !== "" || $img !== ""}
+  <div class="card" on:mouseover={onMouseHover} on:mouseout={onMouseLeave}>
+    <img src={$img} alt={$img} />
     <div class="text-content">
-      <span>{entrance}</span>
+      <span>{entranceName}</span>
       <hr />
       <span contenteditable="true">{$text}</span>
     </div>
@@ -28,7 +33,6 @@
   .card {
     background: #282828;
     font-size: 14px;
-    // border: 1px solid red;
 
     padding: 4px;
     margin-left: 16px;
