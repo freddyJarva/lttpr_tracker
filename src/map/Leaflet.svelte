@@ -124,6 +124,7 @@
     let options: CustomMarkerOptions = {
       icon: iconFor(marker),
       id: marker.id,
+      active: true,
     };
     if (className) {
       options.className = className;
@@ -223,15 +224,17 @@
     }
     if (clickedMarker.isActive) {
       layerGroups.entrance.removeLayer(clickedMarker.node);
-      layerGroups.inactive.addLayer(clickedMarker.node);
       clickedMarker.isActive = false;
+      clickedMarker.node.deactivate();
+      layerGroups.inactive.addLayer(clickedMarker.node);
 
       layerGroups.inactive.addLayer(clickedMarker.node);
     } else {
       layerGroups.inactive.removeLayer(clickedMarker.node);
 
-      layerGroups.entrance.addLayer(clickedMarker.node);
       clickedMarker.isActive = true;
+      clickedMarker.node.activate();
+      layerGroups.entrance.addLayer(clickedMarker.node);
     }
     // clickedMarker.node.setIcon(iconFor(clickedMarker));
   }
