@@ -51,7 +51,6 @@ button {
 .marker-notes:focus {
   outline-style: inset;
   outline-color: #e6a800;
-  /* outline: outset; */
 }
 
 button:focus {
