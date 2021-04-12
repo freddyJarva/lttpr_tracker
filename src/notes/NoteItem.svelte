@@ -15,77 +15,43 @@
     let el = document.getElementById(entranceId);
     el.classList.remove("note-hover");
   }
+
+  function handleRightClick() {
+    $text = "";
+    onMouseLeave();
+  }
 </script>
 
-{#if $img !== "" && $text === ""}
+{#if $text !== ""}
   <div
-    class="card-compact"
+    class="card"
     on:mouseover={onMouseHover}
     on:mouseout={onMouseLeave}
+    on:contextmenu|preventDefault={handleRightClick}
   >
-    <img src={$img} alt={$img} />
-  </div>
-{:else if $text !== ""}
-  <div class="card" on:mouseover={onMouseHover} on:mouseout={onMouseLeave}>
-    {#if $img !== ""}
-      <img src={$img} alt={$img} />
-    {/if}
-    <div class="text-content">
-      <h3>{entranceName}</h3>
-
-      <p contenteditable="true">{$text}</p>
-    </div>
+    <!-- <p class="entrance-name-text">{entranceName}</p> -->
+    <p contenteditable="true" bind:textContent={$text} />
   </div>
 {/if}
 
 <style lang="scss">
   @import "src/theme.scss";
   .card {
+    max-width: 120px;
     background: #282828;
     font-size: 14px;
 
-    padding: 4px;
+    text-align: center;
+
+    border: 1px solid $zelda-blue;
+    padding: 0 8px 0 10px;
     margin-bottom: 8px;
 
-    grid-row: span 2;
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 20% 80%;
-
-    justify-items: center;
-    border-radius: 2%;
+    border-radius: 6%;
   }
 
-  .card-compact {
-    background: #282828;
-    font-size: 14px;
-    padding: 4px;
-    margin-bottom: 8px;
-
-    grid-row: span 2;
-    grid-column: span 1;
-
-    justify-items: center;
-
-    display: grid;
-    grid-template-columns: 100%;
-
-    border-radius: 2%;
-  }
-
-  h3 {
+  .entrance-name-text {
+    font-size: 7px;
     color: $zelda-yellow;
-    text-decoration: underline;
-    font-size: 14px;
-  }
-
-  img {
-    grid-column-start: 1;
-    min-width: 24px;
-    max-height: 36px;
-    padding-right: 4px;
-  }
-  .text-content {
-    grid-column-start: 2;
   }
 </style>

@@ -14,9 +14,8 @@
 <style type="text/scss">
   @import "src/theme.scss";
   .pane {
-    display: grid;
-    grid-template-columns: repeat(10, 10%);
-    height: fit-content;
+    display: flex;
+    flex-flow: row wrap;
     gap: 4px 4px;
   }
 </style>
