@@ -31,9 +31,9 @@
       <img src={$img} alt={$img} />
     {/if}
     <div class="text-content">
-      <span>{entranceName}</span>
-      <hr />
-      <span contenteditable="true">{$text}</span>
+      <h3>{entranceName}</h3>
+
+      <p contenteditable="true">{$text}</p>
     </div>
   </div>
 {/if}
@@ -47,12 +47,12 @@
     padding: 4px;
     margin-bottom: 8px;
 
-    // flex-grow: 3 3 auto;
     grid-row: span 2;
-    grid-column: span 4;
+    grid-column: span 2;
     display: grid;
     grid-template-columns: 20% 80%;
 
+    justify-items: center;
     border-radius: 2%;
   }
 
@@ -73,16 +73,19 @@
     border-radius: 2%;
   }
 
+  h3 {
+    color: $zelda-yellow;
+    text-decoration: underline;
+    font-size: 14px;
+  }
+
   img {
     grid-column-start: 1;
-    min-width: 32px;
-    // max-height: 40px;
-    max-height: 48px;
+    min-width: 24px;
+    max-height: 36px;
+    padding-right: 4px;
   }
   .text-content {
     grid-column-start: 2;
-  }
-  hr {
-    border: 1px solid grey;
   }
 </style>

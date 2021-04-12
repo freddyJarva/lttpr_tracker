@@ -14,12 +14,9 @@
 <style type="text/scss">
   @import "src/theme.scss";
   .pane {
-    // grid-row: 16 / span 10;
-    grid-row: 16 / span 10;
-    grid-column: 18;
     display: grid;
-    grid-template-columns: repeat(8, 12.5%);
-    grid-template-rows: repeat(5, 20%);
+    grid-template-columns: repeat(10, 10%);
+    height: fit-content;
     gap: 4px 4px;
   }
 </style>
