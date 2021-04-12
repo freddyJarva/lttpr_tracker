@@ -4,7 +4,7 @@
 }
 
 body {
-  color: #333;
+  color: whitesmoke;
   margin: 0;
   padding: 8px;
   font-family: "Press Start 2P";
@@ -12,9 +12,6 @@ body {
   background-color: black;
   cursor: default;
 }
-
-/* color: #e6a800 !important; */
-/* background: #333 !important; */
 
 .leaflet-container {
   background: black !important;

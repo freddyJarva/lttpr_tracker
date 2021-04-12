@@ -88,16 +88,17 @@
   .Qusb2Snes {
     border-top: whitesmoke;
 
-    grid-column: 1 / span 11;
-    grid-row: 19 / span 3;
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 2fr 1fr;
     border: $zelda-yellow solid 3px;
     border-radius: 5px;
+    width: fit-content;
+    padding: 8px;
 
     button {
       margin: 4px;
+      padding: 8px;
       color: whitesmoke;
       background-color: black;
       border-color: $zelda-yellow;
