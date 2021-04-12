@@ -17,9 +17,19 @@
   }
 </script>
 
-{#if $text !== "" || $img !== ""}
-  <div class="card" on:mouseover={onMouseHover} on:mouseout={onMouseLeave}>
+{#if $img !== "" && $text === ""}
+  <div
+    class="card-compact"
+    on:mouseover={onMouseHover}
+    on:mouseout={onMouseLeave}
+  >
     <img src={$img} alt={$img} />
+  </div>
+{:else if $text !== ""}
+  <div class="card" on:mouseover={onMouseHover} on:mouseout={onMouseLeave}>
+    {#if $img !== ""}
+      <img src={$img} alt={$img} />
+    {/if}
     <div class="text-content">
       <span>{entranceName}</span>
       <hr />
@@ -35,11 +45,30 @@
     font-size: 14px;
 
     padding: 4px;
-    margin-left: 16px;
     margin-bottom: 8px;
 
+    // flex-grow: 3 3 auto;
+    grid-row: span 2;
+    grid-column: span 4;
     display: grid;
     grid-template-columns: 20% 80%;
+
+    border-radius: 2%;
+  }
+
+  .card-compact {
+    background: #282828;
+    font-size: 14px;
+    padding: 4px;
+    margin-bottom: 8px;
+
+    grid-row: span 2;
+    grid-column: span 1;
+
+    justify-items: center;
+
+    display: grid;
+    grid-template-columns: 100%;
 
     border-radius: 2%;
   }
@@ -47,7 +76,8 @@
   img {
     grid-column-start: 1;
     min-width: 32px;
-    max-height: 64px;
+    // max-height: 40px;
+    max-height: 48px;
   }
   .text-content {
     grid-column-start: 2;
