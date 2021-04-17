@@ -95,6 +95,7 @@ export const iconDataList: Array<IconData> = [
   iconData("icons/map-marker-connector.svg", { iconSize: [24, 24] }),
   iconData("icons/map-marker-no-entry.svg", { iconSize: [16, 16] }),
   iconData("icons/map-marker-chest.svg", { iconSize: [20, 20] }),
+  iconData("icons/map-marker-entrance.svg", { iconSize: [12, 26] }),
 ];
 
 export function iconFor(marker: InteractiveMarker | MarkerData): L.Icon {
