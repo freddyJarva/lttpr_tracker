@@ -25,17 +25,17 @@ export interface IconData extends L.IconOptions {
   name?: string;
 }
 
-const ZELDA = {
+const HYRULE_CASTLE = {
   iconSize: [24, 26],
 };
 
-const LANMOLAS = {
+const DESERT_PALACE = {
   iconSize: [28, 41],
   iconAnchor: [10, 38],
   popupAnchor: [0, -38],
 };
 
-const TRINEXX = {
+const TURTLE_ROCK = {
   iconSize: [32, 27],
 };
 
@@ -54,27 +54,28 @@ function iconData(url: string, data: any): IconData {
 }
 
 export const iconDataList: Array<IconData> = [
-  iconData("icons/map-marker-zelda-m.webp", ZELDA),
-  iconData("icons/map-marker-zelda-w.webp", ZELDA),
-  iconData("icons/map-marker-zelda-e.webp", ZELDA),
-  iconData("images/boss/armos.webp", { iconSize: [32, 32] }),
-  iconData("icons/map-marker-lanmolas-m.webp", LANMOLAS),
-  iconData("icons/map-marker-lanmolas-e.webp", LANMOLAS),
-  iconData("icons/map-marker-lanmolas-w.webp", LANMOLAS),
-  iconData("icons/map-marker-lanmolas-b.webp", LANMOLAS),
-  iconData("images/boss/moldorm.webp", { iconSize: [34, 30] }),
-  iconData("images/boss/helmasaur.webp", { iconSize: [32, 32] }),
-  iconData("images/boss/arrghus.webp", { iconSize: [30, 29] }),
-  iconData("images/boss/mothula.webp", { iconSize: [30, 32] }),
-  iconData("images/boss/blind.webp", { iconSize: [26, 19] }),
-  iconData("images/boss/kholdstare.webp", { iconSize: [32, 32] }),
-  iconData("images/boss/vitreous.webp", { iconSize: [32, 34] }),
-  iconData("icons/map-marker-trinexx-m.webp", TRINEXX),
-  iconData("icons/map-marker-trinexx-w.webp", TRINEXX),
-  iconData("icons/map-marker-trinexx-e.webp", TRINEXX),
-  iconData("icons/map-marker-trinexx-b.webp", TRINEXX),
-  iconData("images/boss/aghanim.webp", { iconSize: [30, 32] }),
-  iconData("images/boss/ganon.webp", { iconSize: [39, 27] }),
+  iconData("icons/map-marker-hyrulecastle-m.webp", HYRULE_CASTLE),
+  iconData("icons/map-marker-hyrulecastle-w.webp", HYRULE_CASTLE),
+  iconData("icons/map-marker-hyrulecastle-e.webp", HYRULE_CASTLE),
+  iconData("icons/map-marker-easternpalace.webp", { iconSize: [32, 32] }),
+  iconData("icons/map-marker-desertpalace-m.webp", DESERT_PALACE),
+  iconData("icons/map-marker-desertpalace-e.webp", DESERT_PALACE),
+  iconData("icons/map-marker-desertpalace-w.webp", DESERT_PALACE),
+  iconData("icons/map-marker-desertpalace-b.webp", DESERT_PALACE),
+  iconData("icons/map-marker-castletower.webp", { iconSize: [30, 32] }),
+  iconData("icons/map-marker-towerofhera.webp", { iconSize: [34, 30] }),
+  iconData("icons/map-marker-palaceofdarkness.webp", { iconSize: [32, 32] }),
+  iconData("icons/map-marker-swamppalace.webp", { iconSize: [30, 29] }),
+  iconData("icons/map-marker-skullwoods.webp", { iconSize: [30, 32] }),
+  iconData("icons/map-marker-thievestown.webp", { iconSize: [26, 19] }),
+  iconData("icons/map-marker-icepalace.webp", { iconSize: [32, 32] }),
+  iconData("icons/map-marker-miserymire.webp", { iconSize: [32, 34] }),
+  iconData("icons/map-marker-turtlerock-m.webp", TURTLE_ROCK),
+  iconData("icons/map-marker-turtlerock-w.webp", TURTLE_ROCK),
+  iconData("icons/map-marker-turtlerock-e.webp", TURTLE_ROCK),
+  iconData("icons/map-marker-turtlerock-b.webp", TURTLE_ROCK),
+  iconData("icons/map-marker-ganonstower.webp", { iconSize: [30, 32] }),
+  iconData("icons/map-marker-ganon.webp", { iconSize: [39, 27] }),
   // Special locationa
   iconData("images/npc/sahasrahla.webp", { iconSize: [16, 24] }),
   iconData("images/npc/aginah.webp", { iconSize: [16, 25] }),
@@ -104,4 +105,3 @@ export function iconFor(marker: InteractiveMarker | MarkerData): L.Icon {
     ? mapIcons.default
     : mapIcons[marker.type];
 }
-
