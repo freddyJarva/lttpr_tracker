@@ -3,19 +3,19 @@ import { writable, Writable, Readable, derived, get } from "svelte/store";
 import _ from "lodash";
 
 const dungeonImgSubstrings = [
-  "zelda",
-  "armos",
-  "lanmolas",
-  "moldorm",
-  "aghanim",
-  "helmasaur",
-  "arrghus",
-  "mothula",
-  "blind",
-  "kholdstare",
-  "vitreous",
-  "trinexx",
-  "aghanim2",
+  "hyrulecastle",
+  "easternpalace",
+  "desertpalace",
+  "towerofhera",
+  "castletower",
+  "palaceofdarkness",
+  "swamppalace",
+  "skullwoods",
+  "thievestown",
+  "icepalace",
+  "miserymire",
+  "turtlerock",
+  "ganonstower",
 ];
 
 export interface MapComponentObject {
