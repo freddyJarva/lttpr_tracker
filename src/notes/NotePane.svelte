@@ -1,8 +1,8 @@
 <script lang="ts">
   import NoteItem from "./NoteItem.svelte";
-  import type { MapComponentObject } from "../map/store";
+  import type { MapObject } from "../map/store";
 
-  export let notes: Array<MapComponentObject>;
+  export let notes: Array<MapObject>;
 </script>
 
 <div class="pane">

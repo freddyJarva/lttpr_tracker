@@ -15,7 +15,7 @@
   import type { LatLngPoint } from "./leafletutil";
   import { writable } from "svelte/store";
   import { iconFor } from "./icons";
-  import { mapComponentObjects } from "./store";
+  import { mapComponentObjects, MapObject } from "./store";
   import { lineBetween } from "./line";
 
   export let image: string;
@@ -142,12 +142,12 @@
       isActive: true,
     };
 
-    const mapComponent = {
-      entranceName: interactiveMarker.data.name,
-      entranceId: interactiveMarker.data.id,
-      text: writable(""),
-      img: writable(""),
-    };
+    const mapComponent = new MapObject(
+      interactiveMarker.data.name,
+      interactiveMarker.data.id,
+      writable(""),
+      writable("")
+    );
 
     // Object to reuse at other places, like notepane for example.
     $mapComponentObjects = [...$mapComponentObjects, mapComponent];
