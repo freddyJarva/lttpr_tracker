@@ -11,13 +11,14 @@
   {/each}
 </div>
 
-<style>
+<style type="text/scss">
+  @import "src/theme.scss";
   .pane {
     grid-row: 1 / span 14;
     grid-column: 13 / span 4;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(13, 35px);
+    grid-template-columns: $dungeon-pane-columns;
+    grid-template-rows: $dungeon-pane-rows;
     padding-top: 10px;
     padding-left: 16px;
     padding-right: 16px;

@@ -6,6 +6,10 @@ $zelda-yellow: hsl(44, 100, 45);
 $map-cell-total: 128;
 $map-cell-size: 4px;
 
+$dungeon-cell-height: 35px;
+$dungeon-pane-rows: repeat(13, $dungeon-cell-height);
+$dungeon-pane-columns: repeat(4, 1fr);
+
 @mixin transition-mixin($property: all, $time: 0.2s, $type: ease-in) {
   -webkit-transition: $property $time $type;
   -moz-transition: $property $time $type;
