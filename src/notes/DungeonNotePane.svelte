@@ -18,8 +18,6 @@
     grid-row: span 14;
     padding-top: 10px;
 
-    border: 1px solid red;
-
     display: grid;
     grid-template-rows: $dungeon-pane-rows;
     grid-template-columns: 1;
