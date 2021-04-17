@@ -1,4 +1,4 @@
-import { writable, Writable, get } from "svelte/store";
+import { writable, Writable, Readable, derived, get } from "svelte/store";
 
 import _ from "lodash";
 
@@ -6,8 +6,8 @@ const dungeonImgSubstrings = [
   "zelda",
   "armos",
   "lanmolas",
-  "aghanim",
   "moldorm",
+  "aghanim",
   "helmasaur",
   "arrghus",
   "mothula",
@@ -23,8 +23,7 @@ export interface MapComponentObject {
   entranceId: string;
   img: Writable<string>;
   text: Writable<string>;
-
-  interiorType(): string;
+  interiorId: Readable<number>;
 }
 
 export class MapObject implements MapComponentObject {
@@ -32,6 +31,7 @@ export class MapObject implements MapComponentObject {
   entranceId: string;
   img: Writable<string>;
   text: Writable<string>;
+  interiorId: Readable<number>;
 
   constructor(
     entranceName: string,
@@ -43,18 +43,14 @@ export class MapObject implements MapComponentObject {
     this.entranceId = entranceId;
     this.img = img;
     this.text = text;
-  }
-
-  interiorType(): string {
-    // Interior meaning the location this overworld entrance takes you to
-    if (
-      _.filter(dungeonImgSubstrings, (substr) => get(this.img).includes(substr))
-        .length > 0
-    ) {
-      return "dungeon";
-    } else {
-      return "other";
-    }
+    this.interiorId = derived(this.img, ($img) => {
+      for (const substr of dungeonImgSubstrings) {
+        if ($img.includes(substr)) {
+          return dungeonImgSubstrings.indexOf(substr) + 1;
+        }
+      }
+      return -1;
+    });
   }
 }
 

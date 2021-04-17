@@ -17,9 +17,5 @@
   .Tracker {
     display: grid;
     grid-template-rows: auto 600px auto auto;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%; */
   }
 </style>
