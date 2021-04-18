@@ -6,9 +6,17 @@
   export let smallKeyMin = 0;
   export let smallKeyGoMode = 0;
   export let bigKey = false;
-  export let autotrackState = null;
 
+  // Small key logic
   let keyCount = 0;
+  let manualCount = 0;
+  export let autotrackState = null;
+  $: if (autotrackState) {
+    keyCount = $autotrackState;
+  } else {
+    keyCount = manualCount;
+  }
+
   let activeRewardIndex = 0;
   let isDone = false;
   let hasBigKey = false;
@@ -39,7 +47,17 @@
   }
 
   function incrementKeys() {
-    keyCount = (keyCount + 1) % (smallKeyMax + 1);
+    /* If autotracking is enabled, we write manual updates to autotrackstate.
+     Since autotracking for small keys work differently than other items
+     and is prone to getting out of sync with the **true** amount of found keys,
+     it made more sense to let manual tracking work in tandem with it.
+    */
+    if (autotrackState) {
+      $autotrackState =
+        $autotrackState + 1 > smallKeyMax ? 0 : $autotrackState + 1;
+    } else {
+      manualCount = manualCount + 1 > smallKeyMax ? 0 : manualCount + 1;
+    }
   }
 
   function toggleBigKey() {
