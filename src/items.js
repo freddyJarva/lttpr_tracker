@@ -133,18 +133,22 @@ function createBottles(hexOffsets) {
   };
 }
 
-function createDungeonSmallKey(hexOffset) {
-  const { subscribe, set, update } = writable(0);
+function createDungeonStore(smallKeyHexOffset) {
+  const { subscribe, set, update } = writable({ smallKeys: 0, bigKey: false });
 
   return {
     subscribe,
     updateFromQUsbData: (qusbData) => {
-      update((currentKeys) =>
-        qusbData[hexOffset] > currentKeys ? qusbData[hexOffset] : currentKeys
-      );
+      update((dungeon) => {
+        if (qusbData[smallKeyHexOffset] > dungeon.smallKeys) {
+          return { smallKeys: qusbData[smallKeyHexOffset], bigKey: false };
+        } else {
+          return { smallKeys: dungeon.smallKeys, bigKey: false };
+        }
+      });
     },
     set,
-    reset: () => set(0),
+    reset: () => set({ smallKeys: 0, bigKey: false }),
   };
 }
 
@@ -348,7 +352,7 @@ const items = [
     images: [uncle],
     smallKeyMax: 1,
     smallKeyMin: 1,
-    autotrackState: createDungeonSmallKey(0x37c),
+    autotrackState: createDungeonStore(0x37c),
     bigKey: false,
   },
   {
@@ -358,7 +362,7 @@ const items = [
     smallKeyMax: 0,
     smallKeyMin: 0,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonSmallKey(0x37e),
+    autotrackState: createDungeonStore(0x37e),
     bigKey: true,
   },
   {
@@ -368,7 +372,7 @@ const items = [
     smallKeyMax: 1,
     smallKeyMin: 1,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonSmallKey(0x37f),
+    autotrackState: createDungeonStore(0x37f),
     bigKey: true,
   },
   {
@@ -378,7 +382,7 @@ const items = [
     smallKeyMax: 1,
     smallKeyMin: 1,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonSmallKey(0x386),
+    autotrackState: createDungeonStore(0x386),
     bigKey: true,
   },
   {
@@ -388,7 +392,7 @@ const items = [
     smallKeyMax: 2,
     smallKeyMin: 2,
     smallKeyGoMode: 2,
-    autotrackState: createDungeonSmallKey(0x380),
+    autotrackState: createDungeonStore(0x380),
     bigKey: false,
   },
   {
@@ -398,7 +402,7 @@ const items = [
     smallKeyMax: 6,
     smallKeyMin: 4,
     smallKeyGoMode: 1,
-    autotrackState: createDungeonSmallKey(0x382),
+    autotrackState: createDungeonStore(0x382),
     bigKey: true,
   },
   {
@@ -408,7 +412,7 @@ const items = [
     smallKeyMax: 1,
     smallKeyMin: 1,
     smallKeyGoMode: 1,
-    autotrackState: createDungeonSmallKey(0x381),
+    autotrackState: createDungeonStore(0x381),
     bigKey: true,
   },
   {
@@ -418,7 +422,7 @@ const items = [
     smallKeyMax: 3,
     smallKeyMin: 0,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonSmallKey(0x384),
+    autotrackState: createDungeonStore(0x384),
     bigKey: true,
   },
   {
@@ -428,7 +432,7 @@ const items = [
     smallKeyMax: 1,
     smallKeyMin: 1,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonSmallKey(0x387),
+    autotrackState: createDungeonStore(0x387),
     bigKey: true,
   },
   {
@@ -438,7 +442,7 @@ const items = [
     smallKeyMax: 2,
     smallKeyMin: 0,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonSmallKey(0x385),
+    autotrackState: createDungeonStore(0x385),
     bigKey: true,
   },
   {
@@ -448,7 +452,7 @@ const items = [
     smallKeyMax: 3,
     smallKeyMin: 0,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonSmallKey(0x383),
+    autotrackState: createDungeonStore(0x383),
     bigKey: true,
   },
   {
@@ -458,7 +462,7 @@ const items = [
     smallKeyMax: 4,
     smallKeyMin: 4,
     smallKeyGoMode: 3,
-    autotrackState: createDungeonSmallKey(0x388),
+    autotrackState: createDungeonStore(0x388),
     bigKey: true,
   },
   {
@@ -468,7 +472,7 @@ const items = [
     smallKeyMax: 4,
     smallKeyMin: 4,
     smallKeyGoMode: 1,
-    autotrackState: createDungeonSmallKey(0x389),
+    autotrackState: createDungeonStore(0x389),
     bigKey: true,
   },
 ];
