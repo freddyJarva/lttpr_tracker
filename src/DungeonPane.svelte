@@ -5,7 +5,6 @@
 </script>
 
 <div class="pane">
-  <div class="bullshit-border" />
   {#each items as item}
     <KeysanityBox {...item} />
   {/each}
