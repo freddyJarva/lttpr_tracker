@@ -1,4 +1,5 @@
 import items from "./items";
+import _ from "lodash";
 
 let autotrackSocket = null;
 let autotrackTimer = null;
@@ -16,6 +17,7 @@ export function autotrackStartTimer() {
   autotrackTimer = setTimeout(autotrackReadMem, autotrackRefreshInterval);
 }
 
+let autotrackPrevData = null;
 function autotrackReadMem() {
   function snesread(address, size, callback) {
     autotrackSocket.send(
@@ -43,6 +45,22 @@ function autotrackReadMem() {
     // Basically makes this a while loop that sleeps for a set amount
     autotrackStartTimer();
   });
+}
+
+function logChangedValues(data) {
+  // For debug and exploratory use
+  if (autotrackPrevData !== null) {
+    for (const [index, element] of _.zip(autotrackPrevData, data).entries()) {
+      if (element[0] !== element[1] && element[1] < 5) {
+        console.log(
+          `Value at ${index.toString(16)} changed from  ${element[0]} to ${
+            element[1]
+          }`
+        );
+      }
+    }
+  }
+  autotrackPrevData = data;
 }
 
 function isInGame(event) {
