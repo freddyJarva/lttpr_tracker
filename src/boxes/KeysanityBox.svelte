@@ -6,6 +6,7 @@
   export let smallKeyMin = 0;
   export let smallKeyGoMode = 0;
   export let bigKey = false;
+  export let itemCount = 0;
 
   let keyCount = 0;
   let hasBigKey = false;
@@ -76,7 +77,7 @@
     >
   {/if}
   <span
-    class="keysanity-fragment {keyColor} key-count"
+    class="keysanity-fragment {keyColor} key-count counter"
     on:click|preventDefault={incrementKeys}
     title={dungeonState}
   >
@@ -91,6 +92,7 @@
       class:big-key-inactive={!hasBigKey}
     />
   {/if}
+  <span class="keysanity-fragment item-count counter">{itemCount}</span>
 </div>
 
 <style lang="scss">
@@ -103,7 +105,8 @@
     grid-column: 11 / span 4;
     width: 110%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "dungeon reward keys bigkey item-count";
     font-family: Zelda;
     font-size: 22px;
 
@@ -141,7 +144,7 @@
       justify-self: center;
     }
 
-    .key-count {
+    .counter {
       font-size: 30px;
       margin-top: 0px;
     }
@@ -149,11 +152,17 @@
     .big-key {
       width: 90%;
       @include transition-mixin(all, 0.1s, ease-out);
+      margin-right: 4px;
+      margin-top: -2px;
     }
 
     .big-key-inactive {
       filter: grayscale(1);
       opacity: 0.3;
+    }
+
+    .item-count {
+      grid-area: item-count;
     }
 
     span {

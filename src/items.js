@@ -367,6 +367,7 @@ const items = [
     smallKeyMin: 1,
     autotrackState: createDungeonStore(0x37c, 0x367, 0xc0),
     bigKey: false,
+    itemCount: 8,
   },
   {
     name: "EP",
@@ -377,6 +378,7 @@ const items = [
     smallKeyGoMode: 0,
     autotrackState: createDungeonStore(0x37e, 0x367, 0x20),
     bigKey: true,
+    itemCount: 6,
   },
   {
     name: "DP",
@@ -387,6 +389,7 @@ const items = [
     smallKeyGoMode: 0,
     autotrackState: createDungeonStore(0x37f, 0x367, 0x10),
     bigKey: true,
+    itemCount: 6,
   },
   {
     name: "TH",
@@ -397,6 +400,7 @@ const items = [
     smallKeyGoMode: 0,
     autotrackState: createDungeonStore(0x386, 0x366, 0x20),
     bigKey: true,
+    itemCount: 6,
   },
   {
     name: "AT",
@@ -407,6 +411,7 @@ const items = [
     smallKeyGoMode: 2,
     autotrackState: createDungeonStore(0x380),
     bigKey: false,
+    itemCount: 2,
   },
   {
     name: "PD",
@@ -417,6 +422,7 @@ const items = [
     smallKeyGoMode: 1,
     autotrackState: createDungeonStore(0x382, 0x367, 0x02),
     bigKey: true,
+    itemCount: 14,
   },
   {
     name: "SP",
@@ -427,6 +433,7 @@ const items = [
     smallKeyGoMode: 1,
     autotrackState: createDungeonStore(0x381, 0x367, 0x04),
     bigKey: true,
+    itemCount: 10,
   },
   {
     name: "SW",
@@ -437,6 +444,7 @@ const items = [
     smallKeyGoMode: 0,
     autotrackState: createDungeonStore(0x384, 0x366, 0x80),
     bigKey: true,
+    itemCount: 8,
   },
   {
     name: "TT",
@@ -447,6 +455,7 @@ const items = [
     smallKeyGoMode: 0,
     autotrackState: createDungeonStore(0x387, 0x366, 0x10),
     bigKey: true,
+    itemCount: 8,
   },
   {
     name: "IP",
@@ -457,6 +466,7 @@ const items = [
     smallKeyGoMode: 0,
     autotrackState: createDungeonStore(0x385, 0x366, 0x40),
     bigKey: true,
+    itemCount: 8,
   },
   {
     name: "MM",
@@ -467,6 +477,7 @@ const items = [
     smallKeyGoMode: 0,
     autotrackState: createDungeonStore(0x383, 0x367, 0x01),
     bigKey: true,
+    itemCount: 8,
   },
   {
     name: "TR",
@@ -477,6 +488,7 @@ const items = [
     smallKeyGoMode: 3,
     autotrackState: createDungeonStore(0x388, 0x366, 0x08),
     bigKey: true,
+    itemCount: 12,
   },
   {
     name: "GT",
@@ -487,6 +499,7 @@ const items = [
     smallKeyGoMode: 1,
     autotrackState: createDungeonStore(0x389, 0x366, 0x04),
     bigKey: true,
+    itemCount: 27,
   },
 ];
 
