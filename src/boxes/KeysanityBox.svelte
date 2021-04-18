@@ -163,6 +163,10 @@
 
     .item-count {
       grid-area: item-count;
+      display: block;
+      width: 24px;
+      align-content: flex-start;
+      text-align: right;
     }
 
     span {
