@@ -6,6 +6,7 @@
   export let smallKeyMin = 0;
   export let smallKeyGoMode = 0;
   export let bigKey = false;
+  export let autotrackState = null;
 
   let keyCount = 0;
   let activeRewardIndex = 0;
@@ -14,6 +15,7 @@
   let dungeonState;
   let keyColor;
   $: activeClass = isDone ? "active" : "inactive";
+
   $: if (keyCount < smallKeyGoMode) {
     keyColor = "red";
     dungeonState = "not clearable";

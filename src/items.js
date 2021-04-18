@@ -318,6 +318,7 @@ const items = [
     images: [uncle],
     smallKeyMax: 1,
     smallKeyMin: 1,
+    autotrackState: createProgressiveItem(0x37c),
     bigKey: false,
   },
   {
