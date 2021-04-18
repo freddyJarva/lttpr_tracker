@@ -39,7 +39,6 @@
 <style type="text/scss">
   .ItemBox {
     color: whitesmoke;
-    // outline: rgb(40, 38, 53) solid 1px;
     justify-self: center;
     grid-row-end: span 2;
     grid-column-start: span 2;
@@ -47,7 +46,6 @@
 
   .DoubleItemBox {
     color: whitesmoke;
-    // outline: rgb(40, 38, 53) solid 1px;
     align-self: center;
     grid-row-end: span 2;
     grid-column-start: span 1;

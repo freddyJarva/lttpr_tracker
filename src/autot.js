@@ -1,22 +1,10 @@
-import { debug } from "svelte/internal";
 import items from "./items";
 
-let autotrackHost = null;
 let autotrackSocket = null;
-let autotrackDeviceName = "";
-
-let autotrackReconnectTimer = null;
 let autotrackTimer = null;
-
-let autotrackPrevData = null;
-
 let autotrackRefreshInterval = 1000;
-let autotrackTimeoutDelay = 10000;
-
 let WRAM_START = 0xf50000;
-let WRAM_SIZE = 0x20000;
 let SAVEDATA_START = WRAM_START + 0xf000;
-let SAVEDATA_SIZE = 0x500;
 
 export function setsocket(socket) {
   console.log("socket:", socket);
@@ -49,7 +37,6 @@ function autotrackReadMem() {
             ...new Uint8Array(event3.data),
           ]);
           updateIfChanged(data);
-          autotrackPrevData = data;
         });
       });
     }
