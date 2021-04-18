@@ -7,6 +7,7 @@
   export let smallKeyGoMode = 0;
   export let bigKey = false;
   export let itemCount = 0;
+  let currentItems = itemCount;
 
   let keyCount = 0;
   let hasBigKey = false;
@@ -58,6 +59,10 @@
   function toggleBigKey() {
     autotrackState.toggleManualBigKey();
   }
+
+  function decrementItems() {
+    currentItems = currentItems - 1 < 0 ? itemCount : currentItems - 1;
+  }
 </script>
 
 <div class="DungeonBox" on:contextmenu|preventDefault={changeReward}>
@@ -92,7 +97,10 @@
       class:big-key-inactive={!hasBigKey}
     />
   {/if}
-  <span class="keysanity-fragment item-count counter">{itemCount}</span>
+  <span
+    class="keysanity-fragment item-count counter"
+    on:click|preventDefault={decrementItems}>{currentItems}</span
+  >
 </div>
 
 <style lang="scss">
