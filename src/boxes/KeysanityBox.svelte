@@ -12,7 +12,7 @@
   let manualCount = 0;
   export let autotrackState = null;
   $: if (autotrackState) {
-    keyCount = $autotrackState;
+    keyCount = $autotrackState.smallKeys;
   } else {
     keyCount = manualCount;
   }
@@ -53,8 +53,10 @@
      it made more sense to let manual tracking work in tandem with it.
     */
     if (autotrackState) {
-      $autotrackState =
-        $autotrackState + 1 > smallKeyMax ? 0 : $autotrackState + 1;
+      $autotrackState.smallKeys =
+        $autotrackState.smallKeys + 1 > smallKeyMax
+          ? 0
+          : $autotrackState.smallKeys + 1;
     } else {
       manualCount = manualCount + 1 > smallKeyMax ? 0 : manualCount + 1;
     }
