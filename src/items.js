@@ -133,22 +133,35 @@ function createBottles(hexOffsets) {
   };
 }
 
-function createDungeonStore(smallKeyHexOffset) {
-  const { subscribe, set, update } = writable({ smallKeys: 0, bigKey: false });
+function createDungeonStore(smallKeyHexOffset, bigKeyHexOffset, bigKeyMask) {
+  const { subscribe, set, update } = writable({
+    smallKeys: 0,
+    bigKey: false,
+    manualBigKey: false,
+  });
 
   return {
     subscribe,
     updateFromQUsbData: (qusbData) => {
       update((dungeon) => {
         if (qusbData[smallKeyHexOffset] > dungeon.smallKeys) {
-          return { smallKeys: qusbData[smallKeyHexOffset], bigKey: false };
-        } else {
-          return { smallKeys: dungeon.smallKeys, bigKey: false };
+          dungeon.smallKeys = qusbData[smallKeyHexOffset];
         }
+        if (!dungeon.manualBigKey) {
+          dungeon.bigKey = hasFoundItem(qusbData[bigKeyHexOffset], bigKeyMask);
+        }
+        return dungeon;
+      });
+    },
+    toggleManualBigKey: () => {
+      update((dungeon) => {
+        dungeon.manualBigKey = true;
+        dungeon.bigKey = !dungeon.bigKey;
+        return dungeon;
       });
     },
     set,
-    reset: () => set({ smallKeys: 0, bigKey: false }),
+    reset: () => set({ smallKeys: 0, bigKey: false, manualBigKey: false }),
   };
 }
 
@@ -352,7 +365,7 @@ const items = [
     images: [uncle],
     smallKeyMax: 1,
     smallKeyMin: 1,
-    autotrackState: createDungeonStore(0x37c),
+    autotrackState: createDungeonStore(0x37c, 0x367, 0xc0),
     bigKey: false,
   },
   {
@@ -362,7 +375,7 @@ const items = [
     smallKeyMax: 0,
     smallKeyMin: 0,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonStore(0x37e),
+    autotrackState: createDungeonStore(0x37e, 0x367, 0x20),
     bigKey: true,
   },
   {
@@ -372,7 +385,7 @@ const items = [
     smallKeyMax: 1,
     smallKeyMin: 1,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonStore(0x37f),
+    autotrackState: createDungeonStore(0x37f, 0x367, 0x10),
     bigKey: true,
   },
   {
@@ -382,7 +395,7 @@ const items = [
     smallKeyMax: 1,
     smallKeyMin: 1,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonStore(0x386),
+    autotrackState: createDungeonStore(0x386, 0x366, 0x20),
     bigKey: true,
   },
   {
@@ -402,7 +415,7 @@ const items = [
     smallKeyMax: 6,
     smallKeyMin: 4,
     smallKeyGoMode: 1,
-    autotrackState: createDungeonStore(0x382),
+    autotrackState: createDungeonStore(0x382, 0x367, 0x02),
     bigKey: true,
   },
   {
@@ -412,7 +425,7 @@ const items = [
     smallKeyMax: 1,
     smallKeyMin: 1,
     smallKeyGoMode: 1,
-    autotrackState: createDungeonStore(0x381),
+    autotrackState: createDungeonStore(0x381, 0x367, 0x04),
     bigKey: true,
   },
   {
@@ -422,7 +435,7 @@ const items = [
     smallKeyMax: 3,
     smallKeyMin: 0,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonStore(0x384),
+    autotrackState: createDungeonStore(0x384, 0x366, 0x80),
     bigKey: true,
   },
   {
@@ -432,7 +445,7 @@ const items = [
     smallKeyMax: 1,
     smallKeyMin: 1,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonStore(0x387),
+    autotrackState: createDungeonStore(0x387, 0x366, 0x10),
     bigKey: true,
   },
   {
@@ -442,7 +455,7 @@ const items = [
     smallKeyMax: 2,
     smallKeyMin: 0,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonStore(0x385),
+    autotrackState: createDungeonStore(0x385, 0x366, 0x40),
     bigKey: true,
   },
   {
@@ -452,7 +465,7 @@ const items = [
     smallKeyMax: 3,
     smallKeyMin: 0,
     smallKeyGoMode: 0,
-    autotrackState: createDungeonStore(0x383),
+    autotrackState: createDungeonStore(0x383, 0x367, 0x01),
     bigKey: true,
   },
   {
@@ -462,7 +475,7 @@ const items = [
     smallKeyMax: 4,
     smallKeyMin: 4,
     smallKeyGoMode: 3,
-    autotrackState: createDungeonStore(0x388),
+    autotrackState: createDungeonStore(0x388, 0x366, 0x08),
     bigKey: true,
   },
   {
@@ -472,7 +485,7 @@ const items = [
     smallKeyMax: 4,
     smallKeyMin: 4,
     smallKeyGoMode: 1,
-    autotrackState: createDungeonStore(0x389),
+    autotrackState: createDungeonStore(0x389, 0x366, 0x04),
     bigKey: true,
   },
 ];

@@ -7,19 +7,15 @@
   export let smallKeyGoMode = 0;
   export let bigKey = false;
 
-  // Small key logic
   let keyCount = 0;
-  let manualCount = 0;
+  let hasBigKey = false;
   export let autotrackState = null;
-  $: if (autotrackState) {
-    keyCount = $autotrackState.smallKeys;
-  } else {
-    keyCount = manualCount;
-  }
+  $: keyCount = $autotrackState.smallKeys;
+  $: hasBigKey = $autotrackState.bigKey;
 
   let activeRewardIndex = 0;
   let isDone = false;
-  let hasBigKey = false;
+
   let dungeonState;
   let keyColor;
   $: activeClass = isDone ? "active" : "inactive";
@@ -47,23 +43,19 @@
   }
 
   function incrementKeys() {
-    /* If autotracking is enabled, we write manual updates to autotrackstate.
+    /* Autotracker and manual tracking writes to the same place.
      Since autotracking for small keys work differently than other items
      and is prone to getting out of sync with the **true** amount of found keys,
      it made more sense to let manual tracking work in tandem with it.
     */
-    if (autotrackState) {
-      $autotrackState.smallKeys =
-        $autotrackState.smallKeys + 1 > smallKeyMax
-          ? 0
-          : $autotrackState.smallKeys + 1;
-    } else {
-      manualCount = manualCount + 1 > smallKeyMax ? 0 : manualCount + 1;
-    }
+    $autotrackState.smallKeys =
+      $autotrackState.smallKeys + 1 > smallKeyMax
+        ? 0
+        : $autotrackState.smallKeys + 1;
   }
 
   function toggleBigKey() {
-    hasBigKey = !hasBigKey;
+    autotrackState.toggleManualBigKey();
   }
 </script>
 
