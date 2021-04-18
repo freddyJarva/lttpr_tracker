@@ -138,15 +138,25 @@ function createDungeonStore(smallKeyHexOffset, bigKeyHexOffset, bigKeyMask) {
     smallKeys: 0,
     bigKey: false,
     manualBigKey: false,
+    previousSmallKeysAT: null,
   });
 
   return {
     subscribe,
     updateFromQUsbData: (qusbData) => {
       update((dungeon) => {
-        if (qusbData[smallKeyHexOffset] > dungeon.smallKeys) {
+        if (
+          !dungeon.previousSmallKeysAT &&
+          qusbData[smallKeyHexOffset] > dungeon.smallKeys
+        ) {
           dungeon.smallKeys = qusbData[smallKeyHexOffset];
+        } else if (dungeon.previousSmallKeysAT) {
+          dungeon.smallKeys =
+            qusbData[smallKeyHexOffset] > dungeon.previousSmallKeysAT
+              ? dungeon.smallKeys + 1
+              : dungeon.smallKeys;
         }
+        dungeon.previousSmallKeysAT = qusbData[smallKeyHexOffset];
         if (!dungeon.manualBigKey) {
           dungeon.bigKey = hasFoundItem(qusbData[bigKeyHexOffset], bigKeyMask);
         }
@@ -161,7 +171,6 @@ function createDungeonStore(smallKeyHexOffset, bigKeyHexOffset, bigKeyMask) {
       });
     },
     set,
-    reset: () => set({ smallKeys: 0, bigKey: false, manualBigKey: false }),
   };
 }
 
