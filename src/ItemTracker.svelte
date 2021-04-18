@@ -24,10 +24,11 @@
 </div>
 
 <style type="text/scss">
+  $item-cell: 34px;
   $filler-cell: 34px;
 
-  $core-tracker-grid-rows: repeat(15, 34px);
-  $core-tracker-grid-columns: repeat(10, 34px) $filler-cell 16px repeat(4, 34px);
+  $core-tracker-grid-rows: repeat(15, $item-cell);
+  $core-tracker-grid-columns: repeat(10, $item-cell) $filler-cell 16px repeat(5, $item-cell);
   $note-grid-columns: 34 * 4px;
 
   .ItemTracker {

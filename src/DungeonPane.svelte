@@ -14,7 +14,7 @@
   @import "src/theme.scss";
   .pane {
     grid-row: 1 / span 14;
-    grid-column: 13 / span 4;
+    grid-column: 13 / span 5;
     display: grid;
     grid-template-columns: $dungeon-pane-columns;
     grid-template-rows: $dungeon-pane-rows;
