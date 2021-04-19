@@ -30,7 +30,6 @@
 
   function setFocus(node: HTMLInputElement) {
     setTimeout(() => {
-      node.click();
       node.focus();
     }, 50);
   }
@@ -58,7 +57,7 @@
         on:blur={() => (editing = false)}
       />
     {:else}
-      <p use:selectTextOnFocus use:blurOnEscape>
+      <p>
         {$text}
       </p>
     {/if}
@@ -79,6 +78,21 @@
     margin-bottom: 8px;
 
     border-radius: 6%;
+  }
+
+  .note-input {
+    max-width: 100px;
+    min-height: 32px;
+    font-size: 14px;
+
+    text-align: center;
+    border: none;
+    font-size: 14px;
+    font-family: "Press Start 2P";
+  }
+
+  .note-input:focus {
+    outline: none;
   }
 
   .entrance-name-text {
