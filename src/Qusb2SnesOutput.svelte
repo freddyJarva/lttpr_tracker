@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import { setsocket, autotrackStartTimer } from "./autot";
 
-  let webSocket;
+  let webSocket: WebSocket;
   let snes_devices = [];
   let selected_device;
 
@@ -12,7 +12,10 @@
 
   let host = "ws://localhost:" + TRACKING_PORT;
 
-  onMount(async () => {
+  function openSocket(host) {
+    if (webSocket) {
+      webSocket.close();
+    }
     webSocket = new WebSocket(host);
     webSocket.onopen = function (event) {
       webSocket.send(
@@ -31,26 +34,32 @@
         console.log(event.data);
       };
     };
+  }
+
+  onMount(async () => {
+    openSocket(host);
   });
 
   function attachToDevice() {
-    let message = JSON.stringify({
-      Opcode: "Attach",
-      Space: "SNES",
-      Operands: [selected_device],
-    });
-    console.log("message to send: ", message);
-    webSocket.send(message);
+    if (selected_device !== "None") {
+      let message = JSON.stringify({
+        Opcode: "Attach",
+        Space: "SNES",
+        Operands: [selected_device],
+      });
+      console.log("message to send: ", message);
+      webSocket.send(message);
 
-    message = JSON.stringify({
-      Opcode: "Info",
-      Space: "SNES",
-      Operands: [selected_device],
-    });
-    webSocket.send(message);
+      message = JSON.stringify({
+        Opcode: "Info",
+        Space: "SNES",
+        Operands: [selected_device],
+      });
+      webSocket.send(message);
 
-    setsocket(webSocket);
-    autotrackStartTimer();
+      setsocket(webSocket);
+      autotrackStartTimer();
+    }
   }
 </script>
 
