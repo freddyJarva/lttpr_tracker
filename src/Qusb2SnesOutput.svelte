@@ -2,21 +2,9 @@
   import { onMount } from "svelte";
   import { setsocket, autotrackStartTimer } from "./autot";
 
-  let messages = [];
-
-  let autotrackTimer;
-
-  let autotrackRefreshInterval = 1000;
-  let autotrackTimeoutDelay = 10000;
-
   let webSocket;
   let snes_devices = [];
   let selected_device;
-
-  const WRAM_START = 0xf50000;
-  const WRAM_SIZE = 0x20000;
-  const SAVEDATA_START = WRAM_START + 0xf000;
-  const SAVEDATA_SIZE = 0x500;
 
   $: console.log("Selected device:", selected_device);
 
