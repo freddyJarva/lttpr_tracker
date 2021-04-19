@@ -33,11 +33,11 @@ export class MapObject implements MapComponentObject {
   text: Writable<string>;
   interiorId?: Readable<number>;
 
-  constructor(entranceName: string, entranceId: string) {
+  constructor(entranceName: string, entranceId: string, initialText) {
     this.entranceName = entranceName;
     this.entranceId = entranceId;
     this.img = writable("");
-    this.text = writable("");
+    this.text = writable(initialText ? initialText : "");
     this.interiorId = derived(this.img, ($img) => {
       for (const substr of dungeonImgSubstrings) {
         if ($img.includes(substr)) {

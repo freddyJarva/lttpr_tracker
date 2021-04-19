@@ -1,24 +1,38 @@
 <script lang="ts">
   import type { Writable } from "svelte/store";
+  import { selectTextOnFocus, blurOnEscape } from "./inputDirectives";
 
   export let entranceName = "Unknown";
   export let entranceId: string;
   export let text: Writable<string>;
   export let img: Writable<string>;
 
+  let editing = false;
+
   function onMouseHover() {
-    let el = document.getElementById(entranceId);
-    el.classList.add("note-hover");
+    if (entranceId) {
+      let el = document.getElementById(entranceId);
+      el.classList.add("note-hover");
+    }
   }
 
   function onMouseLeave() {
-    let el = document.getElementById(entranceId);
-    el.classList.remove("note-hover");
+    if (entranceId) {
+      let el = document.getElementById(entranceId);
+      el.classList.remove("note-hover");
+    }
   }
 
   function handleRightClick() {
     $text = "";
     onMouseLeave();
+  }
+
+  function setFocus(node: HTMLInputElement) {
+    setTimeout(() => {
+      node.click();
+      node.focus();
+    }, 50);
   }
 </script>
 
@@ -28,9 +42,26 @@
     on:mouseover={onMouseHover}
     on:mouseout={onMouseLeave}
     on:contextmenu|preventDefault={handleRightClick}
+    on:click={() => (editing = true)}
   >
-    <!-- <p class="entrance-name-text">{entranceName}</p> -->
-    <p contenteditable="true" bind:textContent={$text} />
+    {#if entranceName}
+      <p class="entrance-name-text">{entranceName}</p>
+    {/if}
+    {#if editing}
+      <input
+        class="note-input"
+        bind:value={$text}
+        use:selectTextOnFocus
+        use:blurOnEscape
+        use:setFocus
+        on:keydown={(e) => (editing = e.key === "Enter" ? false : editing)}
+        on:blur={() => (editing = false)}
+      />
+    {:else}
+      <p use:selectTextOnFocus use:blurOnEscape>
+        {$text}
+      </p>
+    {/if}
   </div>
 {/if}
 
