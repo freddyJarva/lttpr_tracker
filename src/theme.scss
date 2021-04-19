@@ -10,20 +10,7 @@ $dungeon-cell-height: 35px;
 $dungeon-pane-rows: repeat(13, $dungeon-cell-height);
 $dungeon-pane-columns: repeat(5, 1fr);
 
-.note-input {
-  max-width: 140px;
-  min-height: 32px;
-  font-size: 14px;
 
-  text-align: center;
-
-  padding: 4px 8px 4px 10px;
-  margin-bottom: 8px;
-
-  border-radius: 6%;
-  font-size: 14px;
-  font-family: "Press Start 2P";
-}
 
 @mixin transition-mixin($property: all, $time: 0.2s, $type: ease-in) {
   -webkit-transition: $property $time $type;
