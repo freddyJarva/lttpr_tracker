@@ -19,30 +19,25 @@ const dungeonImgSubstrings = [
 ];
 
 export interface MapComponentObject {
-  entranceName: string;
-  entranceId: string;
-  img: Writable<string>;
+  entranceName?: string;
+  entranceId?: string;
+  img?: Writable<string>;
   text: Writable<string>;
-  interiorId: Readable<number>;
+  interiorId?: Readable<number>;
 }
 
 export class MapObject implements MapComponentObject {
-  entranceName: string;
-  entranceId: string;
-  img: Writable<string>;
+  entranceName?: string;
+  entranceId?: string;
+  img?: Writable<string>;
   text: Writable<string>;
-  interiorId: Readable<number>;
+  interiorId?: Readable<number>;
 
-  constructor(
-    entranceName: string,
-    entranceId: string,
-    img: Writable<string>,
-    text: Writable<string>
-  ) {
+  constructor(entranceName: string, entranceId: string) {
     this.entranceName = entranceName;
     this.entranceId = entranceId;
-    this.img = img;
-    this.text = text;
+    this.img = writable("");
+    this.text = writable("");
     this.interiorId = derived(this.img, ($img) => {
       for (const substr of dungeonImgSubstrings) {
         if ($img.includes(substr)) {

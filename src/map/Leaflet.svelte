@@ -144,9 +144,7 @@
 
     const mapComponent = new MapObject(
       interactiveMarker.data.name,
-      interactiveMarker.data.id,
-      writable(""),
-      writable("")
+      interactiveMarker.data.id
     );
 
     // Object to reuse at other places, like notepane for example.
