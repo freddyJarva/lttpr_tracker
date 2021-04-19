@@ -17,6 +17,7 @@
   import { iconFor } from "./icons";
   import { mapComponentObjects, MapObject } from "./store";
   import { lineBetween } from "./line";
+  import ItemMarkerPopup from "./ItemMarkerPopup.svelte";
 
   export let image: string;
   export let markers: Array<MarkerData>;
@@ -35,15 +36,17 @@
   let controlLayer = L.control.layers(null, null);
   let layerGroups: {
     entrance: L.LayerGroup;
-    glitch: L.LayerGroup;
+    item: L.LayerGroup;
     inactive: L.LayerGroup;
+    glitch: L.LayerGroup;
   };
 
   let coordinateToMarkers: Map<string, InteractiveMarker> = new Map();
   let markerGroups: {
     entrance: Array<InteractiveMarker>;
-    glitch: Array<InteractiveMarker>;
+    item: Array<InteractiveMarker>;
     inactive: Array<InteractiveMarker>;
+    glitch: Array<InteractiveMarker>;
   };
 
   let dragStart: InteractiveMarker = null;
@@ -71,9 +74,9 @@
     // Layer groups
     layerGroups = {
       entrance: L.layerGroup(markerGroups.entrance.map((m) => m.node)),
-      glitch: L.layerGroup(markerGroups.glitch.map((m) => m.node)),
-
+      item: L.layerGroup(markerGroups.item.map((m) => m.node)),
       inactive: L.layerGroup(markerGroups.inactive.map((m) => m.node)),
+      glitch: L.layerGroup(markerGroups.glitch.map((m) => m.node)),
     };
 
     Object.entries(layerGroups).forEach((entry) => {
@@ -102,10 +105,19 @@
     let glitches = markers
       .filter((marker) => marker.type === "glitch")
       .map((marker) => createLeafletMarker(marker));
+    let items = markers
+      .filter((marker) => marker.type === "item")
+      .map((m) =>
+        createLeafletMarker(m, [
+          { eventType: "mousedown", fn: onEntranceClick },
+          { eventType: "contextmenu", fn: onContextMenu },
+        ])
+      );
     return {
       glitch: glitches,
-      entrance: entrances,
+      item: items,
       inactive: [],
+      entrance: entrances,
     };
   }
 
@@ -175,6 +187,18 @@
           interactiveMarker.node.closePopup();
         });
       });
+    } else if (marker.type === "item") {
+      bindPopup(interactiveMarker, (m: any) => {
+        let c = new ItemMarkerPopup({
+          target: m,
+          props: {
+            notes: mapComponent.text,
+          },
+        });
+        c.$on("close", () => {
+          interactiveMarker.node.closePopup();
+        });
+      });
     }
 
     coordinateToMarkers.set(latLng.toString(), interactiveMarker);
@@ -187,22 +211,7 @@
   }
 
   function onEntranceClick(e: L.LeafletMouseEvent) {
-    if (e.originalEvent.button === 0) {
-      // 0 = Left Mouse
-      if (dragStart !== null && dragStart.node.getLatLng() !== e.latlng) {
-        let line = lineBetween(dragStart.node.getLatLng(), e.latlng);
-        line
-          .on("click", (e) => {
-            line.remove();
-          })
-          .addTo(map);
-
-        // Super ugly way to make sure popup doesn't open when clicking on endpoint for the line
-        setTimeout(() => {
-          coordinateToMarkers.get(latLngToKey(e.latlng)).node.closePopup();
-        }, 100);
-      }
-    } else if (e.originalEvent.button === 2) {
+    if (e.originalEvent.button === 2) {
       // Right mouse
       toggleMarker(e);
     }
@@ -220,20 +229,22 @@
       );
     }
     if (clickedMarker.isActive) {
-      layerGroups.entrance.removeLayer(clickedMarker.node);
+      clickedMarker.data.type == "entrance"
+        ? layerGroups.entrance.removeLayer(clickedMarker.node)
+        : layerGroups.item.removeLayer(clickedMarker.node);
       clickedMarker.isActive = false;
       clickedMarker.node.deactivate();
-      layerGroups.inactive.addLayer(clickedMarker.node);
-
       layerGroups.inactive.addLayer(clickedMarker.node);
     } else {
       layerGroups.inactive.removeLayer(clickedMarker.node);
 
       clickedMarker.isActive = true;
       clickedMarker.node.activate();
-      layerGroups.entrance.addLayer(clickedMarker.node);
+
+      clickedMarker.data.type == "entrance"
+        ? layerGroups.entrance.addLayer(clickedMarker.node)
+        : layerGroups.item.addLayer(clickedMarker.node);
     }
-    // clickedMarker.node.setIcon(iconFor(clickedMarker));
   }
 
   function onContextMenu(e: L.LeafletMouseEvent) {}

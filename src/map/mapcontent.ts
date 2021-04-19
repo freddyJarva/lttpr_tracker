@@ -14,28 +14,34 @@ export const imageHeight = 4096;
 // Spots where unique items can be found
 const itemMarkers: Array<MarkerData> = [
   {
-    name: "Kakariko Bottle Merchant",
-    id: "item-kak-merchant",
-    type: "item",
-    xy: [384, 1920],
-  },
-  {
     name: "Race game reward",
     id: "item-racegame",
     type: "item",
     xy: [128, 2880],
   },
   {
-    name: "Flute Digging Spot",
-    id: "item-flute",
+    name: "Hylia Isle",
+    id: "item-lake-hylia-isle",
     type: "item",
-    xy: [1176, 2712],
+    xy: [2976, 3424],
   },
   {
-    name: "Tavern Back",
-    id: "item-kak-tavern-back",
+    name: "Desert Ledge",
+    id: "item-desert-ledge",
     type: "item",
-    xy: [656, 2320],
+    xy: [96, 3744],
+  },
+  {
+    name: "Floating Isle",
+    id: "item-dm-floating-isle",
+    type: "item",
+    xy: [3328, 96],
+  },
+  {
+    name: "Bumper Ledge",
+    id: "item-bumper-ledge",
+    type: "item",
+    xy: [5500, 640],
   },
 ];
 
@@ -967,6 +973,6 @@ const mapContent: MapContent = {
   ],
 };
 
-mapContent.markers.push(...glitchMarkers);
+mapContent.markers.push(...glitchMarkers, ...itemMarkers);
 
 export default mapContent;

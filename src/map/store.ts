@@ -33,7 +33,7 @@ export class MapObject implements MapComponentObject {
   text: Writable<string>;
   interiorId?: Readable<number>;
 
-  constructor(entranceName: string, entranceId: string, initialText) {
+  constructor(entranceName: string, entranceId: string, initialText?: string) {
     this.entranceName = entranceName;
     this.entranceId = entranceId;
     this.img = writable("");

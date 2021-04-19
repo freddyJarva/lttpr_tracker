@@ -18,6 +18,7 @@ const mapIcons = {
     popupAnchor: [0, -32],
     tooltipAnchor: [14, -15],
   }),
+  item: L.icon(iconData("icons/map-marker-chest.svg", { iconSize: [20, 20] })),
   default: new L.Icon.Default(),
 };
 
