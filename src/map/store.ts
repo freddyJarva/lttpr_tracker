@@ -49,4 +49,7 @@ export class MapObject implements MapComponentObject {
   }
 }
 
+export let mouseX = writable(0);
+export let mouseY = writable(0);
+
 export const mapComponentObjects: Writable<Array<MapObject>> = writable([]);

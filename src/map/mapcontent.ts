@@ -43,6 +43,12 @@ const itemMarkers: Array<MarkerData> = [
     type: "item",
     xy: [5500, 640],
   },
+  {
+    name: "Spectacle Rock Ledge",
+    id: "item-spec-rock",
+    type: "item",
+    xy: [2094, 364],
+  },
 ];
 
 // Bushes, rocks that drop bombs, rupees etc.
