@@ -52,13 +52,13 @@ function iconData(url: string, data: any): IconData {
 }
 
 export const iconDataList: Array<IconData> = [
-  iconData("icons/map-marker-hyrulecastle-m.webp", HYRULE_CASTLE),
   iconData("icons/map-marker-hyrulecastle-w.webp", HYRULE_CASTLE),
+  iconData("icons/map-marker-hyrulecastle-m.webp", HYRULE_CASTLE),
   iconData("icons/map-marker-hyrulecastle-e.webp", HYRULE_CASTLE),
   iconData("icons/map-marker-easternpalace.webp", { iconSize: [24, 24] }),
+  iconData("icons/map-marker-desertpalace-w.webp", DESERT_PALACE),
   iconData("icons/map-marker-desertpalace-m.webp", DESERT_PALACE),
   iconData("icons/map-marker-desertpalace-e.webp", DESERT_PALACE),
-  iconData("icons/map-marker-desertpalace-w.webp", DESERT_PALACE),
   iconData("icons/map-marker-desertpalace-b.webp", DESERT_PALACE),
   iconData("icons/map-marker-castletower.webp", { iconSize: [26, 26] }),
   iconData("icons/map-marker-towerofhera.webp", { iconSize: [26, 26] }),
@@ -68,8 +68,8 @@ export const iconDataList: Array<IconData> = [
   iconData("icons/map-marker-thievestown.webp", { iconSize: [30, 30] }),
   iconData("icons/map-marker-icepalace.webp", { iconSize: [30, 30] }),
   iconData("icons/map-marker-miserymire.webp", { iconSize: [30, 30] }),
-  iconData("icons/map-marker-turtlerock-m.svg", TURTLE_ROCK),
   iconData("icons/map-marker-turtlerock-w.svg", TURTLE_ROCK),
+  iconData("icons/map-marker-turtlerock-m.svg", TURTLE_ROCK),
   iconData("icons/map-marker-turtlerock-e.svg", TURTLE_ROCK),
   iconData("icons/map-marker-turtlerock-b.svg", TURTLE_ROCK),
   iconData("icons/map-marker-ganonstower.webp", { iconSize: [25, 25] }),
