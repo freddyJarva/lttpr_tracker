@@ -15,7 +15,7 @@
   import type { LatLngPoint } from "./leafletutil";
   import { writable } from "svelte/store";
   import { iconFor } from "./icons";
-  import { mapComponentObjects, MapObject } from "./store";
+  import { mouseX, mouseY, mapComponentObjects, MapObject } from "./store";
   import { lineBetween } from "./line";
   import ItemMarkerPopup from "./ItemMarkerPopup.svelte";
 
@@ -62,6 +62,13 @@
         map.fitBounds(bounds);
       }
     }, 250);
+
+    // Track mouse coordinates
+    map.addEventListener("mousemove", function (ev: L.LeafletMouseEvent) {
+      const [x, y] = toXY([ev.latlng.lat, ev.latlng.lng]);
+      $mouseX = x;
+      $mouseY = y;
+    });
 
     let halfSize = 256;
     L.imageOverlay(image, [
@@ -253,6 +260,13 @@
     let maxLat = imageHeight / mapUnit;
     const latLng = [maxLat - xy[1] / mapUnit, xy[0] / mapUnit];
     return latLng;
+  }
+
+  function toXY(latLng: Array<number>) {
+    return [
+      Math.round(latLng[1] * mapUnit),
+      Math.round(imageHeight - latLng[0] * mapUnit),
+    ];
   }
 
   function bindPopup(marker: InteractiveMarker, createFn) {
