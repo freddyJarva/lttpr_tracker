@@ -218,7 +218,22 @@
   }
 
   function onEntranceClick(e: L.LeafletMouseEvent) {
-    if (e.originalEvent.button === 2) {
+    if (e.originalEvent.button === 0) {
+      // 0 = Left Mouse
+      if (dragStart !== null && dragStart.node.getLatLng() !== e.latlng) {
+        let line = lineBetween(dragStart.node.getLatLng(), e.latlng);
+        line
+          .on("click", (e) => {
+            line.remove();
+          })
+          .addTo(map);
+
+        // Super ugly way to make sure popup doesn't open when clicking on endpoint for the line
+        setTimeout(() => {
+          coordinateToMarkers.get(latLngToKey(e.latlng)).node.closePopup();
+        }, 100);
+      }
+    } else if (e.originalEvent.button === 2) {
       // Right mouse
       toggleMarker(e);
     }
